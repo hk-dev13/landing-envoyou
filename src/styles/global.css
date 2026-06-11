@@ -30,6 +30,19 @@
   --color-hero-glow-2: rgba(56, 189, 248, 0.12);
 }
 
+@theme {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-soft: var(--color-surface-soft);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-primary-deep: var(--color-primary-deep);
+  --color-accent: var(--color-accent);
+  --color-success: var(--color-success);
+}
+
 /* ── Base ── */
 * {
   box-sizing: border-box;

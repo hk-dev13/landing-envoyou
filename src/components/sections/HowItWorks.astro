@@ -28,7 +28,7 @@ const steps = [
 ];
 ---
 
-<section id="how-it-works" class="border-t border-[--color-border]">
+<section id="how-it-works">
   <div class="section">
     <div class="text-center mb-16">
       <div class="section-label mx-auto">How EAI Works</div>
@@ -44,7 +44,7 @@ const steps = [
         <div class="relative group">
           <!-- Connector line (desktop, between cards) -->
           {i < steps.length - 1 && (
-            <div class="hidden lg:block absolute top-10 left-full w-6 h-px bg-[--color-border] z-10 -translate-x-0"></div>
+            <div class="hidden lg:block absolute top-10 left-full w-6 h-px bg-border z-10 -translate-x-0"></div>
           )}
 
           <div class="card p-6 h-full">
@@ -56,16 +56,16 @@ const steps = [
             <div class="relative">
               <!-- Step number + icon -->
               <div class="flex items-center justify-between mb-5">
-                <div class="w-11 h-11 rounded-2xl border border-[--color-border] bg-[--color-surface-soft] flex items-center justify-center">
-                  <svg class="w-4.5 h-4.5 text-[--color-primary]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1.125rem;height:1.125rem;">
+                <div class="w-11 h-11 rounded-2xl border border-border bg-surface-soft flex items-center justify-center">
+                  <svg class="w-4.5 h-4.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1.125rem;height:1.125rem;">
                     <Fragment set:html={step.icon} />
                   </svg>
                 </div>
-                <span class="text-3xl font-black text-[--color-border] select-none">{step.number}</span>
+                <span class="text-3xl font-black text-border select-none">{step.number}</span>
               </div>
 
-              <h3 class="text-base font-bold text-[--color-text] mb-2">{step.title}</h3>
-              <p class="text-sm text-[--color-muted] leading-6">{step.description}</p>
+              <h3 class="text-base font-bold text-text mb-2">{step.title}</h3>
+              <p class="text-sm text-muted leading-6">{step.description}</p>
             </div>
           </div>
         </div>

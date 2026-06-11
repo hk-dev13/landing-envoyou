@@ -72,13 +72,13 @@ const eaiStats: Stat[] = [
 ];
 
 const sourceColors = {
-  blog: { dot: "bg-[--color-primary]", badge: "text-[--color-primary]", bg: "bg-blue-50 dark:bg-blue-950/30" },
-  eai: { dot: "bg-[--color-accent]", badge: "text-sky-500", bg: "bg-sky-50 dark:bg-sky-950/30" },
-  system: { dot: "bg-[--color-success]", badge: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+  blog: { dot: "bg-primary", badge: "text-primary", bg: "bg-blue-50 dark:bg-blue-950/30" },
+  eai: { dot: "bg-accent", badge: "text-sky-500", bg: "bg-sky-50 dark:bg-sky-950/30" },
+  system: { dot: "bg-success", badge: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
 };
 ---
 
-<section id="analytics" class="border-t border-[--color-border] bg-[--color-surface-soft]">
+<section id="analytics" class="bg-surface-soft">
   <div class="section">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
       <div>
@@ -92,16 +92,16 @@ const sourceColors = {
       <!-- Legend -->
       <div class="flex items-center gap-4 shrink-0 pb-1">
         <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-[--color-primary]"></span>
-          <span class="text-xs text-[--color-muted]">Blog</span>
+          <span class="w-2 h-2 rounded-full bg-primary"></span>
+          <span class="text-xs text-muted">Blog</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-          <span class="text-xs text-[--color-muted]">EAI</span>
+          <span class="text-xs text-muted">EAI</span>
         </div>
         <div class="flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-[--color-success]"></span>
-          <span class="text-xs text-[--color-muted]">System</span>
+          <span class="w-2 h-2 rounded-full bg-success"></span>
+          <span class="text-xs text-muted">System</span>
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@ const sourceColors = {
             </div>
 
             <p
-              class="stat-number text-4xl font-extrabold text-[--color-text] leading-none tracking-tight"
+              class="stat-number text-4xl font-extrabold text-text leading-none tracking-tight"
               data-count="true"
               data-value={stat.value}
               data-suffix={stat.suffix ?? ""}
@@ -128,17 +128,17 @@ const sourceColors = {
               {stat.value}{stat.suffix}
             </p>
 
-            <p class="text-sm font-semibold text-[--color-text] mt-3">{stat.label}</p>
-            <p class="text-xs text-[--color-muted] mt-1 leading-5">{stat.description}</p>
+            <p class="text-sm font-semibold text-text mt-3">{stat.label}</p>
+            <p class="text-xs text-muted mt-1 leading-5">{stat.description}</p>
           </div>
         );
       })}
     </div>
 
     <!-- Data note -->
-    <p class="text-center text-xs text-[--color-muted] mt-8">
+    <p class="text-center text-xs text-muted mt-8">
       Data sourced from Blog Admin Dashboard and EAI Analytics Dashboard. Updated periodically.
-      <a href="https://blog.envoyou.com" target="_blank" class="text-[--color-primary] hover:underline ml-1">View blog →</a>
+      <a href="https://blog.envoyou.com" target="_blank" class="text-primary hover:underline ml-1">View blog →</a>
     </p>
   </div>
 </section>

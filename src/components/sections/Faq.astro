@@ -1,0 +1,100 @@
+---
+// FAQ section
+const faqs = [
+  {
+    question: "What is Envoyou?",
+    answer: "Envoyou is a modern digital publishing ecosystem that connects draft creation, intelligent AI-powered editorial workflows (EAI), and blog publishing into a single unified workspace."
+  },
+  {
+    question: "Can I try EAI for free?",
+    answer: "Yes, absolutely! You can try refining drafts for up to 2 articles for free directly at <a href='https://eai.envoyou.com' target='_blank' rel='noopener noreferrer' class='text-primary hover:underline'>eai.envoyou.com</a> without needing to register or log in."
+  },
+  {
+    question: "How does EAI help refine articles?",
+    answer: "EAI (Editorial Intelligence) evaluates the structure of your drafts, verifies factual claims against original sources (source fidelity check), improves readability and voice flow, and prepares complete SEO packages (Meta Title, Description, and Slug)."
+  },
+  {
+    question: "How do I publish drafts from EAI to Blog Envoyou?",
+    answer: "Blog Envoyou is reserved exclusively for our internal blog team to publish and export content. For external organizations and tenants, you can register for EAI and connect your own custom CMS (such as WordPress, Ghost, or Headless APIs) to publish refined drafts directly to your own site."
+  },
+  {
+    question: "Are my drafts and writings safe in EAI?",
+    answer: "Yes, completely. Your privacy and intellectual property are our top priorities. All processed drafts are kept strictly private for your organization and are never used to train public AI models."
+  }
+];
+---
+
+<section id="faq" class="bg-surface">
+  <div class="section">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      
+      <!-- Left Column: Header -->
+      <div class="lg:col-span-4 lg:sticky lg:top-28 h-fit">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title text-left">
+          Have questions?<br />We have answers.
+        </h2>
+        <p class="section-subtitle text-left mt-4">
+          Learn more about how the Envoyou ecosystem and EAI editorial intelligence work together to streamline your publishing workflow.
+        </p>
+        <div class="mt-8">
+          <p class="text-xs text-muted font-medium">Still need help?</p>
+          <a href="mailto:hello@envoyou.com" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-deep transition-colors mt-2">
+            Contact Our Team
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Accordion Stack -->
+      <div class="lg:col-span-8 divide-y divide-border">
+        {faqs.map((faq) => (
+          <details class="faq-item group py-5 cursor-pointer outline-none">
+            <summary class="flex items-center justify-between gap-4 font-bold text-base text-text list-none select-none outline-none">
+              <span>{faq.question}</span>
+              <span class="faq-icon flex items-center justify-center w-6 h-6 rounded-full border border-border text-muted group-hover:text-text group-hover:border-primary/30 transition-all duration-200 shrink-0">
+                <svg class="w-3.5 h-3.5 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path d="M19 9l-7 7-7-7"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="faq-answer mt-4 text-sm text-muted leading-7 pr-8 select-text">
+              <Fragment set:html={faq.answer} />
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Remove default disclosure triangle indicator */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  .faq-item[open] .faq-icon {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .faq-answer {
+    animation: slideDown 0.25s ease-out forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
