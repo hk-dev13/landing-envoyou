@@ -93,19 +93,39 @@ function formatReaders(count) {
 async function main() {
   // Load existing stats as fallbacks
   let stats = {
-    totalDrafts: 312,
-    readyRate: 94,
-    monthlyReaders: "1.2K",
-    systemUptime: "99.9%"
+    totalDrafts: 17,
+    readyRate: 43,
+    monthlyReaders: "2.4K",
+    systemUptime: "100%",
+    blog: {
+      publishedArticles: 25,
+      views30Days: "2.8K",
+      categoriesCount: 4,
+      topCategory: "Bisnis & Teknologi"
+    },
+    eai: {
+      cmsExportSuccess: "100%",
+      brandVoiceAlignment: "82.0%",
+      seoCompletionRate: "88.0%",
+      avgAiCostPerArticle: "Rp 265"
+    }
   };
 
   try {
     if (fs.existsSync(DATA_FILE)) {
-      stats = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      const existing = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+      stats = {
+        ...stats,
+        ...existing,
+        blog: { ...stats.blog, ...existing.blog },
+        eai: { ...stats.eai, ...existing.eai }
+      };
     }
   } catch (err) {
     console.warn('Could not read existing stats.json, using defaults.');
   }
+
+  const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 
   // 1. Fetch EAI Stats
   const eaiToken = process.env.PUBLIC_STATS_TOKEN;
@@ -119,9 +139,16 @@ async function main() {
       console.log('EAI stats successfully fetched:', eaiData);
     } catch (err) {
       console.error('Failed to fetch EAI stats:', err.message);
+      if (isProduction) {
+        throw new Error(`CRITICAL: Failed to fetch EAI stats in production build: ${err.message}`);
+      }
     }
   } else {
-    console.warn('PUBLIC_STATS_TOKEN not configured. Skipping EAI stats fetch.');
+    const msg = 'PUBLIC_STATS_TOKEN not configured. Skipping EAI stats fetch.';
+    console.warn(msg);
+    if (isProduction) {
+      throw new Error(`CRITICAL: ${msg}`);
+    }
   }
 
   // 2. Fetch GA4 Stats
@@ -141,9 +168,16 @@ async function main() {
       }
     } catch (err) {
       console.error('Failed to fetch GA4 active users:', err.message);
+      if (isProduction) {
+        throw new Error(`CRITICAL: Failed to fetch GA4 active users in production build: ${err.message}`);
+      }
     }
   } else {
-    console.warn('GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.');
+    const msg = 'GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.';
+    console.warn(msg);
+    if (isProduction) {
+      throw new Error(`CRITICAL: ${msg}`);
+    }
   }
 
   // 3. Write back to stats.json
@@ -160,4 +194,9 @@ async function main() {
   }
 }
 
-main();
+main().catch((err) => {
+  console.error('\n=============================================');
+  console.error(`BUILD FAILED: ${err.message}`);
+  console.error('=============================================\n');
+  process.exit(1);
+});

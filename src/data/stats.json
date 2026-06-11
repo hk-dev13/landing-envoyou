@@ -1,6 +1,18 @@
 {
-  "totalDrafts": 312,
-  "readyRate": 94,
-  "monthlyReaders": "1.2K",
-  "systemUptime": "99.9%"
+  "totalDrafts": 17,
+  "readyRate": 43,
+  "monthlyReaders": "2.4K",
+  "systemUptime": "100%",
+  "blog": {
+    "publishedArticles": 25,
+    "views30Days": "2.8K",
+    "categoriesCount": 4,
+    "topCategory": "Bisnis & Teknologi"
+  },
+  "eai": {
+    "cmsExportSuccess": "100%",
+    "brandVoiceAlignment": "82.0%",
+    "seoCompletionRate": "88.0%",
+    "avgAiCostPerArticle": "Rp 265"
+  }
 }

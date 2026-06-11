@@ -1,5 +1,14 @@
 ---
-// Hero Section
+import stats from '../../data/stats.json';
+
+// Fallbacks matching real data
+const monthlyReaders = stats.monthlyReaders || "2.4K";
+const publishedArticles = stats.blog?.publishedArticles || 25;
+const systemUptime = stats.systemUptime || "100%";
+
+// Extract numeric parts for the count-up animation if the value contains K/M/etc.
+const monthlyReadersValue = monthlyReaders.replace(/[KkMm]/g, '');
+const monthlyReadersSuffix = (monthlyReaders.match(/[KkMm]/g)?.[0] || '').toUpperCase();
 ---
 
 <section
@@ -58,17 +67,17 @@
       <!-- Social proof / quick stats -->
       <div class="flex flex-wrap items-center gap-6 mt-14 pt-10 border-t border-border">
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value="1200" data-suffix="+" data-count="true">—</p>
+          <p class="text-2xl font-bold text-text tabular-nums" data-value={monthlyReadersValue} data-suffix={monthlyReadersSuffix} data-count="true">—</p>
           <p class="text-xs text-muted mt-0.5">Monthly Readers</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value="48" data-count="true">—</p>
+          <p class="text-2xl font-bold text-text tabular-nums" data-value={publishedArticles} data-count="true">—</p>
           <p class="text-xs text-muted mt-0.5">Articles Published</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums">99.9<span class="text-sm font-medium text-muted">%</span></p>
+          <p class="text-2xl font-bold text-text tabular-nums">{systemUptime}</p>
           <p class="text-xs text-muted mt-0.5">System Uptime</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
