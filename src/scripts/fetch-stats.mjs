@@ -45,7 +45,7 @@ async function fetchGoogleAccessToken(jwt) {
   return data.access_token;
 }
 
-async function fetchGA4ActiveUsers(accessToken, propertyId) {
+async function fetchGA4Stats(accessToken, propertyId) {
   const response = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
     method: 'POST',
     headers: {
@@ -54,7 +54,10 @@ async function fetchGA4ActiveUsers(accessToken, propertyId) {
     },
     body: JSON.stringify({
       dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
-      metrics: [{ name: 'activeUsers' }],
+      metrics: [
+        { name: 'activeUsers' },
+        { name: 'screenPageViews' }
+      ],
     }),
   });
   if (!response.ok) {
@@ -62,8 +65,10 @@ async function fetchGA4ActiveUsers(accessToken, propertyId) {
     throw new Error(`GA4 runReport failed: ${errText}`);
   }
   const data = await response.json();
-  const activeUsers = data.rows?.[0]?.metricValues?.[0]?.value;
-  return activeUsers ? parseInt(activeUsers, 10) : null;
+  const metricValues = data.rows?.[0]?.metricValues;
+  const activeUsers = metricValues?.[0]?.value ? parseInt(metricValues[0].value, 10) : null;
+  const pageViews = metricValues?.[1]?.value ? parseInt(metricValues[1].value, 10) : null;
+  return { activeUsers, pageViews };
 }
 
 async function fetchEAIStats(token) {
@@ -268,16 +273,20 @@ async function main() {
 
   if (gaPropertyId && gaEmail && gaKey) {
     try {
-      console.log('Fetching GA4 active users...');
+      console.log('Fetching GA4 stats...');
       const jwt = signGoogleJWT(gaEmail, gaKey);
       const accessToken = await fetchGoogleAccessToken(jwt);
-      const activeUsersCount = await fetchGA4ActiveUsers(accessToken, gaPropertyId);
-      if (activeUsersCount !== null) {
-        stats.monthlyReaders = formatReaders(activeUsersCount);
-        console.log('GA4 active users successfully fetched:', activeUsersCount, `(${stats.monthlyReaders})`);
+      const gaData = await fetchGA4Stats(accessToken, gaPropertyId);
+      if (gaData.activeUsers !== null) {
+        stats.monthlyReaders = formatReaders(gaData.activeUsers);
+        console.log('GA4 active users successfully fetched:', gaData.activeUsers, `(${stats.monthlyReaders})`);
+      }
+      if (gaData.pageViews !== null) {
+        stats.blog.views30Days = formatReaders(gaData.pageViews);
+        console.log('GA4 page views successfully fetched:', gaData.pageViews, `(${stats.blog.views30Days})`);
       }
     } catch (err) {
-      console.warn('WARNING: Failed to fetch GA4 active users (falling back to stats.json):', err.message);
+      console.warn('WARNING: Failed to fetch GA4 stats (falling back to stats.json):', err.message);
     }
   } else {
     console.warn('GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.');
