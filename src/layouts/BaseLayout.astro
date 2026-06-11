@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BackToTop from '../components/BackToTop.astro';
 
 export interface Props {
   title?: string;
@@ -15,6 +16,8 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://envoyou.com");
 const ogImageURL = new URL(ogImage, Astro.site ?? "https://envoyou.com");
+
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -62,8 +65,22 @@ const ogImageURL = new URL(ogImage, Astro.site ?? "https://envoyou.com");
         document.documentElement.classList.toggle("dark", theme === "dark");
       })();
     </script>
+
+    {gaMeasurementId && (
+      <>
+        <!-- Google tag (gtag.js) -->
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId);
+        </script>
+      </>
+    )}
   </head>
   <body class="bg-bg text-text font-sans antialiased transition-colors duration-300">
     <slot />
+    <BackToTop />
   </body>
 </html>
