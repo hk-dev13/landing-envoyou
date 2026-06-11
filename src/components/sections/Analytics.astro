@@ -6,19 +6,26 @@ const totalDrafts = stats.totalDrafts || 17;
 const readyRate = stats.readyRate || 43;
 const monthlyReaders = stats.monthlyReaders || "2.4K";
 const systemUptime = stats.systemUptime || "100%";
+const dateRange = stats.dateRange || "13 May 2026 - 12 June 2026";
 
 const blogStats = stats.blog || {
   publishedArticles: 25,
   views30Days: "2.8K",
   categoriesCount: 4,
-  topCategory: "Bisnis & Teknologi"
+  topCategory: "Bisnis & Teknologi",
+  topArticleViews: 150,
+  avgReadingTime: 5
 };
 
 const eaiStats = stats.eai || {
   cmsExportSuccess: "100%",
   brandVoiceAlignment: "82.0%",
   seoCompletionRate: "88.0%",
-  avgAiCostPerArticle: "Rp 265"
+  avgAiCostPerArticle: "$0.017",
+  pricingVersion: "2026-06-12",
+  draftsThisMonth: 12,
+  avgProcessTimeMins: 1.8,
+  finishedDrafts: 15
 };
 ---
 
@@ -30,6 +37,9 @@ const eaiStats = stats.eai || {
       <h2 class="section-title">Ecosystem Performance.</h2>
       <p class="section-subtitle mx-auto text-center">
         Real-time metrics tracking content operations, readership engagement, and editorial intelligence efficiency.
+      </p>
+      <p class="text-center text-xs font-semibold text-muted mt-2 tracking-wide font-mono">
+        Reporting Period: {dateRange}
       </p>
     </div>
 
@@ -115,26 +125,29 @@ const eaiStats = stats.eai || {
                 </div>
 
                 <!-- Metrics Table -->
-                <div class="space-y-4">
+                <div class="max-h-[260px] overflow-y-auto pr-1 space-y-4 scrollbar-thin">
                   {[
                     { label: "Published Articles", value: blogStats.publishedArticles, desc: "Total live articles on blog.envoyou.com", icon: "<path d='M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'></path>" },
                     { label: "Views (30 Days)", value: blogStats.views30Days, desc: "Aggregated article pageviews over 30 days", icon: "<path d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'></path><path d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'></path>" },
                     { label: "Unique Readers", value: monthlyReaders, desc: "Unique visitors tracked via Google Analytics", icon: "<path d='M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2'></path><circle cx='9' cy='7' r='4'></circle><path d='M23 21v-2a4 4 0 00-3-3.87'></path><path d='M16 3.13a4 4 0 010 7.75'></path>" },
-                    { label: "Categories", value: `${blogStats.categoriesCount} | Top: ${blogStats.topCategory}`, desc: "Active categories with top-performing reader interest", icon: "<rect x='3' y='3' width='7' height='7' rx='1'></rect><rect x='14' y='3' width='7' height='7' rx='1'></rect><rect x='14' y='14' width='7' height='7' rx='1'></rect><rect x='3' y='14' width='7' height='7' rx='1'></rect>" }
+                    { label: "Categories", value: blogStats.categoriesCount, desc: "Active content categories on the blog", icon: "<rect x='3' y='3' width='7' height='7' rx='1'></rect><rect x='14' y='3' width='7' height='7' rx='1'></rect><rect x='14' y='14' width='7' height='7' rx='1'></rect><rect x='3' y='14' width='7' height='7' rx='1'></rect>" },
+                    { label: "Top Category", value: blogStats.topCategory || "Teknologi & AI", desc: "Category with highest publication volume", icon: "<path d='M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z'></path><line x1='7' y1='7' x2='7.01' y2='7'></line>" },
+                    { label: "Top Article Views", value: `${blogStats.topArticleViews || 150} views`, desc: "Total pageviews of the most popular article", icon: "<polygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'></polygon>" },
+                    { label: "Average Read Time", value: `${blogStats.avgReadingTime || 5} min`, desc: "Average article reading time of published posts", icon: "<circle cx='12' cy='12' r='10'></circle><polyline points='12 6 12 12 16 14'></polyline>" }
                   ].map((row) => (
                     <div class="flex items-center justify-between py-3 border-b border-border last:border-0 hover:bg-surface-soft/30 px-2 rounded-lg transition-colors duration-150">
-                      <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
+                      <div class="flex items-center gap-3 max-w-[70%] min-w-0">
+                        <div class="w-8 h-8 shrink-0 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
                           <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <Fragment set:html={row.icon} />
                           </svg>
                         </div>
-                        <div>
-                          <p class="text-sm font-semibold text-text">{row.label}</p>
-                          <p class="text-[10px] text-muted">{row.desc}</p>
+                        <div class="min-w-0">
+                          <p class="text-sm font-semibold text-text truncate">{row.label}</p>
+                          <p class="text-[10px] text-muted truncate">{row.desc}</p>
                         </div>
                       </div>
-                      <p class="text-base font-extrabold text-primary font-mono">{row.value}</p>
+                      <p class="text-sm font-extrabold text-primary font-mono text-right truncate max-w-[30%] ml-2" title={String(row.value)}>{row.value}</p>
                     </div>
                   ))}
                 </div>
@@ -170,26 +183,29 @@ const eaiStats = stats.eai || {
                 </div>
 
                 <!-- Metrics Table -->
-                <div class="space-y-4">
+                <div class="max-h-[260px] overflow-y-auto pr-1 space-y-4 scrollbar-thin">
                   {[
                     { label: "CMS Export Success", value: eaiStats.cmsExportSuccess, desc: "Successfully exported articles to Vercel/CMS", icon: "<path d='M8.684 10.742l5.053 5.053L21 8M4 16.5L12 21l8-4.5M4 12l8 4.5 8-4.5'></path>" },
                     { label: "Brand Voice Alignment", value: eaiStats.brandVoiceAlignment, desc: "Accuracy rating on style and voice compliance", icon: "<path d='M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z'></path>" },
                     { label: "SEO Completion Rate", value: eaiStats.seoCompletionRate, desc: "Articles with meta details verified by EAI", icon: "<circle cx='12' cy='12' r='10'></circle><path d='M22 22l-6-6'></path>" },
-                    { label: "Avg AI Cost / Article", value: eaiStats.avgAiCostPerArticle, desc: "Average model processing cost per analyzed post", icon: "<line x1='12' y1='1' x2='12' y2='23'></line><path d='M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6'></path>" }
+                    { label: "Avg AI Cost / Article", value: eaiStats.avgAiCostPerArticle, desc: `Average model processing cost (Pricing v${eaiStats.pricingVersion || '2026-06-12'})`, icon: "<line x1='12' y1='1' x2='12' y2='23'></line><path d='M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6'></path>" },
+                    { label: "Draft processed / month", value: `${eaiStats.draftsThisMonth || 0} drafts`, desc: "Count of processed drafts in the current calendar month", icon: "<rect x='3' y='4' width='18' height='16' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line>" },
+                    { label: "Avg. process time (mins)", value: `${eaiStats.avgProcessTimeMins || '0.0'} min`, desc: "Average AI processing duration per run", icon: "<circle cx='12' cy='12' r='10'></circle><polyline points='12 6 12 12 16 14'></polyline>" },
+                    { label: "Draft finished/polished", value: `${eaiStats.finishedDrafts || 0} drafts`, desc: "Total completed or refined/polished drafts count", icon: "<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline>" }
                   ].map((row) => (
                     <div class="flex items-center justify-between py-3 border-b border-border last:border-0 hover:bg-surface-soft/30 px-2 rounded-lg transition-colors duration-150">
-                      <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
+                      <div class="flex items-center gap-3 max-w-[70%] min-w-0">
+                        <div class="w-8 h-8 shrink-0 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
                           <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <Fragment set:html={row.icon} />
                           </svg>
                         </div>
-                        <div>
-                          <p class="text-sm font-semibold text-text">{row.label}</p>
-                          <p class="text-[10px] text-muted">{row.desc}</p>
+                        <div class="min-w-0">
+                          <p class="text-sm font-semibold text-text truncate">{row.label}</p>
+                          <p class="text-[10px] text-muted truncate">{row.desc}</p>
                         </div>
                       </div>
-                      <p class="text-base font-extrabold text-accent font-mono">{row.value}</p>
+                      <p class="text-sm font-extrabold text-accent font-mono text-right truncate max-w-[30%] ml-2" title={String(row.value)}>{row.value}</p>
                     </div>
                   ))}
                 </div>
@@ -308,3 +324,24 @@ const eaiStats = stats.eai || {
     }, 100);
   });
 </script>
+
+<style>
+  /* Custom scrollbar styling to make it very subtle and thin */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.25);
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.45);
+  }
+</style>

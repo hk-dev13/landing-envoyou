@@ -80,6 +80,67 @@ async function fetchEAIStats(token) {
   return await response.json();
 }
 
+async function fetchBlogStats() {
+  const blogApiUrl = process.env.BLOG_API_URL || 'https://api.envoyou.com/api';
+  
+  // Fetch posts (up to 100)
+  const postsRes = await fetch(`${blogApiUrl}/posts?limit=100`);
+  if (!postsRes.ok) {
+    const errText = await postsRes.text();
+    throw new Error(`Blog posts fetch failed: ${errText}`);
+  }
+  const postsData = await postsRes.json();
+  const posts = postsData.data || [];
+  const publishedArticles = postsData.meta?.total || posts.length || 25;
+
+  // Calculate average reading time
+  let totalReadingTime = 0;
+  let countWithReadingTime = 0;
+  posts.forEach(post => {
+    if (post.reading_time) {
+      totalReadingTime += post.reading_time;
+      countWithReadingTime++;
+    }
+  });
+  const avgReadingTime = countWithReadingTime > 0 ? Math.round(totalReadingTime / countWithReadingTime) : 5;
+
+  // Find top article views count
+  let topArticleViews = 150;
+  if (posts.length > 0) {
+    const sorted = [...posts].sort((a, b) => (b.views || 0) - (a.views || 0));
+    if (sorted[0] && typeof sorted[0].views === 'number') {
+      topArticleViews = sorted[0].views;
+    }
+  }
+
+  // Fetch categories
+  const catsRes = await fetch(`${blogApiUrl}/categories`);
+  if (!catsRes.ok) {
+    const errText = await catsRes.text();
+    throw new Error(`Blog categories fetch failed: ${errText}`);
+  }
+  const catsData = await catsRes.json();
+  const categoriesList = catsData.data || [];
+  const categoriesCount = categoriesList.length || 4;
+
+  // Find top category by post_count
+  let topCategory = "Bisnis & Teknologi";
+  if (categoriesList.length > 0) {
+    const sorted = [...categoriesList].sort((a, b) => (b.post_count || 0) - (a.post_count || 0));
+    if (sorted[0] && sorted[0].name) {
+      topCategory = sorted[0].name;
+    }
+  }
+
+  return {
+    publishedArticles,
+    categoriesCount,
+    topCategory,
+    topArticleViews,
+    avgReadingTime
+  };
+}
+
 function formatReaders(count) {
   if (count >= 1000000) {
     return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -90,9 +151,28 @@ function formatReaders(count) {
   return String(count);
 }
 
+function formatDate(date) {
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+}
+
+function get30DaysRangeString() {
+  const today = new Date();
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(today.getDate() - 30);
+  return `${formatDate(thirtyDaysAgo)} - ${formatDate(today)}`;
+}
+
 async function main() {
   // Load existing stats as fallbacks
   let stats = {
+    dateRange: "13 May 2026 - 12 June 2026",
     totalDrafts: 17,
     readyRate: 43,
     monthlyReaders: "2.4K",
@@ -101,13 +181,19 @@ async function main() {
       publishedArticles: 25,
       views30Days: "2.8K",
       categoriesCount: 4,
-      topCategory: "Bisnis & Teknologi"
+      topCategory: "Bisnis & Teknologi",
+      topArticleViews: 150,
+      avgReadingTime: 5
     },
     eai: {
       cmsExportSuccess: "100%",
       brandVoiceAlignment: "82.0%",
       seoCompletionRate: "88.0%",
-      avgAiCostPerArticle: "Rp 265"
+      avgAiCostPerArticle: "$0.017",
+      pricingVersion: "2026-06-12",
+      draftsThisMonth: 12,
+      avgProcessTimeMins: 1.8,
+      finishedDrafts: 15
     }
   };
 
@@ -127,7 +213,23 @@ async function main() {
 
   const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 
-  // 1. Fetch EAI Stats
+  stats.dateRange = get30DaysRangeString();
+
+  // 1. Fetch Blog Stats
+  try {
+    console.log('Fetching Blog stats...');
+    const blogData = await fetchBlogStats();
+    stats.blog.publishedArticles = blogData.publishedArticles;
+    stats.blog.categoriesCount = blogData.categoriesCount;
+    stats.blog.topCategory = blogData.topCategory;
+    stats.blog.topArticleViews = blogData.topArticleViews;
+    stats.blog.avgReadingTime = blogData.avgReadingTime;
+    console.log('Blog stats successfully fetched:', blogData);
+  } catch (err) {
+    console.warn('WARNING: Failed to fetch Blog stats (falling back to stats.json):', err.message);
+  }
+
+  // 2. Fetch EAI Stats
   const eaiToken = process.env.PUBLIC_STATS_TOKEN;
   if (eaiToken) {
     try {
@@ -136,6 +238,21 @@ async function main() {
       stats.totalDrafts = eaiData.totalDrafts;
       stats.readyRate = eaiData.readyRate;
       stats.systemUptime = eaiData.systemUptime.endsWith('%') ? eaiData.systemUptime : eaiData.systemUptime + "%";
+      if (eaiData.avgAiCostPerArticle) {
+        stats.eai.avgAiCostPerArticle = eaiData.avgAiCostPerArticle;
+      }
+      if (eaiData.pricingVersion) {
+        stats.eai.pricingVersion = eaiData.pricingVersion;
+      }
+      if (eaiData.draftsThisMonth !== undefined) {
+        stats.eai.draftsThisMonth = eaiData.draftsThisMonth;
+      }
+      if (eaiData.avgProcessTimeMins !== undefined) {
+        stats.eai.avgProcessTimeMins = eaiData.avgProcessTimeMins;
+      }
+      if (eaiData.finishedDrafts !== undefined) {
+        stats.eai.finishedDrafts = eaiData.finishedDrafts;
+      }
       console.log('EAI stats successfully fetched:', eaiData);
     } catch (err) {
       console.warn('WARNING: Failed to fetch EAI stats (falling back to stats.json):', err.message);
@@ -144,7 +261,7 @@ async function main() {
     console.warn('PUBLIC_STATS_TOKEN not configured. Skipping EAI stats fetch.');
   }
 
-  // 2. Fetch GA4 Stats
+  // 3. Fetch GA4 Stats
   const gaPropertyId = process.env.GA4_PROPERTY_ID;
   const gaEmail = process.env.GA4_CLIENT_EMAIL;
   const gaKey = process.env.GA4_PRIVATE_KEY;
@@ -166,7 +283,7 @@ async function main() {
     console.warn('GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.');
   }
 
-  // 3. Write back to stats.json
+  // 4. Write back to stats.json
   try {
     const dir = path.dirname(DATA_FILE);
     if (!fs.existsSync(dir)) {

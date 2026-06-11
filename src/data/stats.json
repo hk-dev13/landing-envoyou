@@ -1,18 +1,26 @@
 {
-  "totalDrafts": 17,
-  "readyRate": 43,
-  "monthlyReaders": "2.4K",
-  "systemUptime": "100%",
+  "dateRange": "13 May 2026 - 12 June 2026",
+  "totalDrafts": 42,
+  "readyRate": 17,
+  "monthlyReaders": "24",
+  "systemUptime": "99.9%",
   "blog": {
-    "publishedArticles": 25,
+    "publishedArticles": 45,
     "views30Days": "2.8K",
     "categoriesCount": 4,
-    "topCategory": "Bisnis & Teknologi"
+    "topCategory": "Teknologi & AI",
+    "topArticleViews": 390,
+    "avgReadingTime": 5,
+    "topArticle": "Jumlah Views Bukan Segalanya: Pahami Cara kerja RPM YouTube untuk Kreator Bisnis"
   },
   "eai": {
     "cmsExportSuccess": "100%",
     "brandVoiceAlignment": "82.0%",
     "seoCompletionRate": "88.0%",
-    "avgAiCostPerArticle": "Rp 265"
+    "avgAiCostPerArticle": "$0.023",
+    "pricingVersion": "2026-06-12",
+    "draftsThisMonth": 12,
+    "avgProcessTimeMins": 1.8,
+    "finishedDrafts": 15
   }
 }

@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="What's New — Envoyou Platform Updates"
+  description="Stay up to date with the latest features, improvements, and updates to the Envoyou publishing ecosystem."
+>
+  <!-- Main Header Navigation -->
+  <header class="sticky top-0 z-50 bg-bg/90 backdrop-blur-md border-b border-border transition-colors duration-300">
+    <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Back Button & Logo -->
+      <div class="flex items-center gap-4">
+        <a
+          href="/"
+          class="flex items-center gap-1.5 text-sm font-semibold text-muted hover:text-text transition-colors duration-200 no-underline"
+          aria-label="Back to home"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M19 12H5m7 7l-7-7 7-7"/>
+          </svg>
+          <span class="hidden sm:inline">Back</span>
+        </a>
+        <span class="text-border">|</span>
+        <a href="/" class="flex items-center gap-1.5 group no-underline">
+          <span class="text-base font-bold tracking-tight text-text">Envoyou</span>
+        </a>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="w-9 h-9 rounded-full bg-surface flex items-center justify-center text-muted hover:text-text hover:bg-surface-soft transition-all duration-200 cursor-pointer"
+        aria-label="Toggle theme"
+      >
+        <svg id="icon-sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg id="icon-moon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="min-h-screen bg-surface-soft pb-24 relative overflow-hidden transition-colors duration-300">
+    <!-- Ambient Radial Glow -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.05),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.04),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.09),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.06),transparent_40%)]"></div>
+
+    <div class="max-w-2xl mx-auto px-6 pt-16">
+      <!-- Header -->
+      <div class="mb-16">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Updates
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-text mb-4">What's New.</h1>
+        <p class="text-muted text-base sm:text-lg max-w-xl leading-relaxed">
+          Stay up to date with the latest features, enhancements, and workflow upgrades released in the Envoyou AI Editorial System.
+        </p>
+      </div>
+
+      <!-- Timeline / Changelog List -->
+      <div class="relative pl-6 sm:pl-8 border-l border-border space-y-16">
+        
+        <!-- VERSION 0.27.1 -->
+        <div class="relative">
+          <!-- Timeline point dot -->
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.27.1</h2>
+            <time class="text-xs font-semibold text-muted font-mono">12 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Model Pricing Update:</strong> Adjusted default rate card pricing for Google Gemini API models (Flash & Flash-Lite) to align with commercial Paid Tier rates.
+                </li>
+                <li>
+                  <strong class="text-text">EAI Analytics Integration:</strong> Added real-time operational telemetry on the landing page, displaying monthly processed drafts, average processing times, and completed drafts dynamically.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.26.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.26.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">10 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">AI Drafting Assistant:</strong> Integrated AI writing assistant inside the editor workspace. Authors can generate rough article drafts from a topic, outline, URL reference, or press release with real-time response streaming.
+                </li>
+                <li>
+                  <strong class="text-text">Interactive Outline Builder:</strong> Generate structured outlines (H2/H3 headings and key points) before drafting the full article for better editorial control.
+                </li>
+                <li>
+                  <strong class="text-text">URL Reference Scraper:</strong> Provide external URL references to automatically extract clean content, skipping ads, navigation headers, and footers to be used as context for drafting.
+                </li>
+                <li>
+                  <strong class="text-text">Press Release Mode:</strong> A dedicated drafting mode that actively refines marketing hype, buzzwords, and promotional bias from corporate press releases into objective news stories.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.25.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.25.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">10 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Demo Mode (Guest Mode):</strong> Test-drive the editor workspace and AI refinement features for free without registering or logging in (limited to 2 refinement runs).
+                </li>
+                <li>
+                  <strong class="text-text">Dynamic Character Limits:</strong> Added visual constraints and counters on form fields across the Onboarding Wizard and Control Room for input accuracy.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Expanded Input Capacity:</strong> Increased target Positioning and Audience field limits to 1,000 characters to support detailed brand positioning inputs.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Theme toggle functionality
+  const themeToggle = document.getElementById("theme-toggle");
+  const iconSun = document.getElementById("icon-sun");
+  const iconMoon = document.getElementById("icon-moon");
+
+  function updateIcons() {
+    const isDark = document.documentElement.classList.contains("dark");
+    iconSun?.classList.toggle("hidden", !isDark);
+    iconMoon?.classList.toggle("hidden", isDark);
+  }
+
+  updateIcons();
+
+  themeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    updateIcons();
+  });
+</script>
