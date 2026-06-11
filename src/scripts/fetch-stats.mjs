@@ -138,17 +138,10 @@ async function main() {
       stats.systemUptime = eaiData.systemUptime.endsWith('%') ? eaiData.systemUptime : eaiData.systemUptime + "%";
       console.log('EAI stats successfully fetched:', eaiData);
     } catch (err) {
-      console.error('Failed to fetch EAI stats:', err.message);
-      if (isProduction) {
-        throw new Error(`CRITICAL: Failed to fetch EAI stats in production build: ${err.message}`);
-      }
+      console.warn('WARNING: Failed to fetch EAI stats (falling back to stats.json):', err.message);
     }
   } else {
-    const msg = 'PUBLIC_STATS_TOKEN not configured. Skipping EAI stats fetch.';
-    console.warn(msg);
-    if (isProduction) {
-      throw new Error(`CRITICAL: ${msg}`);
-    }
+    console.warn('PUBLIC_STATS_TOKEN not configured. Skipping EAI stats fetch.');
   }
 
   // 2. Fetch GA4 Stats
@@ -167,17 +160,10 @@ async function main() {
         console.log('GA4 active users successfully fetched:', activeUsersCount, `(${stats.monthlyReaders})`);
       }
     } catch (err) {
-      console.error('Failed to fetch GA4 active users:', err.message);
-      if (isProduction) {
-        throw new Error(`CRITICAL: Failed to fetch GA4 active users in production build: ${err.message}`);
-      }
+      console.warn('WARNING: Failed to fetch GA4 active users (falling back to stats.json):', err.message);
     }
   } else {
-    const msg = 'GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.';
-    console.warn(msg);
-    if (isProduction) {
-      throw new Error(`CRITICAL: ${msg}`);
-    }
+    console.warn('GA4 credentials (GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY) not configured. Skipping GA4 fetch.');
   }
 
   // 3. Write back to stats.json
