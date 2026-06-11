@@ -1,0 +1,82 @@
+---
+// Hero Section
+---
+
+<section
+  id="hero"
+  class="relative min-h-[80vh] flex items-center pt-16 overflow-hidden"
+>
+  <!-- Subtle background gradient -->
+  <div class="hero-bg"></div>
+
+  <div class="section relative z-10 w-full">
+    <div class="max-w-4xl">
+      <!-- Label -->
+      <div class="section-label">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[--color-primary]"></span>
+        The Envoyou Ecosystem
+      </div>
+
+      <!-- Headline -->
+      <h1 class="section-title">
+        Publishing Intelligence,<br />
+        <span class="text-[--color-primary]">Redefined.</span>
+      </h1>
+
+      <p class="section-subtitle mt-5 max-w-xl">
+        Envoyou combines publishing, editorial workflows, and intelligent content tools into a connected ecosystem designed to move ideas from draft to publication.<br/>Create. Refine. Publish.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap items-center gap-3 mt-10">
+        <a
+          href="https://blog.envoyou.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="hero-cta-blog"
+          class="btn-primary"
+        >
+          Read the Blog
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
+        <a
+          href="https://eai.envoyou.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="hero-cta-eai"
+          class="btn-secondary"
+        >
+          Explore EAI
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social proof / quick stats -->
+      <div class="flex flex-wrap items-center gap-6 mt-14 pt-10 border-t border-[--color-border]">
+        <div>
+          <p class="text-2xl font-bold text-[--color-text] tabular-nums" data-value="1200" data-suffix="+" data-count="true">—</p>
+          <p class="text-xs text-[--color-muted] mt-0.5">Monthly Readers</p>
+        </div>
+        <div class="w-px h-8 bg-[--color-border]"></div>
+        <div>
+          <p class="text-2xl font-bold text-[--color-text] tabular-nums" data-value="48" data-count="true">—</p>
+          <p class="text-xs text-[--color-muted] mt-0.5">Articles Published</p>
+        </div>
+        <div class="w-px h-8 bg-[--color-border]"></div>
+        <div>
+          <p class="text-2xl font-bold text-[--color-text] tabular-nums">99.9<span class="text-sm font-medium text-[--color-muted]">%</span></p>
+          <p class="text-xs text-[--color-muted] mt-0.5">System Uptime</p>
+        </div>
+        <div class="w-px h-8 bg-[--color-border]"></div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-[--color-success] animate-pulse"></span>
+          <p class="text-sm font-medium text-[--color-muted]">Continuously Growing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

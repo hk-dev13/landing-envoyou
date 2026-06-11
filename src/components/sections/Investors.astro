@@ -1,0 +1,87 @@
+---
+// Investors section
+---
+
+<section id="investors" class="border-t border-[--color-border] bg-[--color-surface-soft]">
+  <div class="section">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-14">
+        <div class="section-label mx-auto">Our Mission</div>
+        <h2 class="section-title">
+          Making quality publishing more scalable.
+        </h2>
+        <p class="section-subtitle mx-auto text-center">
+          Envoyou is focused on simplifying the journey from idea to publication by combining editorial expertise, data-driven insights, and intelligent automation.
+        </p>
+      </div>
+
+      <!-- Value props grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-14">
+        {[
+          {
+            title: "Integrated Publishing Ecosystem",
+            desc: "A growing content platform supported by proprietary editorial intelligence, creating a continuous feedback loop between publishing, audience insights, and AI-assisted workflows.",
+          },
+          {
+            title: "Editorial Intelligence Platform",
+            desc: "EAI helps transform raw drafts into publication-ready content through structured editorial workflows, quality validation, and AI-assisted refinement.",
+          },
+          {
+            title: "Scalable Content Operations",
+            desc: "Built to support increasing content volume without sacrificing consistency, enabling more efficient editorial processes as teams and publications grow.",
+          },
+        ].map((item) => (
+          <div class="stat-card">
+            <h3 class="text-sm font-bold text-[--color-text] mb-2">{item.title}</h3>
+            <p class="text-sm text-[--color-muted] leading-6">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA Card -->
+      <div class="card overflow-hidden">
+        <div
+          class="relative p-10 text-center"
+          style="background: radial-gradient(circle at 50% 0%, var(--color-hero-glow) 0%, transparent 55%);"
+        >
+          <div class="w-12 h-12 rounded-2xl border border-[--color-border] bg-[--color-surface] flex items-center justify-center mx-auto mb-6">
+            <svg class="w-5 h-5 text-[--color-primary]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 6.18 2 2 0 014.11 4h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 11.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 18z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-bold text-[--color-text] mb-3">
+            Building for the Long Term
+          </h3>
+          <p class="text-sm text-[--color-muted] max-w-md mx-auto mb-8 leading-6">
+            Envoyou is focused on creating better tools and workflows for modern publishing. We're continuously learning, building, and improving — one article at a time.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="mailto:hello@envoyou.com"
+              id="investor-contact-cta"
+              class="btn-primary"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Contact Us
+            </a>
+            <a
+              href="#analytics"
+              id="investor-analytics-link"
+              class="btn-secondary"
+            >
+              View Analytics
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

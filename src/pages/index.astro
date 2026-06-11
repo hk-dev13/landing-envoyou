@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Products from '../components/sections/Products.astro';
+import EcosystemPreview from '../components/sections/EcosystemPreview.astro';
+import Analytics from '../components/sections/Analytics.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import Investors from '../components/sections/Investors.astro';
+---
+
+<BaseLayout
+  title="Envoyou — Smart Publishing & AI Editorial Platform"
+  description="Envoyou is a modern publishing ecosystem featuring Blog Envoyou — a premium editorial blog platform — and EAI, an AI-powered editorial intelligence system for high-quality content creation."
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <Products />
+    <EcosystemPreview />
+    <Analytics />
+    <HowItWorks />
+    <Investors />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<!-- Animated number counter script -->
+<script>
+  function animateCount(el: HTMLElement) {
+    const raw = el.dataset.value ?? el.textContent ?? "0";
+    const suffix = el.dataset.suffix ?? "";
+
+    // Handle values like "1.2K"
+    const isFormatted = /[KkMm]/.test(raw);
+    if (isFormatted) {
+      el.textContent = raw + suffix;
+      return;
+    }
+
+    const target = parseFloat(raw);
+    if (isNaN(target)) return;
+
+    const duration = 1200;
+    const start = performance.now();
+    const hasDecimal = raw.includes(".");
+    const decimals = hasDecimal ? (raw.split(".")[1]?.length ?? 1) : 0;
+
+    function update(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+
+      el.textContent = current.toFixed(decimals) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = target.toFixed(decimals) + suffix;
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // Intersection Observer to trigger when in view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          animateCount(el);
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  // Observe all elements with data-count or data-value
+  document.querySelectorAll<HTMLElement>("[data-count], [data-value]").forEach((el) => {
+    observer.observe(el);
+  });
+</script>

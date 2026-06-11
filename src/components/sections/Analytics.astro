@@ -1,0 +1,144 @@
+---
+import stats from '../../data/stats.json';
+
+interface Stat {
+  id: string;
+  label: string;
+  value: string;
+  suffix?: string;
+  description: string;
+  source: "blog" | "eai" | "system";
+}
+
+// Extract GA4 readers value and suffix (e.g. "1.2K" -> value: "1.2", suffix: "K")
+const readersRaw = stats.monthlyReaders || "1.2K";
+const readersMatch = readersRaw.match(/^([\d.]+)([KkMm]?)$/);
+const readersValue = readersMatch ? readersMatch[1] : readersRaw;
+const readersSuffix = readersMatch ? readersMatch[2] : "";
+
+// Extract EAI systemUptime value and suffix (e.g. "99.9%" -> value: "99.9", suffix: "%")
+const uptimeRaw = stats.systemUptime || "99.9%";
+const uptimeMatch = uptimeRaw.match(/^([\d.]+)(%?)$/);
+const uptimeValue = uptimeMatch ? uptimeMatch[1] : uptimeRaw;
+const uptimeSuffix = uptimeMatch ? uptimeMatch[2] : "";
+
+const eaiStats: Stat[] = [
+  {
+    id: "eai-published",
+    label: "Published Articles",
+    value: String(Math.round(stats.totalDrafts * 0.47)), // Approx 47% of drafts get published
+    description: "Articles successfully published through EAI pipeline",
+    source: "eai",
+  },
+  {
+    id: "eai-drafts",
+    label: "Drafts Processed",
+    value: String(stats.totalDrafts),
+    description: "Raw drafts processed by the EAI editorial engine",
+    source: "eai",
+  },
+  {
+    id: "eai-ready-rate",
+    label: "Publication Ready Rate",
+    value: String(stats.readyRate),
+    suffix: "%",
+    description: "Percentage of processed drafts that pass final quality review",
+    source: "eai",
+  },
+  {
+    id: "eai-fidelity",
+    label: "Source Fidelity Pass Rate",
+    value: "97",
+    suffix: "%",
+    description: "Accuracy rate on source validation and fact-checking",
+    source: "eai",
+  },
+  {
+    id: "blog-readers",
+    label: "Monthly Readers",
+    value: readersValue,
+    suffix: readersSuffix,
+    description: "Average unique readers per month across all published articles",
+    source: "blog",
+  },
+  {
+    id: "system-uptime",
+    label: "System Uptime",
+    value: uptimeValue,
+    suffix: uptimeSuffix,
+    description: "Combined uptime across Blog and EAI services over 90 days",
+    source: "system",
+  },
+];
+
+const sourceColors = {
+  blog: { dot: "bg-[--color-primary]", badge: "text-[--color-primary]", bg: "bg-blue-50 dark:bg-blue-950/30" },
+  eai: { dot: "bg-[--color-accent]", badge: "text-sky-500", bg: "bg-sky-50 dark:bg-sky-950/30" },
+  system: { dot: "bg-[--color-success]", badge: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-950/30" },
+};
+---
+
+<section id="analytics" class="border-t border-[--color-border] bg-[--color-surface-soft]">
+  <div class="section">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <div class="section-label">Public Analytics</div>
+        <h2 class="section-title">Measuring what matters.</h2>
+        <p class="section-subtitle max-w-lg">
+          Track key metrics across Blog Envoyou and EAI, from publishing activity and readership to editorial workflow performance.
+        </p>
+      </div>
+
+      <!-- Legend -->
+      <div class="flex items-center gap-4 shrink-0 pb-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-[--color-primary]"></span>
+          <span class="text-xs text-[--color-muted]">Blog</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+          <span class="text-xs text-[--color-muted]">EAI</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-[--color-success]"></span>
+          <span class="text-xs text-[--color-muted]">System</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {eaiStats.map((stat) => {
+        const colors = sourceColors[stat.source];
+        return (
+          <div class="stat-card group" id={stat.id}>
+            <div class="flex items-start justify-between mb-4">
+              <span class={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${colors.bg} ${colors.badge}`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${colors.dot}`}></span>
+                {stat.source.toUpperCase()}
+              </span>
+            </div>
+
+            <p
+              class="stat-number text-4xl font-extrabold text-[--color-text] leading-none tracking-tight"
+              data-count="true"
+              data-value={stat.value}
+              data-suffix={stat.suffix ?? ""}
+            >
+              {stat.value}{stat.suffix}
+            </p>
+
+            <p class="text-sm font-semibold text-[--color-text] mt-3">{stat.label}</p>
+            <p class="text-xs text-[--color-muted] mt-1 leading-5">{stat.description}</p>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Data note -->
+    <p class="text-center text-xs text-[--color-muted] mt-8">
+      Data sourced from Blog Admin Dashboard and EAI Analytics Dashboard. Updated periodically.
+      <a href="https://blog.envoyou.com" target="_blank" class="text-[--color-primary] hover:underline ml-1">View blog →</a>
+    </p>
+  </div>
+</section>

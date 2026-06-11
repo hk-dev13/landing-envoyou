@@ -1,0 +1,91 @@
+---
+// How EAI Works section — step-by-step flow
+const steps = [
+  {
+    number: "01",
+    title: "Draft Intake",
+    description: "Writers submit raw drafts, outlines, or early-stage content into the editorial workspace for refinement and review.",
+    icon: `<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>`,
+  },
+  {
+    number: "02",
+    title: "Editorial Analysis",
+    description: "EAI evaluates structure, clarity, consistency, and publication readiness while identifying areas that may require editorial attention.",
+    icon: `<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>`,
+  },
+  {
+    number: "03",
+    title: "Content Refinement",
+    description: "The system improves readability, flow, and presentation while preserving the original intent and voice of the author.",
+    icon: `<circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>`,
+  },
+  {
+    number: "04",
+    title: "Publication Readiness",
+    description: "A final quality gate checks editorial requirements, source fidelity, and publishing standards before the article is prepared for review and publication.",
+    icon: `<path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>`,
+  },
+];
+---
+
+<section id="how-it-works" class="border-t border-[--color-border]">
+  <div class="section">
+    <div class="text-center mb-16">
+      <div class="section-label mx-auto">How EAI Works</div>
+      <h2 class="section-title">From draft to publication,<br />with clarity and consistency.</h2>
+      <p class="section-subtitle mx-auto text-center">
+        EAI helps editorial teams streamline the path from initial draft to publication-ready content through structured review, refinement, and quality validation.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {steps.map((step, i) => (
+        <div class="relative group">
+          <!-- Connector line (desktop, between cards) -->
+          {i < steps.length - 1 && (
+            <div class="hidden lg:block absolute top-10 left-full w-6 h-px bg-[--color-border] z-10 -translate-x-0"></div>
+          )}
+
+          <div class="card p-6 h-full">
+            <div
+              class="absolute inset-0 rounded-[var(--radius-lg)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style="background: radial-gradient(circle at 30% 0%, var(--color-hero-glow) 0%, transparent 60%);"
+            ></div>
+
+            <div class="relative">
+              <!-- Step number + icon -->
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-11 h-11 rounded-2xl border border-[--color-border] bg-[--color-surface-soft] flex items-center justify-center">
+                  <svg class="w-4.5 h-4.5 text-[--color-primary]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1.125rem;height:1.125rem;">
+                    <Fragment set:html={step.icon} />
+                  </svg>
+                </div>
+                <span class="text-3xl font-black text-[--color-border] select-none">{step.number}</span>
+              </div>
+
+              <h3 class="text-base font-bold text-[--color-text] mb-2">{step.title}</h3>
+              <p class="text-sm text-[--color-muted] leading-6">{step.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <a
+        href="https://eai.envoyou.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="how-eai-cta"
+        class="btn-primary"
+      >
+        Explore EAI
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

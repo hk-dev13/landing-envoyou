@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+/* ── Design Tokens ── */
+:root {
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f1f5f9;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-border: rgba(15, 23, 42, 0.1);
+  --color-primary: #0b79c2;
+  --color-primary-deep: #0066af;
+  --color-accent: #0ea5e9;
+  --color-success: #10b981;
+  --color-hero-glow: rgba(11, 121, 194, 0.12);
+  --color-hero-glow-2: rgba(56, 189, 248, 0.07);
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+.dark {
+  --color-bg: #020617;
+  --color-surface: #0f172a;
+  --color-surface-soft: #111827;
+  --color-text: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-border: rgba(148, 163, 184, 0.16);
+  --color-hero-glow: rgba(11, 121, 194, 0.22);
+  --color-hero-glow-2: rgba(56, 189, 248, 0.12);
+}
+
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ── Section ── */
+.section {
+  padding: 5rem 2rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 1.0625rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  max-width: 36rem;
+  margin-top: 1rem;
+}
+
+/* ── Card ── */
+.card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  border-color: rgba(11, 121, 194, 0.3);
+}
+
+.dark .card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Stat card ── */
+.stat-card {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(11, 121, 194, 0.25);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(11, 121, 194, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(11, 121, 194, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s, border-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface-soft);
+  border-color: rgba(11, 121, 194, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ── Hero gradient bg ── */
+.hero-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 0%, var(--color-hero-glow) 0%, transparent 45%),
+    radial-gradient(circle at 75% 10%, var(--color-hero-glow-2) 0%, transparent 40%);
+}
+
+/* ── Step connector ── */
+.step-connector {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 2rem;
+  height: 1px;
+  background: var(--color-border);
+  transform: translateY(-50%);
+}
+
+/* ── Counter animation ── */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
