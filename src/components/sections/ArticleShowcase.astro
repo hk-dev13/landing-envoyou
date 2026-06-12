@@ -7,6 +7,7 @@ interface Article {
   excerpt: string;
   readTime: string;
   date: string;
+  url: string;
 }
 
 // Curated static fallback articles (used when API is not configured or offline)
@@ -16,47 +17,54 @@ const fallbackArticles: Article[] = [
     title: "The Rise of Agentic Workflows in Digital Publishing",
     excerpt: "How autonomous AI agents are transitioning from simple text generators to active, context-aware editorial collaborators.",
     readTime: "5 min read",
-    date: "June 10, 2026"
+    date: "June 10, 2026",
+    url: "https://blog.envoyou.com/posts/rise-of-agentic-workflows-digital-publishing"
   },
   {
     category: "Digital Creation",
     title: "Designing for Attention: Aesthetics of Modern Blogs",
     excerpt: "A deep dive into typography, negative space, and subtle micro-interactions that keep readers engaged in a distracted world.",
     readTime: "8 min read",
-    date: "June 08, 2026"
+    date: "June 08, 2026",
+    url: "https://blog.envoyou.com/posts/designing-for-attention-aesthetics-modern-blogs"
   },
   {
     category: "Modern Business",
     title: "Monetizing Niches: The Era of Editorial Subscriptions",
     excerpt: "Why broad-scale advertising is declining and how focused, high-value content ecosystems are building sustainable revenue.",
     readTime: "6 min read",
-    date: "June 05, 2026"
+    date: "June 05, 2026",
+    url: "https://blog.envoyou.com/posts/monetizing-niches-editorial-subscriptions"
   },
   {
     category: "AI & Systems",
     title: "Behind the Screen: Fine-Tuning LLMs for Brand Voice",
     excerpt: "Practical methodologies for training and prompting LLMs to respect complex editorial styles and guidelines consistently.",
     readTime: "10 min read",
-    date: "May 28, 2026"
+    date: "May 28, 2026",
+    url: "https://blog.envoyou.com/posts/fine-tuning-llms-brand-voice"
   },
   {
     category: "Productivity",
     title: "The Editor's Checklist: What AI Can and Cannot Review",
     excerpt: "Defining the boundary between automated structural checks and the irreplaceable human touch in creative copy.",
     readTime: "4 min read",
-    date: "May 24, 2026"
+    date: "May 24, 2026",
+    url: "https://blog.envoyou.com/posts/editors-checklist-what-ai-cannot-review"
   },
   {
     category: "Future of Web",
     title: "Decentralized Feeds and the Return of RSS Architecture",
     excerpt: "How open protocol distribution is challenging algorithmic timelines and giving power back to content creators.",
     readTime: "7 min read",
-    date: "May 19, 2026"
+    date: "May 19, 2026",
+    url: "https://blog.envoyou.com/posts/decentralized-feeds-rss-architecture"
   }
 ];
 
-// Read API URL from Vercel/Env variables
+// Read API and Blog URLs from Vercel/Env variables
 const blogApiUrl = import.meta.env.BLOG_API_URL;
+const blogBaseUrl = import.meta.env.BLOG_URL || 'https://blog.envoyou.com';
 let articles: Article[] = fallbackArticles;
 
 if (blogApiUrl) {
@@ -91,7 +99,8 @@ if (blogApiUrl) {
             title: post.title || "Untitled Article",
             excerpt: post.excerpt || post.summary || post.description || "",
             readTime: post.reading_time ? `${post.reading_time} min read` : "5 min read",
-            date: formattedDate
+            date: formattedDate,
+            url: `${blogBaseUrl}/posts/${post.slug || ""}`
           };
         });
       }
@@ -123,7 +132,12 @@ if (blogApiUrl) {
     <!-- First Marquee Content Track -->
     <div class="marquee-content flex shrink-0 gap-6 min-w-full animate-marquee pr-6">
       {articles.map((article) => (
-        <article class="group/card relative flex flex-col justify-between w-[320px] sm:w-[380px] md:w-[400px] h-[280px] p-6 sm:p-8 rounded-[var(--radius-lg)] border border-border bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:hover:shadow-primary/5">
+        <a 
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group/card relative flex flex-col justify-between w-[320px] sm:w-[380px] md:w-[400px] h-[280px] p-6 sm:p-8 rounded-[var(--radius-lg)] border border-border bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:hover:shadow-primary/5 text-left no-underline"
+        >
           <!-- Custom Dynamic Brand Glow -->
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 dark:from-primary/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
           
@@ -159,14 +173,19 @@ if (blogApiUrl) {
               </svg>
             </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
 
     <!-- Duplicated Marquee Content Track for Infinite loop -->
     <div class="marquee-content flex shrink-0 gap-6 min-w-full animate-marquee pr-6" aria-hidden="true">
       {articles.map((article) => (
-        <article class="group/card relative flex flex-col justify-between w-[320px] sm:w-[380px] md:w-[400px] h-[280px] p-6 sm:p-8 rounded-[var(--radius-lg)] border border-border bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:hover:shadow-primary/5">
+        <a 
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group/card relative flex flex-col justify-between w-[320px] sm:w-[380px] md:w-[400px] h-[280px] p-6 sm:p-8 rounded-[var(--radius-lg)] border border-border bg-surface overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl dark:hover:shadow-primary/5 text-left no-underline"
+        >
           <!-- Custom Dynamic Brand Glow -->
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 dark:from-primary/10 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
           
@@ -202,7 +221,7 @@ if (blogApiUrl) {
               </svg>
             </span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </div>
