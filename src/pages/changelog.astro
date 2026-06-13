@@ -62,7 +62,139 @@ import Footer from '../components/Footer.astro';
 
       <!-- Timeline / Changelog List -->
       <div class="relative pl-6 sm:pl-8 border-l border-border space-y-16">
-        
+
+        <!-- VERSION 0.29.1 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.29.1</h2>
+            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Clearer Plan Language:</strong> Renamed the pricing section to "Plans & Credits" so plan selection and credit allocation are easier to understand.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.29.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.29.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Plans & Credits Preview:</strong> Added monthly and yearly plan comparisons, active-plan indicators, credit details, and an additional credit package. Paid checkout remains marked as Coming Soon during the controlled rollout.
+                </li>
+                <li>
+                  <strong class="text-text">Transparent Payment Review:</strong> Prepared a confirmation step that clearly presents the USD price, final IDR amount, conversion rate, included credits, validity period, tax statement, and manual renewal terms before payment.
+                </li>
+                <li>
+                  <strong class="text-text">Payment Confirmation Tracking:</strong> Added an order-status banner that can confirm successful payments and updated credit balances after users return from the payment provider.
+                </li>
+                <li>
+                  <strong class="text-text">Public Legal Pages:</strong> Added Terms of Service, Privacy Notice, and Refund Policy pages, linked from the authentication and pricing experiences.
+                </li>
+                <li>
+                  <strong class="text-text">Refreshed Sign-In Experience:</strong> Redesigned the login and signup pages with clearer product benefits, trial guidance, and a more consistent Envoyou visual system.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Clearer Editorial Modes:</strong> Fast Preview now focuses on rapid review, while Publish Ready provides the complete refinement and SEO workflow required before download or CMS export.
+                </li>
+                <li>
+                  <strong class="text-text">Safer CMS Export:</strong> Export is available only for Publish Ready articles that pass the quality gate and belong to a workspace with a verified CMS connection.
+                </li>
+                <li>
+                  <strong class="text-text">Consistent English Interface:</strong> Standardized billing, credit, quality, export, and operational messages across the workspace.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Fixed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Guest AI Drafting:</strong> Fixed an issue that prevented demo users from using Generate with AI.
+                </li>
+                <li>
+                  <strong class="text-text">Checkout Sign-In Flow:</strong> Users who start checkout without an active session are now directed to sign in and returned to the pricing page.
+                </li>
+                <li>
+                  <strong class="text-text">Reliable Payment Updates:</strong> Added a status-check fallback so confirmed payments can still update plans and credits if the provider notification is delayed.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.28.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.28.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">13 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Editorial Team Analytics:</strong> Added editor productivity, coaching indicators, category distribution, revision frequency, and average time-to-publish insights.
+                </li>
+                <li>
+                  <strong class="text-text">Flexible Reporting Periods:</strong> Added preset and custom date ranges with comparisons against the previous period.
+                </li>
+                <li>
+                  <strong class="text-text">Expanded CSV Reports:</strong> Analytics exports now include editor contributions, category distribution, revision averages, publishing time, and performance comparisons.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Workspace-Focused Dashboard:</strong> Tenant analytics now focus on day-to-day editorial operations, while internal product validation metrics remain separate.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <!-- VERSION 0.27.1 -->
         <div class="relative">
           <!-- Timeline point dot -->
