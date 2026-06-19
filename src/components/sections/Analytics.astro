@@ -57,16 +57,16 @@ const eaiStats = stats.eai || {
           ></div>
           
           <button
-            id="toggle-blog"
+            id="toggle-eai"
             class="relative z-10 px-6 py-2.5 rounded-xl text-sm font-bold hover:text-primary transition-colors duration-200 cursor-pointer text-primary"
           >
-            Blog Analytics
+            EAI Analytics
           </button>
           <button
-            id="toggle-eai"
+            id="toggle-blog"
             class="relative z-10 px-6 py-2.5 rounded-xl text-sm font-bold hover:text-primary transition-colors duration-200 cursor-pointer text-muted"
           >
-            EAI Analytics
+            Blog Analytics
           </button>
         </div>
       </div>
@@ -98,7 +98,81 @@ const eaiStats = stats.eai || {
           id="cards-container" 
           class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none gap-6 pt-6 pb-12 px-8 -mt-6 -mb-10 -mx-8"
         >
-          <!-- CARD 1: BLOG ANALYTICS -->
+          <!-- CARD 1: EAI ANALYTICS (Active/Default) -->
+          <div class="w-full shrink-0 snap-center">
+            <div class="card p-8 min-h-[380px] relative">
+              <!-- Glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none"></div>
+              
+              <div class="relative">
+                <!-- Card Header -->
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-border">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
+                      <svg class="w-5 h-5" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M68.1 88.5c-6.3 14.9-10.2 28.3-12 41-.9 6.1-.7 7.4 1.6 13.9 11.8 32.7 41.9 64.8 86.1 91.3 12.4 7.5 45.1 23.7 45.9 22.9.4-.3.2-.6-.3-.6-1.5 0-22.9-12.5-30.3-17.7-54.7-38.5-84.1-87.7-87-145.7l-.6-13.1z"/>
+                        <path d="M52.5 151.3c-1.3 9.8.1 37.2 2.3 46.7 5.4 23.1 15.6 44.4 31.5 66 9.3 12.6 34.4 37.4 48.7 48.2 42.9 32.3 97.4 56.2 159.6 70.2 8.9 2 16.9 3.6 17.8 3.6s1.5.3 1.3.8c-.3.4-14.8 10.4-32.2 22.2l-31.7 21.5 55.7.3 55.6.2 32.7-22.1c43.8-29.5 89.6-60.6 95.7-64.8l4.9-3.4-2.4-1.6c-2.6-1.7-78.7-53.2-111.5-75.5l-20-13.6-55.9.2-55.9.3 34.6 23.4c19.1 12.8 34.7 23.4 34.7 23.6 0 .9-41.4-7.1-59.3-11.6-99.5-25-173.3-71.8-199.2-126.4-2.3-5-4.7-10.1-5.2-11.5-.9-2.2-1.1-1.9-1.8 3.3"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-text">EAI Editorial Workspace</h3>
+                      <p class="text-xs text-muted">Editorial Intelligence & AI Pipeline metrics</p>
+                    </div>
+                  </div>
+                  <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1 rounded-full border border-emerald-300/60 dark:border-emerald-700/50">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Verified
+                  </span>
+                </div>
+
+                <!-- Three Key B2B Operational Metrics (Highlighted) -->
+                <div class="grid grid-cols-3 gap-2 mb-6 pb-4 border-b border-border text-center bg-surface-soft/40 p-3 rounded-xl border border-border">
+                  <div>
+                    <p class="text-[10px] text-muted font-bold uppercase tracking-wider mb-1">CMS Export Success</p>
+                    <p class="text-xl font-extrabold text-accent tracking-tight font-mono">{eaiStats.cmsExportSuccess}</p>
+                    <p class="text-[8px] text-muted mt-0.5 leading-tight">Reliable pipeline</p>
+                  </div>
+                  <div class="border-x border-border">
+                    <p class="text-[10px] text-muted font-bold uppercase tracking-wider mb-1">SEO Completed</p>
+                    <p class="text-xl font-extrabold text-accent tracking-tight font-mono">{eaiStats.seoCompletionRate}</p>
+                    <p class="text-[8px] text-muted mt-0.5 leading-tight">Validated packages</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-muted font-bold uppercase tracking-wider mb-1">Avg. Process Time</p>
+                    <p class="text-xl font-extrabold text-accent tracking-tight font-mono">{eaiStats.avgProcessTimeMins}m</p>
+                    <p class="text-[8px] text-muted mt-0.5 leading-tight">Minutes per article</p>
+                  </div>
+                </div>
+
+                <!-- Metrics Table for secondary stats -->
+                <div class="max-h-[160px] overflow-y-auto pr-1 space-y-4 scrollbar-thin">
+                  {[
+                    { label: "Brand Voice Alignment", value: eaiStats.brandVoiceAlignment, desc: "Accuracy rating on style and voice compliance", icon: "<path d='M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z'></path>" },
+                    { label: "Drafts Processed / Month", value: `${eaiStats.draftsThisMonth || 0} drafts`, desc: "Count of processed drafts in the current calendar month", icon: "<rect x='3' y='4' width='18' height='16' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line>" },
+                    { label: "Drafts Finished & Polished", value: `${eaiStats.finishedDrafts || 0} drafts`, desc: "Total completed or refined/polished drafts count", icon: "<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline>" },
+                    { label: "Avg. Cost Per Article", value: eaiStats.avgAiCostPerArticle || "$0.017", desc: "Estimated AI API pricing per polished draft", icon: "<line x1='12' y1='1' x2='12' y2='23'></line><path d='M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'></path>" }
+                  ].map((row) => (
+                    <div class="flex items-center justify-between py-3 border-b border-border last:border-0 hover:bg-surface-soft/30 px-2 rounded-lg transition-colors duration-150">
+                      <div class="flex items-center gap-3 max-w-[70%] min-w-0">
+                        <div class="w-8 h-8 shrink-0 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
+                          <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <Fragment set:html={row.icon} />
+                          </svg>
+                        </div>
+                        <div class="min-w-0">
+                          <p class="text-sm font-semibold text-text truncate">{row.label}</p>
+                          <p class="text-[10px] text-muted truncate">{row.desc}</p>
+                        </div>
+                      </div>
+                      <p class="text-sm font-extrabold text-accent font-mono text-right truncate max-w-[30%] ml-2" title={String(row.value)}>{row.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: BLOG ANALYTICS -->
           <div class="w-full shrink-0 snap-center">
             <div class="card p-8 min-h-[380px] relative">
               <!-- Glow -->
@@ -154,69 +228,12 @@ const eaiStats = stats.eai || {
               </div>
             </div>
           </div>
-
-          <!-- CARD 2: EAI ANALYTICS -->
-          <div class="w-full shrink-0 snap-center">
-            <div class="card p-8 min-h-[380px] relative">
-              <!-- Glow -->
-              <div class="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none"></div>
-              
-              <div class="relative">
-                <!-- Card Header -->
-                <div class="flex items-center justify-between mb-6 pb-4 border-b border-border">
-                  <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
-                      <svg class="w-5 h-5" viewBox="0 0 512 512" fill="currentColor">
-                        <path d="M68.1 88.5c-6.3 14.9-10.2 28.3-12 41-.9 6.1-.7 7.4 1.6 13.9 11.8 32.7 41.9 64.8 86.1 91.3 12.4 7.5 45.1 23.7 45.9 22.9.4-.3.2-.6-.3-.6-1.5 0-22.9-12.5-30.3-17.7-54.7-38.5-84.1-87.7-87-145.7l-.6-13.1z"/>
-                        <path d="M52.5 151.3c-1.3 9.8.1 37.2 2.3 46.7 5.4 23.1 15.6 44.4 31.5 66 9.3 12.6 34.4 37.4 48.7 48.2 42.9 32.3 97.4 56.2 159.6 70.2 8.9 2 16.9 3.6 17.8 3.6s1.5.3 1.3.8c-.3.4-14.8 10.4-32.2 22.2l-31.7 21.5 55.7.3 55.6.2 32.7-22.1c43.8-29.5 89.6-60.6 95.7-64.8l4.9-3.4-2.4-1.6c-2.6-1.7-78.7-53.2-111.5-75.5l-20-13.6-55.9.2-55.9.3 34.6 23.4c19.1 12.8 34.7 23.4 34.7 23.6 0 .9-41.4-7.1-59.3-11.6-99.5-25-173.3-71.8-199.2-126.4-2.3-5-4.7-10.1-5.2-11.5-.9-2.2-1.1-1.9-1.8 3.3"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-bold text-text">EAI Editorial Workspace</h3>
-                      <p class="text-xs text-muted">Editorial Intelligence & AI Pipeline metrics</p>
-                    </div>
-                  </div>
-                  <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-3 py-1 rounded-full border border-emerald-300/60 dark:border-emerald-700/50">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Verified
-                  </span>
-                </div>
-
-                <!-- Metrics Table -->
-                <div class="max-h-[260px] overflow-y-auto pr-1 space-y-4 scrollbar-thin">
-                  {[
-                    { label: "CMS Export Success", value: eaiStats.cmsExportSuccess, desc: "Successfully exported articles to Vercel/CMS", icon: "<path d='M8.684 10.742l5.053 5.053L21 8M4 16.5L12 21l8-4.5M4 12l8 4.5 8-4.5'></path>" },
-                    { label: "Brand Voice Alignment", value: eaiStats.brandVoiceAlignment, desc: "Accuracy rating on style and voice compliance", icon: "<path d='M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z'></path>" },
-                    { label: "SEO Completion Rate", value: eaiStats.seoCompletionRate, desc: "Articles with meta details verified by EAI", icon: "<circle cx='12' cy='12' r='10'></circle><path d='M22 22l-6-6'></path>" },
-                    { label: "Draft processed / month", value: `${eaiStats.draftsThisMonth || 0} drafts`, desc: "Count of processed drafts in the current calendar month", icon: "<rect x='3' y='4' width='18' height='16' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line>" },
-                    { label: "Avg. process time (mins)", value: `${eaiStats.avgProcessTimeMins || '0.0'} min`, desc: "Average AI processing duration per run", icon: "<circle cx='12' cy='12' r='10'></circle><polyline points='12 6 12 12 16 14'></polyline>" },
-                    { label: "Draft finished/polished", value: `${eaiStats.finishedDrafts || 0} drafts`, desc: "Total completed or refined/polished drafts count", icon: "<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline>" }
-                  ].map((row) => (
-                    <div class="flex items-center justify-between py-3 border-b border-border last:border-0 hover:bg-surface-soft/30 px-2 rounded-lg transition-colors duration-150">
-                      <div class="flex items-center gap-3 max-w-[70%] min-w-0">
-                        <div class="w-8 h-8 shrink-0 rounded-lg bg-surface-soft flex items-center justify-center text-muted">
-                          <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <Fragment set:html={row.icon} />
-                          </svg>
-                        </div>
-                        <div class="min-w-0">
-                          <p class="text-sm font-semibold text-text truncate">{row.label}</p>
-                          <p class="text-[10px] text-muted truncate">{row.desc}</p>
-                        </div>
-                      </div>
-                      <p class="text-sm font-extrabold text-accent font-mono text-right truncate max-w-[30%] ml-2" title={String(row.value)}>{row.value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Slider Page Indicator Dots -->
         <div class="flex justify-center gap-2 mt-6">
-          <button id="dot-0" class="w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300 cursor-pointer" aria-label="Go to Blog stats"></button>
-          <button id="dot-1" class="w-2.5 h-2.5 rounded-full bg-border transition-all duration-300 cursor-pointer" aria-label="Go to EAI stats"></button>
+          <button id="dot-0" class="w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300 cursor-pointer" aria-label="Go to EAI stats"></button>
+          <button id="dot-1" class="w-2.5 h-2.5 rounded-full bg-border transition-all duration-300 cursor-pointer" aria-label="Go to Blog stats"></button>
         </div>
 
       </div>
@@ -224,7 +241,7 @@ const eaiStats = stats.eai || {
 
     <!-- Data source footer -->
     <p class="text-center text-xs text-muted mt-8">
-      Data is dynamically updated. Real-time unique readers are fetched live from GA4.
+      Data is dynamically updated. Real-time metrics are fetched directly from EAI and Google Analytics 4.
       <a href="https://blog.envoyou.com" target="_blank" class="text-primary hover:underline ml-1">Read the Blog →</a>
     </p>
   </div>
@@ -242,10 +259,10 @@ const eaiStats = stats.eai || {
 
   function updateActiveState(index: number) {
     if (index === 0) {
-      tabBlog?.classList.add("text-primary");
-      tabBlog?.classList.remove("text-muted");
-      tabEai?.classList.add("text-muted");
-      tabEai?.classList.remove("text-primary");
+      tabEai?.classList.add("text-primary");
+      tabEai?.classList.remove("text-muted");
+      tabBlog?.classList.add("text-muted");
+      tabBlog?.classList.remove("text-primary");
       if (pill) pill.style.transform = "translateX(0%)";
       
       dot0?.classList.remove("bg-border");
@@ -253,10 +270,10 @@ const eaiStats = stats.eai || {
       dot1?.classList.remove("bg-primary");
       dot1?.classList.add("bg-border");
     } else {
-      tabEai?.classList.add("text-primary");
-      tabEai?.classList.remove("text-muted");
-      tabBlog?.classList.add("text-muted");
-      tabBlog?.classList.remove("text-primary");
+      tabBlog?.classList.add("text-primary");
+      tabBlog?.classList.remove("text-muted");
+      tabEai?.classList.add("text-muted");
+      tabEai?.classList.remove("text-primary");
       if (pill) pill.style.transform = "translateX(100%)";
       
       dot0?.classList.remove("bg-primary");
@@ -280,8 +297,8 @@ const eaiStats = stats.eai || {
   }
 
   // Click tabs
-  tabBlog?.addEventListener("click", () => scrollToCard(0));
-  tabEai?.addEventListener("click", () => scrollToCard(1));
+  tabEai?.addEventListener("click", () => scrollToCard(0));
+  tabBlog?.addEventListener("click", () => scrollToCard(1));
 
   // Click dots
   dot0?.addEventListener("click", () => scrollToCard(0));

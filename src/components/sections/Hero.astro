@@ -1,14 +1,10 @@
 ---
 import stats from '../../data/stats.json';
 
-// Fallbacks matching real data
-const monthlyReaders = stats.monthlyReaders || "2.4K";
-const publishedArticles = stats.blog?.publishedArticles || 25;
-const systemUptime = stats.systemUptime || "100%";
-
-// Extract numeric parts for the count-up animation if the value contains K/M/etc.
-const monthlyReadersValue = monthlyReaders.replace(/[KkMm]/g, '');
-const monthlyReadersSuffix = (monthlyReaders.match(/[KkMm]/g)?.[0] || '').toUpperCase();
+// EAI operational metrics from stats.json
+const totalDrafts = stats.totalDrafts || 42;
+const readyRate = stats.readyRate || 17;
+const systemUptime = stats.systemUptime || "99.9%";
 ---
 
 <section
@@ -33,47 +29,50 @@ const monthlyReadersSuffix = (monthlyReaders.match(/[KkMm]/g)?.[0] || '').toUppe
       </h1>
 
       <p class="section-subtitle mt-5 max-w-xl">
-        Envoyou combines publishing, editorial workflows, and intelligent content tools into a connected ecosystem designed to move ideas from draft to publication.<br/>Create. Refine. Publish.
+        Envoyou provides a premium AI editorial workspace (EAI) designed to polish raw drafts, verify factual integrity, optimize SEO, and export directly to WordPress, Ghost, or your custom CMS.
       </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-wrap items-center gap-3 mt-10">
-        <a
-          href="https://blog.envoyou.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="hero-cta-blog"
-          class="btn-primary"
-        >
-          Read the Blog
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M7 17L17 7M17 7H7M17 7v10"/>
-          </svg>
-        </a>
-        <a
-          href="https://eai.envoyou.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="hero-cta-eai"
-          class="btn-secondary"
-        >
-          Explore EAI
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
+      <div>
+        <div class="flex flex-wrap items-center gap-3 mt-10">
+          <a
+            href="https://eai.envoyou.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="hero-cta-eai-login"
+            class="btn-primary"
+          >
+            Try EAI for Free
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </a>
+          <a
+            href="#products"
+            id="hero-cta-features"
+            class="btn-secondary"
+          >
+            Explore Features
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <p class="text-xs text-muted/80 mt-3 pl-1">
+          Get 10 free credits or try refining 2 articles without logging in.
+        </p>
       </div>
 
       <!-- Social proof / quick stats -->
       <div class="flex flex-wrap items-center gap-6 mt-14 pt-10 border-t border-border">
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value={monthlyReadersValue} data-suffix={monthlyReadersSuffix} data-count="true">—</p>
-          <p class="text-xs text-muted mt-0.5">Monthly Readers</p>
+          <p class="text-2xl font-bold text-text tabular-nums" data-value={totalDrafts} data-count="true">—</p>
+          <p class="text-xs text-muted mt-0.5">Drafts Processed</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value={publishedArticles} data-count="true">—</p>
-          <p class="text-xs text-muted mt-0.5">Articles Published</p>
+          <p class="text-2xl font-bold text-text tabular-nums" data-value={readyRate} data-suffix="%" data-count="true">—</p>
+          <p class="text-xs text-muted mt-0.5">Readiness Rate</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
@@ -83,7 +82,7 @@ const monthlyReadersSuffix = (monthlyReaders.match(/[KkMm]/g)?.[0] || '').toUppe
         <div class="w-px h-8 bg-border"></div>
         <div class="flex items-center gap-2">
           <span class="inline-block w-2 h-2 rounded-full bg-success animate-pulse"></span>
-          <p class="text-sm font-medium text-muted">Continuously Growing</p>
+          <p class="text-sm font-medium text-muted">SaaS Infrastructure</p>
         </div>
       </div>
     </div>

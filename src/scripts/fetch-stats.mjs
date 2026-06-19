@@ -258,6 +258,12 @@ async function main() {
       if (eaiData.finishedDrafts !== undefined) {
         stats.eai.finishedDrafts = eaiData.finishedDrafts;
       }
+      if (eaiData.cmsExportSuccess !== undefined) {
+        stats.eai.cmsExportSuccess = eaiData.cmsExportSuccess;
+      }
+      if (eaiData.seoCompletionRate !== undefined) {
+        stats.eai.seoCompletionRate = eaiData.seoCompletionRate;
+      }
       console.log('EAI stats successfully fetched:', eaiData);
     } catch (err) {
       console.warn('WARNING: Failed to fetch EAI stats (falling back to stats.json):', err.message);
