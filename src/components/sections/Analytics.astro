@@ -149,8 +149,7 @@ const eaiStats = stats.eai || {
                   {[
                     { label: "Brand Voice Alignment", value: eaiStats.brandVoiceAlignment, desc: "Accuracy rating on style and voice compliance", icon: "<path d='M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z'></path>" },
                     { label: "Drafts Processed / Month", value: `${eaiStats.draftsThisMonth || 0} drafts`, desc: "Count of processed drafts in the current calendar month", icon: "<rect x='3' y='4' width='18' height='16' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line>" },
-                    { label: "Drafts Finished & Polished", value: `${eaiStats.finishedDrafts || 0} drafts`, desc: "Total completed or refined/polished drafts count", icon: "<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline>" },
-                    { label: "Avg. Cost Per Article", value: eaiStats.avgAiCostPerArticle || "$0.017", desc: "Estimated AI API pricing per polished draft", icon: "<line x1='12' y1='1' x2='12' y2='23'></line><path d='M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'></path>" }
+                    { label: "Drafts Finished & Polished", value: `${eaiStats.finishedDrafts || 0} drafts`, desc: "Total completed or refined/polished drafts count", icon: "<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14'></path><polyline points='22 4 12 14.01 9 11.01'></polyline>" }
                   ].map((row) => (
                     <div class="flex items-center justify-between py-3 border-b border-border last:border-0 hover:bg-surface-soft/30 px-2 rounded-lg transition-colors duration-150">
                       <div class="flex items-center gap-3 max-w-[70%] min-w-0">
