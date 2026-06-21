@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Terms of Service — Envoyou Company"
+  description="Read the Terms of Service for Envoyou, including rules of website use, AI content disclaimers, service availability, and data isolation guidelines."
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+    <!-- Ambient Radial Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
+
+    <article class="max-w-4xl mx-auto px-6 py-12">
+      <!-- Title Header -->
+      <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Legal Agreement
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">Terms of Service</h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed">
+          Last Updated: June 21, 2026. Please read these Terms of Service carefully before using our website or platform.
+        </p>
+      </div>
+
+      <!-- Legal Content Sections -->
+      <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">1.</span> Acceptance of Terms
+          </h2>
+          <p>
+            By accessing or using the website <a href="https://envoyou.com" class="text-primary hover:underline">envoyou.com</a> (the "Site") and the Editorial Intelligence platform hosted at <a href="https://eai.envoyou.com" class="text-primary hover:underline">eai.envoyou.com</a> (the "Service"), you agree to be bound by these Terms of Service ("Terms"). These Terms constitute a binding legal agreement between you (referred to as "User", "you", or "your") and Envoyou (referred to as "Envoyou", "we", "us", or "our"). If you do not agree to these Terms, you must not access or use the Site or the Service.
+          </p>
+          <p>
+            Envoyou operates as a registered business operator in Indonesia, complying with the Business Identification Number (NIB) framework and is registered as an Electronic System Operator (PSE - Penyelenggara Sistem Elektronik) under the Ministry of Communication and Informatics (Kominfo) of the Republic of Indonesia.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">2.</span> AI Content & Search Engine Disclaimer
+          </h2>
+          <p>
+            Envoyou provides an AI-powered editorial assistant workspace designed to refine, structure, and check the quality of raw article drafts. You acknowledge and agree to the following terms regarding AI-generated output:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">Factual Verification:</strong> AI outputs may contain factual inaccuracies, omissions, or contextually inappropriate recommendations. The final draft is intended solely as an editorial template. The final human editor retains 100% responsibility for auditing and verifying all factual claims, data points, and URLs before publishing.
+            </li>
+            <li>
+              <strong class="text-text">SEO and Search Engine Indexes:</strong> Envoyou helps structure content to improve readability and alignment with SEO best practices. However, Envoyou does not guarantee search engine rankings, traffic increases, or indexing success. Search engine algorithm updates, penalties, de-indexing, or classification of content as automated spam are risks borne entirely by the User.
+            </li>
+            <li>
+              <strong class="text-text">Human-in-the-Loop Requirement:</strong> The Service is not engineered for fully automated, hands-off content publication. Direct CMS synchronization features are tools to expedite manual publishing workflows, and they must be guided by human oversight.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">3.</span> Service Availability (No Uptime Guarantee)
+          </h2>
+          <p>
+            The Site and the Service are provided to you on an <strong class="text-text">"AS IS"</strong> and <strong class="text-text">"AS AVAILABLE"</strong> basis. Envoyou makes no representations or warranties of any kind, express or implied, regarding the operation of the Service, its availability, or its security.
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">No SLA or Uptime Warranties:</strong> We do not guarantee uninterrupted, secure, or error-free access to the Service. There are no service level agreements (SLAs) or uptime percentage guarantees.
+            </li>
+            <li>
+              <strong class="text-text">Maintenance & Interruptions:</strong> Access to the Service may be suspended, restricted, or terminated at any time without notice to accommodate scheduled upgrades, emergency maintenance, API provider downtime, or server outages. Envoyou is not liable for any losses, database sync failures, or workflow delays caused by service interruptions.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">4.</span> Intellectual Property & Content Ownership
+          </h2>
+          <p>
+            We respect the creative work of writers and publishers using our system.
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">User Inputs & Drafts:</strong> You retain full copyright and ownership of all raw drafts, outline notes, and reference files you upload to the Service.
+            </li>
+            <li>
+              <strong class="text-text">Refined Outputs:</strong> Subject to your compliance with these Terms, Envoyou assigns all rights, titles, and interests in the polished drafts and SEO metadata packs generated by the Service to you. You are responsible for ensuring that outputs do not violate third-party copyright laws or trademark rules.
+            </li>
+            <li>
+              <strong class="text-text">Envoyou Property:</strong> All software code, UI design systems, branding, templates, algorithms, prompts, and database structures remain the exclusive property of Envoyou and its licensors.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">5.</span> Acceptable Use Policy (AUP)
+          </h2>
+          <p>
+            You agree not to use the Service, the Site, or EAI workspace to:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              Generate low-quality automated text in bulk to spam search engines or manipulate search visibility.
+            </li>
+            <li>
+              Produce or distribute hate speech, harassment, defamation, explicit content, or factual misinformation.
+            </li>
+            <li>
+              Perform unauthorized scraping, crawling, or penetration testing on Envoyou's infrastructure.
+            </li>
+            <li>
+              Attempt to reverse-engineer prompts, system instructions, or proprietary EAI workflows.
+            </li>
+            <li>
+              Violate search engine webmaster guidelines or third-party API policies (including Google Gemini API terms of service).
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">6.</span> Data Isolation & Account Termination
+          </h2>
+          <p>
+            We implement strict data boundary and isolation protocols to protect your publishing workspace:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">Workspace Isolation:</strong> All tenant data, including uploaded reference contexts, analysis logs, history sidebar records, and CMS integration configurations, is isolated at the Clerk Organization boundary level. No data is shared or visible across workspaces.
+            </li>
+            <li>
+              <strong class="text-text">Post-Termination Data Handling:</strong> Upon account closure, workspace deletion, or service termination, all related analysis logs, cached drafts, metadata records, and encrypted CMS credentials stored in our database will be scheduled for permanent deletion or anonymization. Complete removal from database backups and active clusters occurs within 30 business days, except where data must be retained to satisfy legal reporting, compliance, or billing audit logs.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">7.</span> Limitation of Liability
+          </h2>
+          <p>
+            To the maximum extent permitted by applicable law, Envoyou, its founder, employees, or API partners shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, loss of data, loss of SEO traffic, CMS connection failures, or business interruptions arising out of or in connection with your use or inability to use the Service.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">8.</span> Modifications to Terms
+          </h2>
+          <p>
+            We reserve the right to modify these Terms at any time. When we make changes, we will update the "Last Updated" date at the top of this page. Your continued use of the Site or Service after the posting of updated Terms constitutes your acceptance of the modifications.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">9.</span> Governing Law
+          </h2>
+          <p>
+            These Terms shall be governed by, and construed in accordance with, the laws of the Republic of Indonesia, without regard to its conflicts of law provisions. Any legal action or proceeding arising under these Terms shall be resolved in the competent courts of Indonesia.
+          </p>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

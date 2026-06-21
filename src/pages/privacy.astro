@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — Envoyou Company"
+  description="Read the Privacy Policy for Envoyou, including legal processing bases (UU PDP & GDPR), data retention schedules, and data controller details."
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+    <!-- Ambient Radial Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
+
+    <article class="max-w-4xl mx-auto px-6 py-12">
+      <!-- Title Header -->
+      <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Privacy Protection
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">Privacy Policy</h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed">
+          Last Updated: June 21, 2026. Envoyou is committed to safeguarding your personal and workspace data.
+        </p>
+      </div>
+
+      <!-- Legal Content Sections -->
+      <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">1.</span> Identity of the Data Controller
+          </h2>
+          <p>
+            For the purposes of applicable data protection laws, including the Indonesian Law on Personal Data Protection (UU PDP No. 27/2022) and the European Union General Data Protection Regulation (GDPR), the Data Controller is:
+          </p>
+          <div class="bg-surface-soft border border-border p-5 rounded-2xl space-y-1 text-sm font-medium text-text">
+            <p><span class="text-muted">Operator:</span> Envoyou (Registered Business Operator)</p>
+            <p><span class="text-muted">Business Identification Number (NIB):</span> Registered under the NIB Framework of the Republic of Indonesia</p>
+            <p><span class="text-muted">Electronic System Operator (PSE):</span> Registered with the Ministry of Communication and Informatics (Kominfo), Republic of Indonesia</p>
+            <p><span class="text-muted">Registered Address:</span> Banyuwangi, Jawa Timur, Indonesia</p>
+            <p><span class="text-muted">Contact Email:</span> <a href="mailto:support@envoyou.com" class="text-primary hover:underline">support@envoyou.com</a></p>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">2.</span> Legal Basis for Processing
+          </h2>
+          <p>
+            We process your personal data under the following legal bases established by <strong class="text-text">UU PDP (Chapter V)</strong> and <strong class="text-text">GDPR Article 6(1)</strong>:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">Contractual Necessity (GDPR Art. 6(1)(b) / UU PDP Art. 20):</strong> To perform the services you register for, including authentication, setting up Clerk organizations, processing subscription transactions, and running editorial polishing cycles.
+            </li>
+            <li>
+              <strong class="text-text">Legitimate Interests (GDPR Art. 6(1)(f) / UU PDP Art. 20):</strong> To maintain site security, analyze and optimize page performance, detect credit card fraud, and prevent spam/abuse of our trial balances.
+            </li>
+            <li>
+              <strong class="text-text">Consent (GDPR Art. 6(1)(a) / UU PDP Art. 20):</strong> For optional marketing communications, newsletters, or third-party tracking cookies (which can be withdrawn at any time).
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">3.</span> AI Data Processing Safeguards
+          </h2>
+          <p>
+            As an AI-driven Editorial Intelligence system, Envoyou enforces strict data confidentiality parameters to protect your proprietary intellectual assets:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">No LLM Training:</strong> All drafts, source notes, scraped reference URLs, and outlined articles processed through the Envoyou EAI workspace are submitted to Google LLC's Gemini API via secure commercial developer API endpoints. Under our enterprise terms, <strong class="text-text">your data is never used to train Google's public large language models (LLMs)</strong>.
+            </li>
+            <li>
+              <strong class="text-text">Encrypted API Credentials:</strong> Your external CMS access tokens, API keys, and database secrets are encrypted at rest using industry-standard AES-256-GCM. Decryption keys are managed securely and are never sent or exposed to the browser client.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">4.</span> Information We Collect
+          </h2>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">Visitor Data:</strong> IP addresses, browser agents, geographic region, and click path logs collected via analytics cookies on envoyou.com.
+            </li>
+            <li>
+              <strong class="text-text">Account Information:</strong> Workspace name, user email, profile photo, and associated organization roles sync'd via our identity partner, Clerk.
+            </li>
+            <li>
+              <strong class="text-text">Workspace Inputs:</strong> Article drafts, outlines, URL references, briefs, and categories uploaded to the EAI Editor.
+            </li>
+            <li>
+              <strong class="text-text">Payment Metadata:</strong> Transaction totals, subscription status, and billing logs. We do not store full credit card numbers directly on our servers; payments are processed securely by our licensed gateway partner, Midtrans.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">5.</span> Data Retention Schedule
+          </h2>
+          <p>
+            We retain personal and workspace data according to the following retention schedule, after which data is securely deleted or permanently anonymized:
+          </p>
+          <div class="overflow-x-auto border border-border rounded-2xl bg-surface-soft/40">
+            <table class="w-full text-xs text-left border-collapse">
+              <thead>
+                <tr class="bg-surface border-b border-border font-bold text-text">
+                  <th class="p-3.5">Data Category</th>
+                  <th class="p-3.5">Retention Period</th>
+                  <th class="p-3.5">Action Upon Expiry</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border text-muted">
+                <tr>
+                  <td class="p-3.5 font-semibold text-text">Marketing Cookie Logs (GA4)</td>
+                  <td class="p-3.5">Up to 14 months from visit</td>
+                  <td class="p-3.5">Automatic deletion by Google Analytics</td>
+                </tr>
+                <tr>
+                  <td class="p-3.5 font-semibold text-text">Draft Inputs & Refinement Logs</td>
+                  <td class="p-3.5">During active membership subscription</td>
+                  <td class="p-3.5">Permanent database wipe within 30 days of manual deletion by user or account closure</td>
+                </tr>
+                <tr>
+                  <td class="p-3.5 font-semibold text-text">Identity & Auth Metadata (Clerk)</td>
+                  <td class="p-3.5">Duration of active account</td>
+                  <td class="p-3.5">Deleted within 30 days of account termination</td>
+                </tr>
+                <tr>
+                  <td class="p-3.5 font-semibold text-text">Financial Transactions & Taxes</td>
+                  <td class="p-3.5">7 years after the fiscal year end</td>
+                  <td class="p-3.5">Retained to comply with Indonesian tax audit and corporate accounting requirements</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">6.</span> Third-Party Data Processors
+          </h2>
+          <p>
+            We share specific data subsets with third-party service providers (data processors) who assist us in operating our Site and Service under strict data protection agreements:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              <strong class="text-text">Clerk Inc.:</strong> Identity provider, managing account logins and security profiles.
+            </li>
+            <li>
+              <strong class="text-text">Google LLC (Gemini API):</strong> Primary Large Language Model API, utilized to process and rewrite draft content.
+            </li>
+            <li>
+              <strong class="text-text">Vercel Inc.:</strong> Frontend deployment and serverless edge hosting infrastructure.
+            </li>
+            <li>
+              <strong class="text-text">DigitalOcean LLC:</strong> Cloud VPS hosting provider for the EAI application backend.
+            </li>
+            <li>
+              <strong class="text-text">PT Cloud Hosting Indonesia (Biznet Gio):</strong> Local VPS hosting provider for the blog back-end infrastructure.
+            </li>
+            <li>
+              <strong class="text-text">Supabase, Inc. & Neon Database:</strong> Cloud database platforms hosting the blog and EAI databases respectively.
+            </li>
+            <li>
+              <strong class="text-text">Cloudflare, Inc.:</strong> DNS routing, content delivery network (CDN) caching, and DDoS security logs.
+            </li>
+            <li>
+              <strong class="text-text">PT Midtrans:</strong> Licensed Indonesian payment gateway, securely managing local subscription checkouts and billing renewals.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">7.</span> International Data Transfers (Cross-Border)
+          </h2>
+          <p>
+            Because our technical architecture is distributed, personal data and article drafts may be transferred to, stored, and processed in cloud databases located outside of the Republic of Indonesia (including Singapore and the United States) by our processors (such as DigitalOcean, Neon, Supabase, and Google Cloud).
+          </p>
+          <p>
+            Under Indonesian Law No. 27/2022 on Personal Data Protection (UU PDP) and GDPR, we ensure all cross-border transfers are governed by standard data protection clauses and strict encryption protocols to guarantee your data privacy is maintained at all times.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">8.</span> Data Security Standards
+          </h2>
+          <p>
+            To prevent unauthorized access, data leaks, or processing errors, we maintain security measures:
+          </p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>
+              Enforcing SSL/TLS encryption for all data transit.
+            </li>
+            <li>
+              Enforcing AES-256 cryptographic standards for all database credentials and third-party secrets.
+            </li>
+            <li>
+              Routine vulnerability checks and restriction of internal access to operational logs.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">9.</span> Your Rights & Contact Details
+          </h2>
+          <p>
+            Under UU PDP and GDPR, you have the right to access, rectify, port, restrict processing of, or request the deletion of your personal data. You may also lodge a complaint with your local data protection supervisory authority.
+          </p>
+          <p>
+            To exercise your rights, please submit a request to our data protection team at:
+            <a href="mailto:support@envoyou.com" class="text-primary hover:underline">support@envoyou.com</a>.
+          </p>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
