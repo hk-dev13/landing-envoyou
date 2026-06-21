@@ -1,0 +1,487 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { Zap, Check, ChevronDown } from 'lucide-astro';
+
+const plans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    priceMonthly: 10,
+    priceYearly: 96,
+    equivalentMonthly: 8,
+    creditsMonthly: 50,
+    creditsYearly: 600,
+    description: 'Perfect for independent writers and journalists starting out.',
+    features: [
+      'Draft Refinement',
+      'SEO Optimization Pack',
+      '1 Custom Brand Voice Profile',
+      'Editorial Reports',
+      'Standard Support'
+    ],
+    highlight: false,
+    cta: 'Start Free Trial',
+    hrefMonthly: 'https://eai.envoyou.com/signup?plan=starter',
+    hrefYearly: 'https://eai.envoyou.com/signup?plan=starter_yearly'
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    priceMonthly: 19,
+    priceYearly: 182,
+    equivalentMonthly: 15,
+    creditsMonthly: 100,
+    creditsYearly: 1200,
+    description: 'Ideal for professional editors needing deeper research and integration.',
+    features: [
+      'Advanced Fact Checking & Auditing',
+      'Direct CMS Export (WordPress, Webhook)',
+      'Unlimited Brand Voice Profiles',
+      'AI Drafting Assistant',
+      'Priority Email Support'
+    ],
+    highlight: true,
+    cta: 'Start Free Trial',
+    hrefMonthly: 'https://eai.envoyou.com/signup?plan=pro',
+    hrefYearly: 'https://eai.envoyou.com/signup?plan=pro_yearly'
+  },
+  {
+    id: 'team',
+    name: 'Team',
+    priceMonthly: 79,
+    priceYearly: 758,
+    equivalentMonthly: 63,
+    creditsMonthly: 300,
+    creditsYearly: 3600,
+    description: 'For editorial rooms and workspaces needing shared collaboration.',
+    features: [
+      'Up to 10 Seats Included',
+      'Shared Workspace & Brand Profiles',
+      'Team Collaboration Tools',
+      'Centralized Team Analytics',
+      'Dedicated Slack Support'
+    ],
+    highlight: false,
+    cta: 'Start Free Trial',
+    hrefMonthly: 'https://eai.envoyou.com/signup?plan=team',
+    hrefYearly: 'https://eai.envoyou.com/signup?plan=team_yearly'
+  }
+];
+
+const comparisonFeatures = [
+  { name: 'Editorial Credits', starter: '50/mo (600/yr)', pro: '100/mo (1200/yr)', team: '300/mo (3600/yr)' },
+  { name: 'Draft Refinement', starter: true, pro: true, team: true },
+  { name: 'SEO Optimization', starter: true, pro: true, team: true },
+  { name: 'Brand Voice Profiles', starter: '1 Profile', pro: 'Unlimited', team: 'Unlimited' },
+  { name: 'Editorial Reports', starter: true, pro: true, team: true },
+  { name: 'Advanced Fact Checking', starter: false, pro: true, team: true },
+  { name: 'CMS Export', starter: false, pro: true, team: true },
+  { name: 'AI Drafting Assistant', starter: false, pro: true, team: true },
+  { name: 'Shared Workspace', starter: false, pro: false, team: true },
+  { name: 'Team Collaboration', starter: false, pro: false, team: true },
+  { name: 'Team Analytics', starter: false, pro: false, team: true },
+  { name: 'Seats Included', starter: '1', pro: '1', team: 'Up to 10' },
+];
+
+const faqs = [
+  {
+    q: 'What is an Editorial Credit?',
+    a: 'One Editorial Credit is consumed when you successfully run a complete article refinement process. A refinement includes editorial review, content polishing, SEO optimization, and publication-ready output.'
+  },
+  {
+    q: 'Do unused credits roll over?',
+    a: 'Monthly plan credits reset when a new monthly payment activates the next period. Annual plans grant the full prepaid annual credit allocation up front. Additional Credits purchased separately never expire.'
+  },
+  {
+    q: 'When is a credit consumed?',
+    a: 'A credit is only consumed after a successful refinement. Failed or interrupted processing does not deduct credits.'
+  },
+  {
+    q: 'Can I purchase additional credits?',
+    a: 'Yes. You can purchase Additional Credits (top-up) inside the EAI billing settings panel. Add-on credits are automatically used after your monthly allocation is exhausted and never expire.'
+  },
+  {
+    q: 'Can I upgrade or downgrade my plan?',
+    a: 'Yes. You can purchase another plan at any time. The current hosted checkout uses prepaid manual renewal; automatic recurring charges are not enabled yet.'
+  },
+  {
+    q: 'Is there a free trial?',
+    a: 'Yes. Every new account receives 10 free Editorial Credits to explore the platform before purchasing a subscription.'
+  },
+  {
+    q: 'Do I need a team plan to collaborate?',
+    a: 'No. Individual users can use Starter and Pro plans independently. Team is designed for organizations that require shared workspaces, multiple seats, and centralized analytics.'
+  }
+];
+---
+
+<BaseLayout
+  title="Pricing & Credits — Envoyou Editorial Intelligence"
+  description="Flexible, credit-based pricing plans designed for modern publishers, editors, and SaaS teams using EAI workspace."
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+    <!-- Ambient Radial Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(11,121,194,0.06),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(147,51,234,0.03),transparent_50%)]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 space-y-12">
+      
+      <!-- 1. Hero Header -->
+      <header class="text-center space-y-4 max-w-2xl mx-auto">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+          Flexible Plans
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-text">Plans & Credits</h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed">
+          Choose the plan that matches your publishing scale. Start free with 10 credits, no credit card required.
+        </p>
+      </header>
+
+      <!-- Billing Cycle Toggle Button -->
+      <div class="flex items-center justify-center gap-3 pt-2 pb-6">
+        <span id="billing-monthly-label" class="text-xs font-semibold text-text transition-colors duration-200">Bill Monthly</span>
+        <button
+          id="billing-toggle"
+          type="button"
+          class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-border transition-colors duration-200 ease-in-out focus:outline-none"
+          aria-pressed="false"
+        >
+          <span
+            id="billing-toggle-dot"
+            class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-surface shadow ring-0 transition duration-200 ease-in-out translate-x-0"
+          ></span>
+        </button>
+        <span id="billing-yearly-label" class="text-xs font-medium text-muted transition-colors duration-200 flex items-center gap-1.5">
+          Bill Yearly 
+          <span class="text-[9px] font-black text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/25">Save 20%</span>
+        </span>
+      </div>
+
+      <!-- 2. Pricing Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch max-w-5xl mx-auto">
+        {plans.map((plan) => (
+          <div class={`flex flex-col rounded-3xl border p-8 relative transition-all duration-300 hover:translate-y-[-4px] ${
+            plan.highlight 
+              ? 'bg-surface border-primary/30 shadow-xl shadow-primary/5 ring-1 ring-primary/20 scale-102 md:scale-105' 
+              : 'bg-surface-soft border-border hover:border-muted'
+          }`}>
+            {plan.highlight && (
+              <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-md">
+                Most Popular
+              </span>
+            )}
+            
+            <div class="space-y-4 mb-6">
+              <h3 class="text-xl font-bold text-text">{plan.name}</h3>
+              <p class="text-muted text-xs leading-relaxed">{plan.description}</p>
+              
+              <div class="space-y-1">
+                <div class="flex items-baseline gap-1">
+                  <span 
+                    class="text-4xl font-black text-text plan-price" 
+                    data-monthly={`$${plan.priceMonthly}`} 
+                    data-yearly={`$${plan.equivalentMonthly}`}
+                  >
+                    ${plan.priceMonthly}
+                  </span>
+                  <span 
+                    class="text-muted text-xs plan-period"
+                    data-monthly="/month"
+                    data-yearly="/month"
+                  >
+                    /month
+                  </span>
+                </div>
+                <p 
+                  class="text-[10px] text-muted font-medium transition-all duration-200 plan-billing-desc"
+                  data-monthly="Billed monthly"
+                  data-yearly={`Billed annually ($${plan.priceYearly}/year)`}
+                >
+                  Billed monthly
+                </p>
+              </div>
+            </div>
+
+            <div class="border-t border-border/60 my-2"></div>
+
+            <ul class="space-y-3.5 my-6 text-xs flex-grow">
+              <li 
+                class="flex items-start gap-2.5 text-text/80 font-bold plan-credits-feature"
+                data-monthly={`${plan.creditsMonthly} Editorial Credits/month`}
+                data-yearly={`${plan.creditsYearly} Credits granted up-front`}
+              >
+                <Check class="w-4.5 h-4.5 text-primary shrink-0 mt-0.5" />
+                <span class="feature-text">{plan.creditsMonthly} Editorial Credits/month</span>
+              </li>
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2.5 text-text/80">
+                  <Check class="w-4.5 h-4.5 text-primary shrink-0 mt-0.5" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={plan.hrefMonthly}
+              data-href-monthly={plan.hrefMonthly}
+              data-href-yearly={plan.hrefYearly}
+              class="plan-cta-button w-full py-3.5 rounded-2xl font-bold text-xs text-center transition-all cursor-pointer block bg-surface border border-border hover:border-muted text-text active:scale-98"
+            >
+              {plan.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- 3. Add-on Section -->
+      <section class="bg-surface-soft border border-border rounded-3xl p-8 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-xl">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-semibold rounded-full uppercase tracking-wider">
+            <Zap class="w-3 h-3" /> Instant Top-up
+          </span>
+          <h2 class="text-2xl font-bold tracking-tight text-text">
+            Need more credits? Get an add-on
+          </h2>
+          <p class="text-sm text-muted leading-relaxed">
+            Get extra credits whenever you need them. Unused credits <span class="font-semibold text-text">never expire</span> and are automatically consumed when your monthly plan quota is exhausted.
+          </p>
+        </div>
+
+        <div class="bg-surface border border-border p-6 rounded-2xl w-full md:w-72 text-center space-y-4 shrink-0">
+          <div class="space-y-0.5">
+            <h3 class="text-xs font-semibold text-muted uppercase tracking-wider">Additional Credits</h3>
+            <h4 class="text-2xl font-bold text-text mt-1">50 Credits</h4>
+            <h5 class="text-xl font-bold text-primary mt-0.5">$8</h5>
+            <p class="text-[10px] font-medium text-muted mt-1">Unused credits never expire</p>
+          </div>
+
+          <a
+            href="https://eai.envoyou.com/signup"
+            class="w-full py-3 bg-primary hover:bg-primary/95 text-white font-bold rounded-xl transition-all text-xs cursor-pointer block text-center"
+          >
+            Buy 50 Credits
+          </a>
+        </div>
+      </section>
+
+      <!-- 4. Feature Comparison Table -->
+      <section class="space-y-6 max-w-5xl mx-auto">
+        <div class="text-center space-y-1.5">
+          <h2 class="text-2xl font-bold tracking-tight text-text">Compare Plans</h2>
+          <p class="text-xs text-muted">
+            Detailed breakdown of features included in each plan.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto rounded-3xl border border-border bg-surface-soft">
+          <table class="w-full border-collapse text-left text-xs">
+            <thead>
+              <tr class="border-b border-border bg-surface">
+                <th class="p-4 font-bold text-muted">Feature</th>
+                <th class="p-4 text-center font-bold text-text w-24 sm:w-32">Starter</th>
+                <th class="p-4 text-center font-bold text-text w-24 sm:w-32 border-x border-border bg-primary/5">Pro</th>
+                <th class="p-4 text-center font-bold text-text w-24 sm:w-32">Team</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border/60">
+              {comparisonFeatures.map((feat) => (
+                <tr class="hover:bg-surface/50 transition-colors">
+                  <td class="p-4 text-text/90 font-semibold">{feat.name}</td>
+                  
+                  {/* Starter */}
+                  <td class="p-4 text-center">
+                    {typeof feat.starter === 'boolean' ? (
+                      feat.starter ? (
+                        <Check class="w-4.5 h-4.5 text-primary mx-auto" />
+                      ) : (
+                        <span class="text-muted/40">—</span>
+                      )
+                    ) : (
+                      <span class="font-semibold text-text/80">{feat.starter}</span>
+                    )}
+                  </td>
+
+                  {/* Pro (Highlighted column) */}
+                  <td class="p-4 text-center bg-primary/5 border-x border-border">
+                    {typeof feat.pro === 'boolean' ? (
+                      feat.pro ? (
+                        <Check class="w-4.5 h-4.5 text-primary mx-auto" />
+                      ) : (
+                        <span class="text-muted/40">—</span>
+                      )
+                    ) : (
+                      <span class="font-bold text-text">{feat.pro}</span>
+                    )}
+                  </td>
+
+                  {/* Team */}
+                  <td class="p-4 text-center">
+                    {typeof feat.team === 'boolean' ? (
+                      feat.team ? (
+                        <Check class="w-4.5 h-4.5 text-primary mx-auto" />
+                      ) : (
+                        <span class="text-muted/40">—</span>
+                      )
+                    ) : (
+                      <span class="font-semibold text-text/80">{feat.team}</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. Frequently Asked Questions (FAQ) -->
+      <section class="space-y-6 max-w-3xl mx-auto">
+        <div class="text-center space-y-1.5">
+          <h2 class="text-2xl font-bold tracking-tight text-text">FAQ</h2>
+          <p class="text-xs text-muted">
+            Frequently asked questions about pricing and credits.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-3">
+          {faqs.map((faq) => (
+            <details
+              class="group border border-border rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition-colors duration-200 open:bg-surface"
+            >
+              <summary class="flex items-center justify-between text-sm font-bold text-text/90 list-none">
+                <span>{faq.q}</span>
+                <span class="ml-1.5 shrink-0 transition-transform duration-300 group-open:-rotate-180 text-muted group-hover:text-primary">
+                  <ChevronDown class="w-4.5 h-4.5" />
+                </span>
+              </summary>
+              <div class="mt-3 text-xs text-muted leading-relaxed border-t border-border/40 pt-3">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- 6. Final CTA Section -->
+      <section class="bg-surface border border-border rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden shadow-xl">
+        {/* Subtle radial glow */}
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(11,121,194,0.08),transparent_60%)] pointer-events-none" />
+        
+        <div class="space-y-2 relative z-10">
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-text">
+            Ready to streamline your editorial workflow?
+          </h2>
+          <p class="text-sm text-muted max-w-xl mx-auto">
+            Start with 10 free credits and experience publication-ready refinement in minutes.
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 pt-2">
+          <a
+            href="https://eai.envoyou.com/signup"
+            class="px-6 py-3.5 bg-primary hover:bg-primary/95 text-white font-bold rounded-2xl transition-all shadow-lg shadow-primary/10 active:scale-98 text-sm cursor-pointer block"
+          >
+            Start Free Trial
+          </a>
+          <span class="text-xs text-muted">
+            No credit card required for the trial.
+          </span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Billing cycle toggle script
+  const toggleBtn = document.getElementById('billing-toggle');
+  const toggleDot = document.getElementById('billing-toggle-dot');
+  const monthlyLabel = document.getElementById('billing-monthly-label');
+  const yearlyLabel = document.getElementById('billing-yearly-label');
+  
+  const priceElements = document.querySelectorAll('.plan-price');
+  const periodElements = document.querySelectorAll('.plan-period');
+  const billingDescs = document.querySelectorAll('.plan-billing-desc');
+  const ctaButtons = document.querySelectorAll('.plan-cta-button');
+  const creditFeatures = document.querySelectorAll('.plan-credits-feature');
+
+  let isYearly = false;
+
+  // Highlight Pro card as default highlight
+  const planCards = document.querySelectorAll('.pricing-grid > div');
+  
+  toggleBtn?.addEventListener('click', () => {
+    isYearly = !isYearly;
+    toggleBtn.setAttribute('aria-pressed', isYearly.toString());
+    
+    // Toggle button visual state
+    if (isYearly) {
+      toggleBtn.classList.add('bg-primary');
+      toggleBtn.classList.remove('bg-border');
+      toggleDot?.classList.add('translate-x-5');
+      monthlyLabel?.classList.remove('text-text');
+      monthlyLabel?.classList.add('text-muted');
+      yearlyLabel?.classList.remove('text-muted');
+      yearlyLabel?.classList.add('text-text');
+    } else {
+      toggleBtn.classList.add('bg-border');
+      toggleBtn.classList.remove('bg-primary');
+      toggleDot?.classList.remove('translate-x-5');
+      monthlyLabel?.classList.add('text-text');
+      monthlyLabel?.classList.remove('text-muted');
+      yearlyLabel?.classList.add('text-muted');
+      yearlyLabel?.classList.remove('text-text');
+    }
+
+    // Toggle prices, period text, billing descriptions, and links
+    priceElements.forEach(el => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.textContent = isYearly ? (htmlEl.dataset.yearly ?? '') : (htmlEl.dataset.monthly ?? '');
+    });
+
+    periodElements.forEach(el => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.textContent = isYearly ? (htmlEl.dataset.yearly ?? '') : (htmlEl.dataset.monthly ?? '');
+    });
+
+    billingDescs.forEach(el => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.textContent = isYearly ? (htmlEl.dataset.yearly ?? '') : (htmlEl.dataset.monthly ?? '');
+      if (isYearly) {
+        htmlEl.classList.remove('text-muted', 'font-medium');
+        htmlEl.classList.add('text-primary', 'font-bold');
+      } else {
+        htmlEl.classList.remove('text-primary', 'font-bold');
+        htmlEl.classList.add('text-muted', 'font-medium');
+      }
+    });
+
+    ctaButtons.forEach(el => {
+      const htmlEl = el as HTMLAnchorElement;
+      htmlEl.href = isYearly ? (htmlEl.dataset.hrefYearly ?? '') : (htmlEl.dataset.hrefMonthly ?? '');
+      
+      // Styling highlight classes dynamically
+      const parentCard = htmlEl.closest('.flex');
+      if (parentCard?.classList.contains('bg-surface')) {
+        // Highlight CTA for Pro
+        htmlEl.className = 'plan-cta-button w-full py-3.5 rounded-2xl font-bold text-xs text-center transition-all cursor-pointer block bg-primary hover:bg-primary/95 text-white shadow-lg shadow-primary/10 active:scale-98';
+      } else {
+        // Normal CTA for Starter/Team
+        htmlEl.className = 'plan-cta-button w-full py-3.5 rounded-2xl font-bold text-xs text-center transition-all cursor-pointer block bg-surface border border-border hover:border-muted text-text active:scale-98';
+      }
+    });
+
+    creditFeatures.forEach(el => {
+      const htmlEl = el as HTMLElement;
+      const textSpan = htmlEl.querySelector('.feature-text');
+      if (textSpan) {
+        textSpan.textContent = isYearly ? (htmlEl.dataset.yearly ?? '') : (htmlEl.dataset.monthly ?? '');
+      }
+    });
+  });
+</script>
