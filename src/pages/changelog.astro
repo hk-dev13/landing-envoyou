@@ -96,10 +96,7 @@ import Footer from '../components/Footer.astro';
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
                 <li>
-                  <strong class="text-text">Robots.txt SEO Limits:</strong> Updated EAI `robots.txt` to disallow crawling on `/workspace` and avoid search engine indexing of internal editor views.
-                </li>
-                <li>
-                  <strong class="text-text">Pricing Relocation:</strong> Relocated EAI's `/pricing` page to the main landing page (`envoyou.com/pricing`) and updated all internal redirect mappings.
+                  <strong class="text-text">Pricing Relocation:</strong> Relocated EAI's `/pricing` page to the main landing page (`envoyou.com/pricing`).
                 </li>
               </ul>
             </div>
@@ -117,17 +114,6 @@ import Footer from '../components/Footer.astro';
 
           <div class="space-y-6">
             <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">EAI Backend Release:</strong> Established `eai-backend/` as a standalone Express.js project with an MIT license, initialization guide, and proper `.gitignore`.
-                </li>
-              </ul>
-            </div>
-
-            <div>
               <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
                 Changed
               </span>
@@ -140,35 +126,6 @@ import Footer from '../components/Footer.astro';
                 </li>
                 <li>
                   <strong class="text-text">Cross-Border Data Transfers:</strong> Added a cross-border data transfer disclosure in compliance with Indonesian UU PDP No. 27/2022 and GDPR Article 6.
-                </li>
-                <li>
-                  <strong class="text-text">Legal Identity Settings:</strong> Configured default legal operator to `"Envoyou"` and address to `"Banyuwangi, Jawa Timur, Indonesia"` in `.env` variables.
-                </li>
-                <li>
-                  <strong class="text-text">Monolith Decoupling:</strong> Separated Next.js frontend (`ai-editorial-system`) and Express.js backend (`eai-backend`).
-                </li>
-                <li>
-                  <strong class="text-text">Dynamic API Proxying:</strong> Configured `src/proxy.ts` on the frontend to proxy all `/api/*` requests to the Express.js backend, attaching Clerk JWT tokens in Authorization headers.
-                </li>
-                <li>
-                  <strong class="text-text">Decoupled Workspace State:</strong> Updated workspace loader on the frontend to fetch states from the backend `/api/workspace/state` instead of direct DB queries.
-                </li>
-                <li>
-                  <strong class="text-text">Billing History Endpoint:</strong> Configured the billing settings page to retrieve invoice histories from backend API endpoints.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Removed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Database Footprint on Frontend:</strong> Removed database client, Prisma schemas, and postgres/prisma dependencies from the frontend `package.json`.
-                </li>
-                <li>
-                  <strong class="text-text">Frontend Local API Routes:</strong> Deleted local `src/app/api` directory from Next.js frontend as all endpoints were migrated to the Express.js backend.
                 </li>
               </ul>
             </div>
@@ -192,9 +149,6 @@ import Footer from '../components/Footer.astro';
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
                 <li>
                   <strong class="text-text">Account Settings:</strong> Added a new Account Settings page under `/settings/account`.
-                </li>
-                <li>
-                  <strong class="text-text">Validation Report Shortcut:</strong> Added a "Validation Report" shortcut in the Dashboard sidebar, conditionally visible only to owners and super administrators.
                 </li>
               </ul>
             </div>
@@ -233,19 +187,6 @@ import Footer from '../components/Footer.astro';
               </ul>
             </div>
 
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Validation Layout Shell:</strong> Resolved duplicate sidebar issues on the Validation page by bypassing dashboard layout wrappers for `/dashboard/validation`.
-                </li>
-                <li>
-                  <strong class="text-text">TypeScript & Linting Fixes:</strong> Resolved code quality warnings, unused imports, and React hook compliance issues across frontend components.
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -264,9 +205,6 @@ import Footer from '../components/Footer.astro';
                 Changed
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Real-Time Service Controls:</strong> EAI can now manage maintenance, AI processing, CMS export, billing checkout, demo access, signup, and pricing availability without waiting for a new deployment.
-                </li>
                 <li>
                   <strong class="text-text">Clear Availability Pages:</strong> Added branded status experiences for scheduled maintenance and temporarily unavailable signup or pricing features, with direct access to support.
                 </li>
@@ -308,10 +246,7 @@ import Footer from '../components/Footer.astro';
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
                 <li>
-                  <strong class="text-text">Improved Error Monitoring:</strong> Strengthened browser, server, and edge error reporting so production issues can be diagnosed more quickly and accurately.
-                </li>
-                <li>
-                  <strong class="text-text">Clearer Diagnostic Checks:</strong> Internal error-capture tests now report whether an event was delivered successfully instead of showing an assumed success state.
+                  <strong class="text-text">Improved Error Monitoring:</strong> Strengthened error reporting so production issues can be diagnosed more quickly and accurately.
                 </li>
               </ul>
             </div>
@@ -420,13 +355,7 @@ import Footer from '../components/Footer.astro';
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
                 <li>
-                  <strong class="text-text">Trackable Customer Support:</strong> Added a public support form for billing, account, editorial workflow, CMS, and privacy requests. Each successful request receives a Zoho Desk ticket number for follow-up.
-                </li>
-                <li>
-                  <strong class="text-text">Safer Credit Assistance:</strong> Support-led credit corrections are now recorded through an auditable organization ledger with ticket references, clear reasons, and duplicate-transaction protection.
-                </li>
-                <li>
-                  <strong class="text-text">Verified Support Workflow:</strong> Billing support actions can be linked to a verified Zoho Desk ticket, helping the EAI team review the customer, issue, and status before making an adjustment.
+                  <strong class="text-text">Trackable Customer Support:</strong> Added a public support form for billing, account, editorial workflow, CMS, and privacy requests. Each successful request receives a ticket number for follow-up.
                 </li>
               </ul>
             </div>
@@ -593,7 +522,7 @@ import Footer from '../components/Footer.astro';
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
                 <li>
-                  <strong class="text-text">Workspace-Focused Dashboard:</strong> Tenant analytics now focus on day-to-day editorial operations, while internal product validation metrics remain separate.
+                  <strong class="text-text">Workspace-Focused Dashboard:</strong> Analytics now focus purely on day-to-day editorial operations to give you better visibility into your team's workflow.
                 </li>
               </ul>
             </div>
@@ -616,9 +545,6 @@ import Footer from '../components/Footer.astro';
                 Changed
               </span>
               <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Model Pricing Update:</strong> Adjusted default rate card pricing for Google Gemini API models (Flash & Flash-Lite) to align with commercial Paid Tier rates.
-                </li>
                 <li>
                   <strong class="text-text">EAI Analytics Integration:</strong> Added real-time operational telemetry on the landing page, displaying monthly processed drafts, average processing times, and completed drafts dynamically.
                 </li>
