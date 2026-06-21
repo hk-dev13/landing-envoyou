@@ -63,6 +63,192 @@ import Footer from '../components/Footer.astro';
       <!-- Timeline / Changelog List -->
       <div class="relative pl-6 sm:pl-8 border-l border-border space-y-16">
 
+        <!-- VERSION 0.35.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.35.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">21 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Workspace Routing:</strong> Added the `/workspace` route as the central hub for content management and editorial projects.
+                </li>
+                <li>
+                  <strong class="text-text">Editorial Workspace Component:</strong> Created a new `EditorialWorkspace` component as the primary interface for managing workspaces.
+                </li>
+                <li>
+                  <strong class="text-text">Demo Page:</strong> Introduced a `/demo` page demonstrating full application features.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Robots.txt SEO Limits:</strong> Updated EAI `robots.txt` to disallow crawling on `/workspace` and avoid search engine indexing of internal editor views.
+                </li>
+                <li>
+                  <strong class="text-text">Pricing Relocation:</strong> Relocated EAI's `/pricing` page to the main landing page (`envoyou.com/pricing`) and updated all internal redirect mappings.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.34.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.34.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">21 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">EAI Backend Release:</strong> Established `eai-backend/` as a standalone Express.js project with an MIT license, initialization guide, and proper `.gitignore`.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">NIB & PSE Compliance:</strong> Implemented Indonesian NIB (Business Identification Number) and Kominfo PSE (Electronic System Operator) registration disclosures in Terms of Service and Privacy Policy.
+                </li>
+                <li>
+                  <strong class="text-text">Data Processor Registry:</strong> Updated data processors list in Privacy Policy to accurately reflect our distributed infrastructure: Clerk (Auth), Vercel (Frontend), DO (EAI VPS), Biznet Gio (Blog VPS), Supabase & Neon (Databases), Cloudflare (DNS/WAF), Gemini API (sole AI provider), and Midtrans (sole payment gateway).
+                </li>
+                <li>
+                  <strong class="text-text">Cross-Border Data Transfers:</strong> Added a cross-border data transfer disclosure in compliance with Indonesian UU PDP No. 27/2022 and GDPR Article 6.
+                </li>
+                <li>
+                  <strong class="text-text">Legal Identity Settings:</strong> Configured default legal operator to `"Envoyou"` and address to `"Banyuwangi, Jawa Timur, Indonesia"` in `.env` variables.
+                </li>
+                <li>
+                  <strong class="text-text">Monolith Decoupling:</strong> Separated Next.js frontend (`ai-editorial-system`) and Express.js backend (`eai-backend`).
+                </li>
+                <li>
+                  <strong class="text-text">Dynamic API Proxying:</strong> Configured `src/proxy.ts` on the frontend to proxy all `/api/*` requests to the Express.js backend, attaching Clerk JWT tokens in Authorization headers.
+                </li>
+                <li>
+                  <strong class="text-text">Decoupled Workspace State:</strong> Updated workspace loader on the frontend to fetch states from the backend `/api/workspace/state` instead of direct DB queries.
+                </li>
+                <li>
+                  <strong class="text-text">Billing History Endpoint:</strong> Configured the billing settings page to retrieve invoice histories from backend API endpoints.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Removed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Database Footprint on Frontend:</strong> Removed database client, Prisma schemas, and postgres/prisma dependencies from the frontend `package.json`.
+                </li>
+                <li>
+                  <strong class="text-text">Frontend Local API Routes:</strong> Deleted local `src/app/api` directory from Next.js frontend as all endpoints were migrated to the Express.js backend.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 0.33.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v0.33.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">18 June 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Account Settings:</strong> Added a new Account Settings page under `/settings/account`.
+                </li>
+                <li>
+                  <strong class="text-text">Validation Report Shortcut:</strong> Added a "Validation Report" shortcut in the Dashboard sidebar, conditionally visible only to owners and super administrators.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
+                Changed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Borderless UI Theme:</strong> Implemented a borderless design system where the header, tab bars, and status bars blend seamlessly with the main background.
+                </li>
+                <li>
+                  <strong class="text-text">Refined Tab Styling:</strong> Polished hover effects on document tabs (Preview, Markdown, Changes) and active tab indicators.
+                </li>
+                <li>
+                  <strong class="text-text">Minimalist Status Bar:</strong> Cleaned up the status bar text elements by removing badge backgrounds.
+                </li>
+                <li>
+                  <strong class="text-text">Adaptive Sidebar Backgrounds:</strong> Workspace sidebar background colors now dynamically adjust based on open/closed state.
+                </li>
+                <li>
+                  <strong class="text-text">Single AI Provider Focus:</strong> Removed provider switching from the user interface; EAI now exclusively runs on Google Gemini for all editorial pipeline requests.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Removed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Activity Bar Component:</strong> Removed the `ActivityBar` to simplify editor space.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Fixed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Validation Layout Shell:</strong> Resolved duplicate sidebar issues on the Validation page by bypassing dashboard layout wrappers for `/dashboard/validation`.
+                </li>
+                <li>
+                  <strong class="text-text">TypeScript & Linting Fixes:</strong> Resolved code quality warnings, unused imports, and React hook compliance issues across frontend components.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <!-- VERSION 0.32.0 -->
         <div class="relative">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
