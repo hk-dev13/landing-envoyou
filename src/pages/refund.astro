@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Refund Policy — Envoyou Company"
+  description="Refund and payment dispute policy for Envoyou prepaid plans and credits."
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+    <!-- Ambient Radial Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
+
+    <article class="max-w-4xl mx-auto px-6 py-12">
+      <!-- Title Header -->
+      <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Billing & Payments
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">Refund Policy</h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed">
+          Last Updated: June 23, 2026. This policy applies to prepaid EAI plans and additional credit purchases processed through our supported payment gateways.
+        </p>
+      </div>
+
+      <!-- Legal Content Sections -->
+      <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
+
+        <section id="prepaid-purchases" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">1.</span> Prepaid Purchases
+          </h2>
+          <p>
+            EAI plans and add-ons are prepaid. Automatic recurring billing is not
+            currently enabled. Monthly and annual access begins when payment is
+            confirmed and the corresponding credits are allocated.
+          </p>
+        </section>
+
+        <section id="refund-eligibility" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">2.</span> Refund Eligibility
+          </h2>
+          <p>You may request review of a refund when:</p>
+          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
+            <li>you were charged more than once for the same intended purchase;</li>
+            <li>payment succeeded but EAI did not allocate the purchased plan or credits;</li>
+            <li>the amount charged did not match the confirmed checkout amount;</li>
+            <li>the transaction was unauthorized, subject to identity verification; or</li>
+            <li>a refund is required by applicable consumer law.</li>
+          </ul>
+          <p>
+            You may also request cancellation of a substantially unused purchase
+            within seven calendar days of payment. We will review usage, allocated
+            benefits, payment-provider limitations, and applicable law before
+            approving or declining the request.
+          </p>
+        </section>
+
+        <section id="purchases-generally-not-refundable" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">3.</span> Purchases Generally Not Refundable
+          </h2>
+          <p>
+            Except where required by law, we generally do not refund credits that
+            have already been consumed, completed editorial processing, change of
+            mind after substantial use, dissatisfaction caused solely by content that
+            was not human-reviewed, or suspension resulting from a material breach of
+            the Terms.
+          </p>
+        </section>
+
+        <section id="failed-pending-or-duplicate-transactions" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">4.</span> Failed, Pending, or Duplicate Transactions
+          </h2>
+          <p>
+            A failed or expired checkout does not allocate credits. A pending bank or
+            wallet authorization may be released automatically by the payment
+            provider. For duplicate successful payments, contact us with both order
+            references so we can verify the records.
+          </p>
+        </section>
+
+        <section id="how-to-request-a-refund" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">5.</span> How to Request a Refund
+          </h2>
+          <p>
+            Submit a tracked request through the <a href="https://eai.envoyou.com/support" class="text-primary hover:underline">EAI support form</a>{' '}
+            or email <a href="mailto:support@envoyou.com" class="text-primary hover:underline">support@envoyou.com</a>{' '}
+            with your account email, organization name, order or invoice number,
+            payment date, amount, and reason. Do not send card numbers, PINs,
+            passwords, or one-time codes.
+          </p>
+        </section>
+
+        <section id="review-and-payment-return" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">6.</span> Review and Payment Return
+          </h2>
+          <p>
+            We aim to acknowledge complete requests within three business days.
+            Approved refunds are returned through a method supported by the original
+            payment provider. Bank, wallet, and provider processing times may apply.
+            Refunded credits and related plan access may be removed from the account.
+          </p>
+        </section>
+
+        <section id="chargebacks-and-fraud" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">7.</span> Chargebacks and Fraud
+          </h2>
+          <p>
+            Contact us before initiating a chargeback so we can investigate. We may
+            suspend disputed credits or account access while an unauthorized payment,
+            fraud report, or chargeback is reviewed.
+          </p>
+        </section>
+
+        <section id="plan-changes-and-remaining-credits" class="space-y-3 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">8.</span> Plan Changes and Remaining Credits
+          </h2>
+          <p>
+            Purchasing a different plan does not automatically refund a previous
+            purchase. Monthly plan credits are tied to their purchased period, annual
+            credits to the annual prepaid period, and separately purchased add-on
+            credits currently do not expire.
+          </p>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

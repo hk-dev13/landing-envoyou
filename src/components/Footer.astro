@@ -105,26 +105,28 @@
               Changelog
             </a>
           </li>
-          <li>
-            <a href="/terms" class="text-sm text-muted hover:text-text transition-colors">
-              Terms of Service
-            </a>
-          </li>
-          <li>
-            <a href="/privacy" class="text-sm text-muted hover:text-text transition-colors">
-              Privacy Policy
-            </a>
-          </li>
         </ul>
       </div>
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-xs text-muted">
-        &copy; {new Date().getFullYear()} Envoyou. All rights reserved.
-      </p>
-      <div class="flex items-center gap-1">
+    <div class="mt-12 pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col items-center md:items-start gap-1">
+        <p class="text-xs text-muted">
+          &copy; {new Date().getFullYear()} Envoyou. All rights reserved.
+        </p>
+        <p class="text-[10px] text-muted/70">
+          Operated from Banyuwangi, Jawa Timur, Indonesia.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-5 text-xs text-muted">
+        <a href="/terms" class="hover:text-text transition-colors">Terms</a>
+        <a href="/privacy" class="hover:text-text transition-colors">Privacy</a>
+        <a href="/refund" class="hover:text-text transition-colors">Refund Policy</a>
+      </div>
+
+      <div class="flex items-center gap-1.5">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
         <span class="text-xs text-muted">Continuously publishing</span>
       </div>
