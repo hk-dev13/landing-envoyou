@@ -4,15 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Zap, Check, ChevronDown } from 'lucide-astro';
 
-const plans = [
+const DISCOUNT_RATE = 0.20; // 20% discount for annual billing
+
+const basePlans = [
   {
     id: 'starter',
     name: 'Starter',
     priceMonthly: 10,
-    priceYearly: 96,
-    equivalentMonthly: 8,
     creditsMonthly: 50,
-    creditsYearly: 600,
     description: 'Perfect for independent writers and journalists starting out.',
     features: [
       'Draft Refinement',
@@ -22,18 +21,12 @@ const plans = [
       'Standard Support'
     ],
     highlight: false,
-    cta: 'Start Free Trial',
-    hrefMonthly: 'https://eai.envoyou.com/signup?plan=starter',
-    hrefYearly: 'https://eai.envoyou.com/signup?plan=starter_yearly'
   },
   {
     id: 'pro',
     name: 'Pro',
     priceMonthly: 19,
-    priceYearly: 182,
-    equivalentMonthly: 15,
     creditsMonthly: 100,
-    creditsYearly: 1200,
     description: 'Ideal for professional editors needing deeper research and integration.',
     features: [
       'Advanced Fact Checking & Auditing',
@@ -43,18 +36,12 @@ const plans = [
       'Priority Email Support'
     ],
     highlight: true,
-    cta: 'Start Free Trial',
-    hrefMonthly: 'https://eai.envoyou.com/signup?plan=pro',
-    hrefYearly: 'https://eai.envoyou.com/signup?plan=pro_yearly'
   },
   {
     id: 'team',
     name: 'Team',
     priceMonthly: 79,
-    priceYearly: 758,
-    equivalentMonthly: 63,
     creditsMonthly: 300,
-    creditsYearly: 3600,
     description: 'For editorial rooms and workspaces needing shared collaboration.',
     features: [
       'Up to 10 Seats Included',
@@ -64,11 +51,21 @@ const plans = [
       'Dedicated Slack Support'
     ],
     highlight: false,
-    cta: 'Start Free Trial',
-    hrefMonthly: 'https://eai.envoyou.com/signup?plan=team',
-    hrefYearly: 'https://eai.envoyou.com/signup?plan=team_yearly'
   }
 ];
+
+const plans = basePlans.map(plan => {
+  const equivalentMonthly = Math.floor(plan.priceMonthly * (1 - DISCOUNT_RATE));
+  return {
+    ...plan,
+    priceYearly: equivalentMonthly * 12,
+    equivalentMonthly,
+    creditsYearly: plan.creditsMonthly * 12,
+    cta: 'Start Free Trial',
+    hrefMonthly: `https://eai.envoyou.com/signup?plan=${plan.id}`,
+    hrefYearly: `https://eai.envoyou.com/signup?plan=${plan.id}_yearly`
+  };
+});
 
 const comparisonFeatures = [
   { name: 'Editorial Credits', starter: '50/mo (600/yr)', pro: '100/mo (1200/yr)', team: '300/mo (3600/yr)' },
