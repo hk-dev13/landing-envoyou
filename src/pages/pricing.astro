@@ -225,7 +225,11 @@ const faqs = [
               href={plan.hrefMonthly}
               data-href-monthly={plan.hrefMonthly}
               data-href-yearly={plan.hrefYearly}
-              class="plan-cta-button w-full py-3.5 rounded-2xl font-bold text-xs text-center transition-all cursor-pointer block bg-surface border border-border hover:border-muted text-text active:scale-98"
+              class={`plan-cta-button w-full py-3.5 rounded-2xl font-bold text-xs text-center transition-all cursor-pointer block active:scale-98 ${
+                plan.highlight
+                  ? 'bg-primary hover:bg-primary/95 text-white shadow-lg shadow-primary/10'
+                  : 'bg-surface border border-border hover:border-muted text-text'
+              }`}
             >
               {plan.cta}
             </a>

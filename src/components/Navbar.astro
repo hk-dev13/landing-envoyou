@@ -4,10 +4,10 @@
 
 <header
   id="navbar"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-bg/90 backdrop-blur-md border-b border-border"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
   data-scrolled="false"
 >
-  <nav class="max-w-[90rem] mx-auto px-6 py-4 flex items-center justify-between">
+  <nav class="max-w-screen mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
     <a
       href="/"
@@ -103,10 +103,14 @@
 <script>
   // Navbar scroll effect
   const navbar = document.getElementById("navbar");
-  window.addEventListener("scroll", () => {
+  function updateScrollState() {
     const scrolled = window.scrollY > 20;
     navbar?.setAttribute("data-scrolled", scrolled ? "true" : "false");
-  });
+  }
+  
+  window.addEventListener("scroll", updateScrollState);
+  // Run on initial load
+  updateScrollState();
 
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -138,13 +142,34 @@
     localStorage.setItem("theme", isDark ? "dark" : "light");
     updateIcons();
   });
+
+  // Trigger navigation on hover with a small delay to prevent accidental triggers
+  let hoverTimeout: any;
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      const href = link.getAttribute("href");
+      if (href) {
+        hoverTimeout = setTimeout(() => {
+          window.location.href = href;
+        }, 250); // 250ms delay
+      }
+    });
+
+    link.addEventListener("mouseleave", () => {
+      clearTimeout(hoverTimeout);
+    });
+  });
 </script>
 
 <style>
+  #navbar {
+    border-bottom: 1px solid transparent;
+  }
+
   #navbar[data-scrolled="true"] {
     background: color-mix(in srgb, var(--color-bg) 92%, transparent);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom-color: var(--color-border);
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
   }
 
