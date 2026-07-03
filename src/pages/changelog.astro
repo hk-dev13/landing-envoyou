@@ -63,6 +63,104 @@ import Footer from '../components/Footer.astro';
       <!-- Timeline / Changelog List -->
       <div class="relative pl-6 sm:pl-8 border-l border-border space-y-16">
 
+        <!-- VERSION 2.0.2 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v2.0.2</h2>
+            <time class="text-xs font-semibold text-muted font-mono">4 July 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">AI Analysis Quality:</strong> The AI reviewer system is now equipped with step-by-step thinking (Chain-of-Thought) capabilities before providing evaluations. This makes writing evaluation results and improvement suggestions much more accurate and objective.
+                </li>
+                <li>
+                  <strong class="text-text">Clearer Editing Suggestions:</strong> Added practical guide examples to make it easier for the AI to perform replace or insert text commands in a single click.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 2.0.1 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v2.0.1</h2>
+            <time class="text-xs font-semibold text-muted font-mono">2 July 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Fixed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Smoother Chat Streaming:</strong> Fixed the data distribution system to ensure the typing/streaming effect (real-time text typing effect) in the Analysis and Strategist Chat menus runs smoothly without lag or interruptions.
+                </li>
+                <li>
+                  <strong class="text-text">502 Bad Gateway Error Fix:</strong> Increased server memory capacity to prevent system crashes or access issues when the server experiences high traffic load.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERSION 2.0.0 -->
+        <div class="relative">
+          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
+
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+            <h2 class="text-2xl font-extrabold text-text">v2.0.0</h2>
+            <time class="text-xs font-semibold text-muted font-mono">2 July 2026</time>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
+                Added
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Auto-Saving Research Notes:</strong> Your research notes in the Research Notes Studio are now automatically and securely saved in the cloud. You no longer need to worry about losing data when closing the browser or navigating away.
+                </li>
+                <li>
+                  <strong class="text-text">Supporting Document Uploads:</strong> You can now upload PDF, CSV, and TXT document files (up to 10MB) directly into the system.
+                </li>
+                <li>
+                  <strong class="text-text">AI-Powered Document Analysis:</strong> The AI can now automatically read and extract text content from your uploaded files, using it as additional context/reference in the chat room (Strategist AI Chat).
+                </li>
+                <li>
+                  <strong class="text-text">Automatic Document Mode:</strong> When you upload a file, the system automatically activates a special mode. The AI focuses on the quantitative data in your document and instantly suggests data-driven questions.
+                </li>
+                <li>
+                  <strong class="text-text">New File Info Display:</strong> Added file info badge indicators, delete buttons, and automatic replacement of old files with new ones during upload.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
+                Fixed
+              </span>
+              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
+                <li>
+                  <strong class="text-text">Scanned PDF/Image Detection:</strong> The system can now detect if you upload a PDF containing images or scans, and will display a warning: "This PDF cannot be read because it is image-based or scanned."
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <!-- VERSION 1.1.0 -->
         <div class="relative">
           <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
