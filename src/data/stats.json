@@ -1,15 +1,15 @@
 {
-  "dateRange": "04 June 2026 - 04 July 2026",
+  "dateRange": "05 June 2026 - 05 July 2026",
   "totalDrafts": 42,
   "readyRate": 17,
   "monthlyReaders": "24",
   "systemUptime": "99.9%",
   "blog": {
-    "publishedArticles": 63,
+    "publishedArticles": 65,
     "views30Days": "2.8K",
     "categoriesCount": 4,
     "topCategory": "Technology & AI",
-    "topArticleViews": 417,
+    "topArticleViews": 418,
     "avgReadingTime": 5,
     "topArticle": "Jumlah Views Bukan Segalanya: Pahami Cara kerja RPM YouTube untuk Kreator Bisnis"
   },
