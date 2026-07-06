@@ -1,6 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { ChevronDown } from 'lucide-astro';
+
+const allEntries = await getCollection('changelog');
+// Sort by publishDate descending, then by version descending if dates are equal
+const sortedEntries = allEntries.sort((a, b) => {
+  const dateCompare = b.data.publishDate.localeCompare(a.data.publishDate);
+  
+  // 1. Jika tanggalnya berbeda, gunakan urutan tanggal terbaru
+  if (dateCompare !== 0) {
+    return dateCompare;
+  }
+  
+  // 2. Jika tanggalnya sama, urutkan berdasarkan versi tertinggi (v2.0.1 di atas v2.0.0)
+  return b.data.version.localeCompare(a.data.version, undefined, { numeric: true });
+});
 ---
 
 <BaseLayout
@@ -48,9 +64,9 @@ import Footer from '../components/Footer.astro';
     <!-- Ambient Radial Glow -->
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.05),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.04),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.09),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.06),transparent_40%)]"></div>
 
-    <div class="max-w-2xl mx-auto px-6 pt-16">
+    <div class="max-w-4xl mx-auto px-6 pt-16">
       <!-- Header -->
-      <div class="mb-16">
+      <div class="mb-12">
         <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
           Updates
         </span>
@@ -60,930 +76,87 @@ import Footer from '../components/Footer.astro';
         </p>
       </div>
 
-      <!-- Timeline / Changelog List -->
-      <div class="relative pl-6 sm:pl-8 border-l border-border space-y-16">
-
-        <!-- VERSION 3.0.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v3.0.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">6 July 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Streamlined Onboarding:</strong> Redesigned the initial platform entry experience. What was once a complex 5-page wizard is now cut down to **3 simple, interactive steps** (*Activation*, *Analysis*, and *Review*).
-                </li>
-                <li>
-                  <strong class="text-text">Auto-Detect Editorial DNA:</strong> Simply enter your website link, and the AI will automatically identify your brand name, target audience, primary topics, writing tone, and the types of articles you regularly publish.
-                </li>
-                <li>
-                  <strong class="text-text">Review & Edit AI Analysis:</strong> On the final step of onboarding, you can directly add, modify, or remove the AI-generated category labels and tone profiles before activating your account.
-                </li>
-                <li>
-                  <strong class="text-text">Safe Cancellation Option:</strong> Added a *"Cancel & Go Back"* option while the website analysis process is running, allowing you to cancel safely without causing the page to freeze.
-                </li>
-                <li>
-                  <strong class="text-text">Tenant Switching Menu:</strong> For users managing multiple teams or organizations, you can now switch workspaces easily directly from the sidebar navigation menu.
-                </li>
-                <li>
-                  <strong class="text-text">Mobile-Friendly Enhancements:</strong> Dropdown selection menus now automatically transform into sleek bottom sheets when opened on mobile devices, and the date picker calendar on the main page features a responsive design optimized for smaller screens.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Clearer Review Presentation:</strong> Enhanced text size, color contrast, and label container spacing on the DNA Review page for more comfortable reading on larger monitors.
-                </li>
-                <li>
-                  <strong class="text-text">Clutter-Free AI Strategist Chat:</strong> The list of reference sources cited by the AI is now automatically collapsed if there are more than 3 sources (with a *"Show All"* toggle to view all), and the document upload, search, and message send buttons have been redesigned with modern shapes and more responsive click animations.
-                </li>
-                <li>
-                  <strong class="text-text">Panel Renaming:</strong> Renamed the workspace right panel button from *"AI Copilot"* to **"EAI Chat"** to align with brand identity.
-                </li>
-                <li>
-                  <strong class="text-text">Workspace Settings Access Control:</strong> Workspace Settings are now restricted to Admins. Non-admin workspace members are automatically and securely redirected to their general profile settings.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Infinite Loading Protection:</strong> Added an automatic timeout fallback. If the AI analysis detects data delays, the system displays a friendly error message instead of showing an endless loading spinner.
-                </li>
-                <li>
-                  <strong class="text-text">Auto-Save Resilience:</strong> The system now detects document auto-save failures caused by permission issues, refreshing the save state to allow users to retry saving normally.
-                </li>
-                <li>
-                  <strong class="text-text">Layout Alignment Fixes:</strong> Resolved overlap issues between page headers and breadcrumbs navigation on mobile and tablet screens.
-                </li>
-              </ul>
-            </div>
-          </div>
+      <!-- Accordion Timeline List -->
+      <div class="space-y-8">
+        
+        <!-- Table Header (hidden on mobile) -->
+        <div class="hidden md:grid grid-cols-4 gap-6 px-8 pb-4 text-xs font-bold text-muted border-b border-border">
+          <div class="col-span-1">Version</div>
+          <div class="col-span-3">Description</div>
         </div>
 
-        <!-- VERSION 2.1.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
+        {sortedEntries.map((entry) => {
+          const { version, date, color, title, summary, added, changed, fixed, removed } = entry.data;
 
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v2.1.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">5 July 2026</time>
-          </div>
+          const categories = [
+            { label: 'New Features', items: added },
+            { label: 'Improvements', items: changed },
+            { label: 'Fixes', items: fixed },
+            { label: 'Removed', items: removed }
+          ];
 
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Auto-Saving Strategist Chat Sessions:</strong> Chat history in Content Strategist Chat—including messages, uploaded documents, research reports, and plan drafts—is now preserved when you switch panels or menus.
-                </li>
-                <li>
-                  <strong class="text-text">Anytime AI Strategist Access:</strong> Added an "AI Strategist" button directly at the top of the editor. You can now open the AI chat as an overlay window whenever you need it, even when the editor draft is already populated.
-                </li>
-                <li>
-                  <strong class="text-text">Auto-Convert Blueprint to Notes:</strong> When you click the "Proceed to Editor" button, the system automatically converts the entire AI-generated plan (Blueprint)—such as angles, outlines, target audience, hooks, and SEO strategies—into a clean note format and saves it directly to the Research Notes Studio.
-                </li>
-              </ul>
+          return (
+            <div class="bg-surface border border-border rounded-3xl p-6 md:p-8 space-y-6 hover:border-muted transition-colors duration-200 shadow-sm">
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Left Column: Version & Date -->
+                <div class="col-span-1 space-y-1">
+                  <span class={`inline-flex text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${
+                    color === 'primary' ? 'text-primary bg-primary/10 border-primary/20' : 
+                    color === 'emerald' ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 border-emerald-300/40 dark:border-emerald-700/40' :
+                    'text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/40 border-purple-300/40 dark:border-purple-700/40'
+                  }`}>
+                    v{version}
+                  </span>
+                  <div class="text-xs font-semibold text-muted font-mono pt-1">{date}</div>
+                </div>
+
+                <!-- Right Column: Description & Categories -->
+                <div class="col-span-3 space-y-4">
+                  <div class="space-y-2">
+                    <h3 class="text-xl font-bold tracking-tight text-text">{title}</h3>
+                    <p class="text-sm text-muted leading-relaxed">{summary}</p>
+                  </div>
+
+                  <!-- Categories Accordion List -->
+                  <div class="border-t border-border/60 divide-y divide-border/60 pt-2">
+                    {categories.map((cat) => {
+                      const hasItems = cat.items && cat.items.length > 0;
+                      const itemCount = cat.items ? cat.items.length : 0;
+                      
+                      if (!hasItems) {
+                        return (
+                          <div class="flex items-center justify-between py-3 text-xs text-muted/40 cursor-not-allowed select-none">
+                            <span>{cat.label} ({itemCount})</span>
+                          </div>
+                        );
+                      }
+                      
+                      return (
+                        <details class="group [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+                          <summary class="flex items-center justify-between py-3 text-xs font-bold text-text/80 list-none hover:text-primary transition-colors duration-200">
+                            <span>{cat.label} ({itemCount})</span>
+                            <span class="transition-transform duration-300 group-open:-rotate-180 text-muted group-hover:text-primary">
+                              <ChevronDown class="w-4 h-4" />
+                            </span>
+                          </summary>
+                          <div class="pb-4 pt-1 text-xs text-muted leading-relaxed border-t border-border/30 mt-1">
+                            <ul class="space-y-2.5 list-disc list-inside mt-2">
+                              {cat.items?.map((item) => (
+                                <li class="pl-2 -indent-2">
+                                  <strong class="text-text">{item.title}:</strong> <span set:html={item.description} />
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </details>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Lighter & More Responsive Chat Performance:</strong> Optimized the background system during real-time AI text generation. Web pages now run much more smoothly with no more lag or stuttering in the browser.
-                </li>
-                <li>
-                  <strong class="text-text">More Complete AI Answers:</strong> Increased AI text output capacity to ensure that long plan formats (JSON schema) are no longer cut off in the middle of drafting.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Save & History Error Fixes:</strong> Resolved the "Fix Failed..." error issue when updating writing history status. The system is now more flexible in accepting long documents or drafts (up to 100,000 characters) without sentence detection issues.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 2.0.2 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v2.0.2</h2>
-            <time class="text-xs font-semibold text-muted font-mono">4 July 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">AI Analysis Quality:</strong> The AI reviewer system is now equipped with step-by-step thinking (Chain-of-Thought) capabilities before providing evaluations. This makes writing evaluation results and improvement suggestions much more accurate and objective.
-                </li>
-                <li>
-                  <strong class="text-text">Clearer Editing Suggestions:</strong> Added practical guide examples to make it easier for the AI to perform replace or insert text commands in a single click.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 2.0.1 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v2.0.1</h2>
-            <time class="text-xs font-semibold text-muted font-mono">2 July 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Smoother Chat Streaming:</strong> Fixed the data distribution system to ensure the typing/streaming effect (real-time text typing effect) in the Analysis and Strategist Chat menus runs smoothly without lag or interruptions.
-                </li>
-                <li>
-                  <strong class="text-text">502 Bad Gateway Error Fix:</strong> Increased server memory capacity to prevent system crashes or access issues when the server experiences high traffic load.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 2.0.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v2.0.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">2 July 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Auto-Saving Research Notes:</strong> Your research notes in the Research Notes Studio are now automatically and securely saved in the cloud. You no longer need to worry about losing data when closing the browser or navigating away.
-                </li>
-                <li>
-                  <strong class="text-text">Supporting Document Uploads:</strong> You can now upload PDF, CSV, and TXT document files (up to 10MB) directly into the system.
-                </li>
-                <li>
-                  <strong class="text-text">AI-Powered Document Analysis:</strong> The AI can now automatically read and extract text content from your uploaded files, using it as additional context/reference in the chat room (Strategist AI Chat).
-                </li>
-                <li>
-                  <strong class="text-text">Automatic Document Mode:</strong> When you upload a file, the system automatically activates a special mode. The AI focuses on the quantitative data in your document and instantly suggests data-driven questions.
-                </li>
-                <li>
-                  <strong class="text-text">New File Info Display:</strong> Added file info badge indicators, delete buttons, and automatic replacement of old files with new ones during upload.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Scanned PDF/Image Detection:</strong> The system can now detect if you upload a PDF containing images or scans, and will display a warning: "This PDF cannot be read because it is image-based or scanned."
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 1.1.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v1.1.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">29 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Compact Sources Panel (Mobile):</strong> Reference sources now appear more compact without covering the typing area.
-                </li>
-                <li>
-                  <strong class="text-text">Floating Back Button:</strong> Mobile navigation is simpler and provides a wider workspace.
-                </li>
-                <li>
-                  <strong class="text-text">Smarter Mobile Sidebar:</strong> The sidebar now automatically closes when first opened on small screens.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Touch Interactions:</strong> Touch interactions are more consistent on mobile phones and tablets.
-                </li>
-                <li>
-                  <strong class="text-text">Editor Stability:</strong> The editor is more stable when switching between content.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Editor Sync:</strong> Fixed cases where the editor does not immediately sync after AI generates content.
-                </li>
-                <li>
-                  <strong class="text-text">Editor Warning Cleanup:</strong> Reduced warnings and inconsistent behavior on the editor page.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 1.0.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v1.0.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">29 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">New Rich Text Editor:</strong> Writing is now more comfortable with a new block-based visual editor and modern formatting.
-                </li>
-                <li>
-                  <strong class="text-text">AI Slash Commands (`/`):</strong> Type `/` to run quick actions such as generating paragraphs, SEO optimization, and other writing assistance.
-                </li>
-                <li>
-                  <strong class="text-text">AI Review Before Apply:</strong> All AI-generated changes now appear as a preview that you can **Accept** or **Reject** before applying.
-                </li>
-                <li>
-                  <strong class="text-text">Research Notes:</strong> Save research results and reuse them when drafting.
-                </li>
-                <li>
-                  <strong class="text-text">Generate Draft from Notes:</strong> Automatically turn a collection of research notes into a first draft.
-                </li>
-                <li>
-                  <strong class="text-text">Research Copilot:</strong> An interactive research assistant with streaming answers, real-time search, and browsable sources.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Fast Mode:</strong> **Fast** mode is now quicker for short questions.
-                </li>
-                <li>
-                  <strong class="text-text">Deep Research Mode:</strong> **Deep Research** mode is more stable for long research.
-                </li>
-                <li>
-                  <strong class="text-text">Editor Responsiveness:</strong> The editor feels more responsive with large documents.
-                </li>
-                <li>
-                  <strong class="text-text">Dark Mode Refresh:</strong> The dark mode visual style has been updated to be more comfortable for extended use.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Authentication & Redirects:</strong> Fixed several login and redirect issues.
-                </li>
-                <li>
-                  <strong class="text-text">Draft Language Consistency:</strong> Fixed draft output sometimes being mixed-language.
-                </li>
-                <li>
-                  <strong class="text-text">Source Deduplication:</strong> Fixed source duplication in blueprint results.
-                </li>
-                <li>
-                  <strong class="text-text">Performance & Stability:</strong> Fixed several stability and performance issues.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.35.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.35.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">21 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Workspace Routing:</strong> Added the `/workspace` route as the central hub for content management and editorial projects.
-                </li>
-                <li>
-                  <strong class="text-text">Editorial Workspace Component:</strong> Created a new `EditorialWorkspace` component as the primary interface for managing workspaces.
-                </li>
-                <li>
-                  <strong class="text-text">Demo Page:</strong> Introduced a `/demo` page demonstrating full application features.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Pricing Relocation:</strong> Relocated EAI's `/pricing` page to the main landing page (`envoyou.com/pricing`).
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.34.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.34.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">21 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">NIB & PSE Compliance:</strong> Implemented Indonesian NIB (Business Identification Number) and Kominfo PSE (Electronic System Operator) registration disclosures in Terms of Service and Privacy Policy.
-                </li>
-                <li>
-                  <strong class="text-text">Data Processor Registry:</strong> Updated data processors list in Privacy Policy to accurately reflect our distributed infrastructure: Clerk (Auth), Vercel (Frontend), DO (EAI VPS), Biznet Gio (Blog VPS), Supabase & Neon (Databases), Cloudflare (DNS/WAF), Gemini API (sole AI provider), and Midtrans (sole payment gateway).
-                </li>
-                <li>
-                  <strong class="text-text">Cross-Border Data Transfers:</strong> Added a cross-border data transfer disclosure in compliance with Indonesian UU PDP No. 27/2022 and GDPR Article 6.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.33.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.33.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">18 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Account Settings:</strong> Added a new Account Settings page under `/settings/account`.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Borderless UI Theme:</strong> Implemented a borderless design system where the header, tab bars, and status bars blend seamlessly with the main background.
-                </li>
-                <li>
-                  <strong class="text-text">Refined Tab Styling:</strong> Polished hover effects on document tabs (Preview, Markdown, Changes) and active tab indicators.
-                </li>
-                <li>
-                  <strong class="text-text">Minimalist Status Bar:</strong> Cleaned up the status bar text elements by removing badge backgrounds.
-                </li>
-                <li>
-                  <strong class="text-text">Adaptive Sidebar Backgrounds:</strong> Workspace sidebar background colors now dynamically adjust based on open/closed state.
-                </li>
-                <li>
-                  <strong class="text-text">Single AI Provider Focus:</strong> Removed provider switching from the user interface; EAI now exclusively runs on Google Gemini for all editorial pipeline requests.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Removed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Activity Bar Component:</strong> Removed the `ActivityBar` to simplify editor space.
-                </li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- VERSION 0.32.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.32.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">15 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Clear Availability Pages:</strong> Added branded status experiences for scheduled maintenance and temporarily unavailable signup or pricing features, with direct access to support.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Consistent Feature Availability:</strong> Navigation, authentication pages, editorial processing, checkout, and CMS export now follow the latest service availability settings.
-                </li>
-                <li>
-                  <strong class="text-text">More Helpful Recovery Screens:</strong> Replaced generic server errors with clearer guidance and surfaced operational messages when AI processing or related services are temporarily unavailable.
-                </li>
-                <li>
-                  <strong class="text-text">Reliable Maintenance Access:</strong> Status and recovery pages remain available even when service configuration is slow or temporarily unreachable.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.31.2 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.31.2</h2>
-            <time class="text-xs font-semibold text-muted font-mono">15 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Improved Error Monitoring:</strong> Strengthened error reporting so production issues can be diagnosed more quickly and accurately.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.31.1 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.31.1</h2>
-            <time class="text-xs font-semibold text-muted font-mono">15 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Easier Help and Update Access:</strong> Added direct Support and Changelog links to the login page navigation.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.31.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.31.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">15 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Organization-First Onboarding:</strong> New users now create or select their Clerk organization before configuring publication identity, editorial standards, and optional CMS access.
-                </li>
-                <li>
-                  <strong class="text-text">Safer Workspace Trials:</strong> Eligible workspace creators receive 10 trial credits once, while invited members no longer create duplicate trial allocations.
-                </li>
-                <li>
-                  <strong class="text-text">Expanded Workspace Settings:</strong> Added dedicated settings for user preferences, organizations, plans and credits, publication configuration, feature controls, and telemetry.
-                </li>
-                <li>
-                  <strong class="text-text">Focused Editorial Analytics:</strong> The dashboard now provides dedicated views for overview, performance, trends, and productivity.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Refined Editorial Workspace:</strong> Updated navigation, panels, controls, responsive behavior, accessibility, and wording across the editor and settings experience.
-                </li>
-                <li>
-                  <strong class="text-text">Clearer Workspace Identity:</strong> Organization names and slugs now stay aligned with Clerk, and Use Defaults configures the active workspace without creating a second local organization.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Isolated Onboarding Progress:</strong> Draft configuration and CMS credentials no longer carry over when switching organizations.
-                </li>
-                <li>
-                  <strong class="text-text">More Reliable Quality Signals:</strong> Empty risk responses such as "All clear" and "No risks found" are no longer shown as critical editorial flags.
-                </li>
-                <li>
-                  <strong class="text-text">Stable Editor Menus:</strong> Select and refined-draft download menus now stay anchored correctly while panels resize or scroll.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.30.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.30.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Trackable Customer Support:</strong> Added a public support form for billing, account, editorial workflow, CMS, and privacy requests. Each successful request receives a ticket number for follow-up.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.29.2 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.29.2</h2>
-            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">More Accurate Refinement Reports:</strong> Aspect ratios such as 9:16 and common technical abbreviations such as CTR are no longer incorrectly flagged as unsupported facts or external entities.
-                </li>
-                <li>
-                  <strong class="text-text">Clearer Internal Link Review:</strong> Links on a trusted publication domain that do not match the verified catalog are now identified as internal-link checks instead of external-source warnings.
-                </li>
-                <li>
-                  <strong class="text-text">Editor-Controlled Quality Decisions:</strong> Editors can verify, confirm, rewrite, remove, or neutralize flagged text, with decisions saved consistently for later export.
-                </li>
-                <li>
-                  <strong class="text-text">Reliable Workspace Credits:</strong> Credit balances now refresh correctly when switching organizations and remain tied to the active workspace.
-                </li>
-                <li>
-                  <strong class="text-text">Clearer Export Requirements:</strong> The editor now explains when CMS export is unavailable because an article is still a Fast Preview or requires Publish Ready review.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.29.1 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.29.1</h2>
-            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Clearer Plan Language:</strong> Renamed the pricing section to "Plans & Credits" so plan selection and credit allocation are easier to understand.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.29.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.29.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">14 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Plans & Credits Preview:</strong> Added monthly and yearly plan comparisons, active-plan indicators, credit details, and an additional credit package. Paid checkout remains marked as Coming Soon during the controlled rollout.
-                </li>
-                <li>
-                  <strong class="text-text">Transparent Payment Review:</strong> Prepared a confirmation step that clearly presents the USD price, final IDR amount, conversion rate, included credits, validity period, tax statement, and manual renewal terms before payment.
-                </li>
-                <li>
-                  <strong class="text-text">Payment Confirmation Tracking:</strong> Added an order-status banner that can confirm successful payments and updated credit balances after users return from the payment provider.
-                </li>
-                <li>
-                  <strong class="text-text">Public Legal Pages:</strong> Added Terms of Service, Privacy Notice, and Refund Policy pages, linked from the authentication and pricing experiences.
-                </li>
-                <li>
-                  <strong class="text-text">Refreshed Sign-In Experience:</strong> Redesigned the login and signup pages with clearer product benefits, trial guidance, and a more consistent Envoyou visual system.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Clearer Editorial Modes:</strong> Fast Preview now focuses on rapid review, while Publish Ready provides the complete refinement and SEO workflow required before download or CMS export.
-                </li>
-                <li>
-                  <strong class="text-text">Safer CMS Export:</strong> Export is available only for Publish Ready articles that pass the quality gate and belong to a workspace with a verified CMS connection.
-                </li>
-                <li>
-                  <strong class="text-text">Consistent English Interface:</strong> Standardized billing, credit, quality, export, and operational messages across the workspace.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-rose-700 dark:text-rose-400 bg-rose-100 dark:bg-rose-900/40 px-2 py-0.5 rounded border border-rose-300/40 dark:border-rose-700/40 mb-3">
-                Fixed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Guest AI Drafting:</strong> Fixed an issue that prevented demo users from using Generate with AI.
-                </li>
-                <li>
-                  <strong class="text-text">Checkout Sign-In Flow:</strong> Users who start checkout without an active session are now directed to sign in and returned to the pricing page.
-                </li>
-                <li>
-                  <strong class="text-text">Reliable Payment Updates:</strong> Added a status-check fallback so confirmed payments can still update plans and credits if the provider notification is delayed.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.28.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.28.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">13 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Editorial Team Analytics:</strong> Added editor productivity, coaching indicators, category distribution, revision frequency, and average time-to-publish insights.
-                </li>
-                <li>
-                  <strong class="text-text">Flexible Reporting Periods:</strong> Added preset and custom date ranges with comparisons against the previous period.
-                </li>
-                <li>
-                  <strong class="text-text">Expanded CSV Reports:</strong> Analytics exports now include editor contributions, category distribution, revision averages, publishing time, and performance comparisons.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Workspace-Focused Dashboard:</strong> Analytics now focus purely on day-to-day editorial operations to give you better visibility into your team's workflow.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.27.1 -->
-        <div class="relative">
-          <!-- Timeline point dot -->
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-primary shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.27.1</h2>
-            <time class="text-xs font-semibold text-muted font-mono">12 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">EAI Analytics Integration:</strong> Added real-time operational telemetry on the landing page, displaying monthly processed drafts, average processing times, and completed drafts dynamically.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.26.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-emerald-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.26.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">10 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">AI Drafting Assistant:</strong> Integrated AI writing assistant inside the editor workspace. Authors can generate rough article drafts from a topic, outline, URL reference, or press release with real-time response streaming.
-                </li>
-                <li>
-                  <strong class="text-text">Interactive Outline Builder:</strong> Generate structured outlines (H2/H3 headings and key points) before drafting the full article for better editorial control.
-                </li>
-                <li>
-                  <strong class="text-text">URL Reference Scraper:</strong> Provide external URL references to automatically extract clean content, skipping ads, navigation headers, and footers to be used as context for drafting.
-                </li>
-                <li>
-                  <strong class="text-text">Press Release Mode:</strong> A dedicated drafting mode that actively refines marketing hype, buzzwords, and promotional bias from corporate press releases into objective news stories.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- VERSION 0.25.0 -->
-        <div class="relative">
-          <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4.5 h-4.5 rounded-full border-4 border-bg bg-purple-500 shadow-sm"></div>
-
-          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-            <h2 class="text-2xl font-extrabold text-text">v0.25.0</h2>
-            <time class="text-xs font-semibold text-muted font-mono">10 June 2026</time>
-          </div>
-
-          <div class="space-y-6">
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-300/40 dark:border-emerald-700/40 mb-3">
-                Added
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Demo Mode (Guest Mode):</strong> Test-drive the editor workspace and AI refinement features for free without registering or logging in (limited to 2 refinement runs).
-                </li>
-                <li>
-                  <strong class="text-text">Dynamic Character Limits:</strong> Added visual constraints and counters on form fields across the Onboarding Wizard and Control Room for input accuracy.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <span class="inline-flex text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 rounded border border-amber-300/40 dark:border-amber-700/40 mb-3">
-                Changed
-              </span>
-              <ul class="space-y-2.5 text-sm text-text/80 leading-relaxed list-disc list-inside">
-                <li>
-                  <strong class="text-text">Expanded Input Capacity:</strong> Increased target Positioning and Audience field limits to 1,000 characters to support detailed brand positioning inputs.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
+          );
+        })}
       </div>
     </div>
   </main>
