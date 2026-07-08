@@ -62,9 +62,9 @@ const plans = basePlans.map(plan => {
     priceYearly: equivalentMonthly * 12,
     equivalentMonthly,
     creditsYearly: plan.creditsMonthly * 12,
-    cta: 'Request Beta Access',
-    hrefMonthly: `#tally-open=${BETA_FORM_ID}&tally-emoji-text=👋&tally-emoji-animation=wave&plan=${plan.id}&billing=monthly`,
-    hrefYearly: `#tally-open=${BETA_FORM_ID}&tally-emoji-text=👋&tally-emoji-animation=wave&plan=${plan.id}&billing=yearly`
+    cta: 'Get Started',
+    hrefMonthly: `https://eai.envoyou.com/pricing?plan=${plan.id}`,
+    hrefYearly: `https://eai.envoyou.com/pricing?plan=${plan.id}_yearly`
   };
 });
 
