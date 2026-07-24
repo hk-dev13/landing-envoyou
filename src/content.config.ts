@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const changelogItemSchema = z.object({
   title: z.string(),
@@ -18,7 +19,7 @@ const changelogCollection = defineCollection({
     added: z.array(changelogItemSchema).optional(),
     changed: z.array(changelogItemSchema).optional(),
     fixed: z.array(changelogItemSchema).optional(),
-  	removed: z.array(changelogItemSchema).optional(),
+    removed: z.array(changelogItemSchema).optional(),
   }),
 });
 

@@ -312,9 +312,11 @@ import Footer from '../components/Footer.astro';
   <Footer />
 
 <script>
-  document.querySelectorAll('.copy-link-btn').forEach(btn => {
+  document.querySelectorAll<HTMLButtonElement>('.copy-link-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const targetId = btn.getAttribute('data-target');
+      if (!targetId) return;
+
       const url = new URL(window.location.href);
       url.hash = targetId;
       
@@ -322,8 +324,9 @@ import Footer from '../components/Footer.astro';
         await navigator.clipboard.writeText(url.toString());
         
         // Visual feedback
-        const iconLink = btn.querySelector('.icon-link');
-        const iconCheck = btn.querySelector('.icon-check');
+        const iconLink = btn.querySelector<SVGElement>('.icon-link');
+        const iconCheck = btn.querySelector<SVGElement>('.icon-check');
+        if (!iconLink || !iconCheck) return;
         
         iconLink.classList.add('hidden');
         iconCheck.classList.remove('hidden');

@@ -81,7 +81,7 @@ const structuredDataGraph = {
     <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)}></script>
 
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

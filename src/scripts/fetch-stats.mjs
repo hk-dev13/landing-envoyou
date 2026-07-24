@@ -211,8 +211,6 @@ async function main() {
     console.warn('Could not read existing stats.json, using defaults.');
   }
 
-  const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-
   // 1. Fetch Blog Stats
   try {
     console.log('Fetching Blog stats...');
