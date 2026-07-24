@@ -13,7 +13,7 @@ const changelogCollection = defineCollection({
     version: z.string(),
     date: z.string(),
     publishDate: z.string(), // YYYY-MM-DD for sorting
-    color: z.enum(['emerald', 'purple', 'primary']),
+    color: z.enum(['primary']),
     title: z.string(), // Release title
     summary: z.string(), // High-level release summary
     added: z.array(changelogItemSchema).optional(),
