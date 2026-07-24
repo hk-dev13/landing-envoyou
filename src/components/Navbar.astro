@@ -56,10 +56,10 @@
         href="https://eai.envoyou.com/login"
         data-analytics-event="eai_login_clicked"
         data-analytics-location="navbar_desktop"
-        class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-white text-sm font-semibold transition-colors duration-200 shadow-sm"
-        style="background-color: var(--color-primary);"
-        onmouseover="this.style.backgroundColor='var(--color-primary-deep)'"
-        onmouseout="this.style.backgroundColor='var(--color-primary)'"
+        class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 shadow-sm"
+        style="background-color: var(--color-primary); color: var(--color-on-primary);"
+        onmouseover="this.style.backgroundColor='var(--color-primary-deep)', this.style.color='var(--color-on-primary)'"
+        onmouseout="this.style.backgroundColor='var(--color-primary)', this.style.color='var(--color-on-primary)'"
       >
         Log in to EAI
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -95,7 +95,7 @@
         href="https://eai.envoyou.com/login"
         data-analytics-event="eai_login_clicked"
         data-analytics-location="navbar_mobile"
-        class="flex-1 text-center px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold"
+        class="flex-1 text-center px-4 py-2 rounded-full bg-primary text-on-primary text-sm font-semibold"
       >
         Log in to EAI
       </a>

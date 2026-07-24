@@ -3,31 +3,50 @@
 
 /* ── Design Tokens ── */
 :root {
-  --color-bg: #f8fafc;
+  /* =====================
+     COLOR - LIGHT THEME
+     ===================== */
+  --color-bg: #f7f8f8;
   --color-surface: #ffffff;
-  --color-surface-soft: #f1f5f9;
-  --color-text: #0f172a;
-  --color-muted: #64748b;
-  --color-border: rgba(15, 23, 42, 0.1);
-  --color-primary: #0b79c2;
-  --color-primary-deep: #0066af;
-  --color-accent: #0ea5e9;
-  --color-success: #10b981;
-  --color-hero-glow: rgba(11, 121, 194, 0.12);
-  --color-hero-glow-2: rgba(56, 189, 248, 0.07);
+  --color-surface-soft: #f4f5f6;
+  --color-text: #0f1115;
+  --color-muted: #626770;
+  --color-border: rgba(15, 17, 21, 0.06);
+  --color-primary: #121316;
+  --color-primary-deep: #000000;
+  --color-accent: #626770;
+  --color-success: #17b26c;
+  
+  /* [BARU] Warna teks di atas background primary */
+  --color-on-primary: #ffffff; 
+  
+  --color-hero-glow: rgba(0, 0, 0, 0.03);
+  --color-hero-glow-2: rgba(0, 0, 0, 0.01);
+
+  /* =====================
+     RADIUS - GLOBAL
+     ===================== */
   --radius-md: 16px;
   --radius-lg: 24px;
 }
 
 .dark {
-  --color-bg: #020617;
-  --color-surface: #0f172a;
-  --color-surface-soft: #111827;
-  --color-text: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-border: rgba(148, 163, 184, 0.16);
-  --color-hero-glow: rgba(11, 121, 194, 0.22);
-  --color-hero-glow-2: rgba(56, 189, 248, 0.12);
+  --color-bg: #0b0c0e;
+  --color-surface: #121316;
+  --color-surface-soft: #181a1f;
+  --color-text: #f7f8f8;
+  --color-muted: #828792;
+  --color-border: rgba(247, 248, 248, 0.07);
+  --color-primary: #f7f8f8;
+  --color-primary-deep: #ffffff;
+  --color-accent: #828792;
+  --color-success: #17b26c;
+  
+  /* [BARU] Teks hitam di atas background primary terang */
+  --color-on-primary: #0f1115; 
+
+  --color-hero-glow: rgba(255, 255, 255, 0.06);
+  --color-hero-glow-2: rgba(255, 255, 255, 0.03);
 }
 
 @theme {
@@ -41,6 +60,7 @@
   --color-primary-deep: var(--color-primary-deep);
   --color-accent: var(--color-accent);
   --color-success: var(--color-success);
+  --color-on-primary: var(--color-on-primary);
 }
 
 /* ── Base ── */
@@ -110,12 +130,14 @@ body {
 
 .card:hover {
   transform: translateY(-3px);
+  /* Jika ingin shadow glow tetap biru, biarkan saja. 
+     Jika ingin netral, gunakan rgba(0,0,0,...) */
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border-color: rgba(11, 121, 194, 0.3);
+  border-color: var(--color-primary); /* Disesuaikan ke token */
 }
 
 .dark .card:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* ── Stat card ── */
@@ -129,7 +151,7 @@ body {
 
 .stat-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(11, 121, 194, 0.25);
+  border-color: var(--color-primary);
 }
 
 /* ── Buttons ── */
@@ -140,18 +162,26 @@ body {
   padding: 0.75rem 1.75rem;
   border-radius: 9999px;
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-primary); /* [DIPERBAIKI] Menggunakan variabel */
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(11, 121, 194, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* Shadow dinetralkan */
+}
+
+.dark .btn-primary {
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
   background-color: var(--color-primary-deep);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(11, 121, 194, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark .btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary {

@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout
@@ -10,21 +10,34 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
 
-  <main class="min-h-screen bg-bg pt-24 pb-20 relative overflow-hidden transition-colors duration-300">
+  <main
+    class="min-h-screen bg-bg pt-24 pb-20 relative overflow-hidden transition-colors duration-300"
+  >
     <!-- Ambient Radial Glows -->
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_0%,var(--color-hero-glow)_0%,transparent_45%),radial-gradient(circle_at_75%_10%,var(--color-hero-glow-2)_0%,transparent_40%)]"></div>
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_25%_0%,var(--color-hero-glow)_0%,transparent_45%),radial-gradient(circle_at_75%_10%,var(--color-hero-glow-2)_0%,transparent_40%)]"
+    >
+    </div>
 
     <!-- ── Hero Section ── -->
-    <section class="max-w-[90rem] mx-auto px-6 pt-16 pb-20 text-center relative">
+    <section
+      class="max-w-[90rem] mx-auto px-6 pt-16 pb-20 text-center relative"
+    >
       <div class="section-label mx-auto">Our Vision</div>
-      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-text max-w-4xl mx-auto leading-tight">
+      <h1
+        class="text-4xl sm:text-6xl font-black tracking-tight text-text max-w-4xl mx-auto leading-tight"
+      >
         We Don't Just Help You Write.<br />
         <span class="text-primary">We Help You Finish.</span>
       </h1>
-      <p class="section-subtitle mx-auto text-center mt-6 text-lg max-w-2xl text-muted leading-relaxed">
-        Envoyou is a unified Editorial Intelligence platform designed to take SEO-ready content from initial research to published article—in a single, uninterrupted workflow.
+      <p
+        class="section-subtitle mx-auto text-center mt-6 text-lg max-w-2xl text-muted leading-relaxed"
+      >
+        Envoyou is a unified Editorial Intelligence platform designed to take
+        SEO-ready content from initial research to published article—in a
+        single, uninterrupted workflow.
       </p>
-      
+
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a
           href="https://eai.envoyou.com"
@@ -35,13 +48,20 @@ import Footer from '../components/Footer.astro';
           class="btn-primary"
         >
           Try EAI Workspace
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
           </svg>
         </a>
-        <a href="/#products" class="btn-secondary">
-          Explore Products
-        </a>
+        <a href="/#products" class="btn-secondary"> Explore Products </a>
       </div>
     </section>
 
@@ -49,66 +69,132 @@ import Footer from '../components/Footer.astro';
     <section class="max-w-6xl mx-auto px-6 py-20 border-t border-border/60">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <div class="lg:col-span-5">
-          <span class="text-xs font-bold uppercase tracking-widest text-red-500 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20 mb-4 inline-block">
+          <span
+            class="text-xs font-bold uppercase tracking-widest text-red-500 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20 mb-4 inline-block"
+          >
             The Status Quo
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight leading-tight">
+          <h2
+            class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight leading-tight"
+          >
             The Content Fragmentation Tax
           </h2>
           <p class="text-muted mt-4 leading-relaxed text-sm sm:text-base">
-            Crafting search-optimized, high-integrity articles isn't a single-step job. Today's editorial operations are broken across half a dozen single-purpose tools, causing friction and quality leaks.
+            Crafting search-optimized, high-integrity articles isn't a
+            single-step job. Today's editorial operations are broken across half
+            a dozen single-purpose tools, causing friction and quality leaks.
           </p>
           <p class="text-muted mt-3 leading-relaxed text-sm sm:text-base">
-            Writers spend more energy shuffling text, manually reviewing formatting, and wrestling with SEO plug-ins than focusing on creative strategy. The problem isn't a lack of tools. It's the absence of a unified system.
+            Writers spend more energy shuffling text, manually reviewing
+            formatting, and wrestling with SEO plug-ins than focusing on
+            creative strategy. The problem isn't a lack of tools. It's the
+            absence of a unified system.
           </p>
         </div>
 
         <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="card p-6 relative group">
-            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <div
+              class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                ></path>
               </svg>
             </div>
-            <h3 class="font-bold text-text text-base">4 to 6 Fragmented Tools</h3>
+            <h3 class="font-bold text-text text-base">
+              4 to 6 Fragmented Tools
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              Toggling between keyword planners, SERP outline scrapers, draft editors, optimization scorecards, and CMS publishing interfaces.
+              Toggling between keyword planners, SERP outline scrapers, draft
+              editors, optimization scorecards, and CMS publishing interfaces.
             </p>
           </div>
 
           <div class="card p-6 relative group">
-            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <div
+              class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
               </svg>
             </div>
             <h3 class="font-bold text-text text-base">Chore Work Fatigue</h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              Spending excessive time on copy-pasting, heading alignment, manual internal linking, and meta tag verification.
+              Spending excessive time on copy-pasting, heading alignment, manual
+              internal linking, and meta tag verification.
             </p>
           </div>
 
           <div class="card p-6 relative group">
-            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div
+              class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="font-bold text-text text-base">Generic AI Hallucinations</h3>
+            <h3 class="font-bold text-text text-base">
+              Generic AI Hallucinations
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              Standard AI writer tools pull from stale datasets, generating repetitive, untrustworthy drafts that require heavy rewriting.
+              Standard AI writer tools pull from stale datasets, generating
+              repetitive, untrustworthy drafts that require heavy rewriting.
             </p>
           </div>
 
           <div class="card p-6 relative group">
-            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <div
+              class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 mb-4 group-hover:scale-105 transition-transform"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </div>
-            <h3 class="font-bold text-text text-base">Publish Delay & Errors</h3>
+            <h3 class="font-bold text-text text-base">
+              Publish Delay & Errors
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              Broken styles, unoptimized assets, or missing keywords during manual copy-paste transitions into a CMS.
+              Broken styles, unoptimized assets, or missing keywords during
+              manual copy-paste transitions into a CMS.
             </p>
           </div>
         </div>
@@ -116,37 +202,53 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ── EAI Interactive Workflow Section ── -->
-    <section class="max-w-[90rem] mx-auto px-6 py-20 border-t border-border/60 bg-surface-soft/40 relative">
-      <div class="absolute inset-0 bg-radial-[circle_at_center] from-primary/5 to-transparent pointer-events-none"></div>
-      
+    <section
+      class="max-w-[90rem] mx-auto px-6 py-20 border-t border-border/60 bg-surface-soft/40 relative"
+    >
+      <div
+        class="absolute inset-0 bg-radial-[circle_at_center] from-primary/5 to-transparent pointer-events-none"
+      >
+      </div>
+
       <div class="max-w-4xl mx-auto text-center mb-16 relative">
         <div class="section-label mx-auto">The Integrated Workspace</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight">
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight"
+        >
           EAI Editorial Intelligence in Action
         </h2>
-        <p class="text-muted mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-          See how EAI resolves the fragmentation tax by consolidating keyword research, layout structuring, grounded generation, formatting, and sync in a single workspace loop.
+        <p
+          class="text-muted mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed"
+        >
+          See how EAI resolves the fragmentation tax by consolidating keyword
+          research, layout structuring, grounded generation, formatting, and
+          sync in a single workspace loop.
         </p>
       </div>
 
       <!-- Interactive Tab & Panel Layout -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto relative items-stretch">
-        
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto relative items-stretch"
+      >
         <!-- Left Side: Interactive Step Selectors -->
         <div class="lg:col-span-5 flex flex-col gap-4 justify-center">
-          
           <!-- Step 1 Tab -->
           <button
             class="workflow-tab active w-full text-left p-5 rounded-2xl border border-primary bg-primary/5 dark:bg-primary/10 transition-all duration-300 cursor-pointer flex gap-4 items-start focus:outline-none"
             data-step="1"
           >
-            <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary border border-primary/20 flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-primary/10 text-primary border border-primary/20 flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5"
+            >
               01
             </div>
             <div>
-              <h3 class="font-bold text-text text-base leading-snug">AI Drafting Assistant</h3>
+              <h3 class="font-bold text-text text-base leading-snug">
+                AI Drafting Assistant
+              </h3>
               <p class="text-xs text-muted mt-1 leading-relaxed">
-                Create a structured rough draft from a topic, outline, references, or press release.
+                Create a structured rough draft from a topic, outline,
+                references, or press release.
               </p>
             </div>
           </button>
@@ -156,13 +258,18 @@ import Footer from '../components/Footer.astro';
             class="workflow-tab w-full text-left p-5 rounded-2xl border border-transparent hover:bg-surface transition-all duration-300 cursor-pointer flex gap-4 items-start focus:outline-none"
             data-step="2"
           >
-            <div class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5"
+            >
               02
             </div>
             <div>
-              <h3 class="font-bold text-text text-base leading-snug">Multi-Stage Editorial Polish</h3>
+              <h3 class="font-bold text-text text-base leading-snug">
+                Multi-Stage Editorial Polish
+              </h3>
               <p class="text-xs text-muted mt-1 leading-relaxed">
-                Stream a polished rewrite matching your custom target voice, category, and audience.
+                Stream a polished rewrite matching your custom target voice,
+                category, and audience.
               </p>
             </div>
           </button>
@@ -172,13 +279,18 @@ import Footer from '../components/Footer.astro';
             class="workflow-tab w-full text-left p-5 rounded-2xl border border-transparent hover:bg-surface transition-all duration-300 cursor-pointer flex gap-4 items-start focus:outline-none"
             data-step="3"
           >
-            <div class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5"
+            >
               03
             </div>
             <div>
-              <h3 class="font-bold text-text text-base leading-snug">Quality Gate & Fact Verification</h3>
+              <h3 class="font-bold text-text text-base leading-snug">
+                Quality Gate & Fact Verification
+              </h3>
               <p class="text-xs text-muted mt-1 leading-relaxed">
-                Audit draft against reference files for factual accuracy, temporal consistency, and formatting.
+                Audit draft against reference files for factual accuracy,
+                temporal consistency, and formatting.
               </p>
             </div>
           </button>
@@ -188,13 +300,18 @@ import Footer from '../components/Footer.astro';
             class="workflow-tab w-full text-left p-5 rounded-2xl border border-transparent hover:bg-surface transition-all duration-300 cursor-pointer flex gap-4 items-start focus:outline-none"
             data-step="4"
           >
-            <div class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5"
+            >
               04
             </div>
             <div>
-              <h3 class="font-bold text-text text-base leading-snug">SEO Pack Generation</h3>
+              <h3 class="font-bold text-text text-base leading-snug">
+                SEO Pack Generation
+              </h3>
               <p class="text-xs text-muted mt-1 leading-relaxed">
-                Automatically structure search titles, optimized slugs, tags, and meta descriptions.
+                Automatically structure search titles, optimized slugs, tags,
+                and meta descriptions.
               </p>
             </div>
           </button>
@@ -204,69 +321,131 @@ import Footer from '../components/Footer.astro';
             class="workflow-tab w-full text-left p-5 rounded-2xl border border-transparent hover:bg-surface transition-all duration-300 cursor-pointer flex gap-4 items-start focus:outline-none"
             data-step="5"
           >
-            <div class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5">
+            <div
+              class="w-8 h-8 rounded-lg bg-surface-soft text-muted border border-border flex items-center justify-center font-bold font-mono text-sm shrink-0 mt-0.5"
+            >
               05
             </div>
             <div>
-              <h3 class="font-bold text-text text-base leading-snug">One-Click CMS Export</h3>
+              <h3 class="font-bold text-text text-base leading-snug">
+                One-Click CMS Export
+              </h3>
               <p class="text-xs text-muted mt-1 leading-relaxed">
-                Prepare clean markup, cover guidance, and SEO metadata for controlled export to a configured CMS draft.
+                Prepare clean markup, cover guidance, and SEO metadata for
+                controlled export to a configured CMS draft.
               </p>
             </div>
           </button>
-
         </div>
 
         <!-- Right Side: Interactive Mockup Screens -->
         <div class="lg:col-span-7 flex items-center">
-          <div class="w-full relative card bg-surface p-6 sm:p-8 min-h-[460px] flex flex-col justify-between overflow-hidden border border-border shadow-xl">
-            <div class="absolute inset-0 rounded-[var(--radius-lg)] pointer-events-none" style="background: radial-gradient(circle at 80% 10%, var(--color-hero-glow) 0%, transparent 60%);"></div>
+          <div
+            class="w-full relative card bg-surface p-6 sm:p-8 min-h-[460px] flex flex-col justify-between overflow-hidden border border-border shadow-xl"
+          >
+            <div
+              class="absolute inset-0 rounded-[var(--radius-lg)] pointer-events-none"
+              style="background: radial-gradient(circle at 80% 10%, var(--color-hero-glow) 0%, transparent 60%);"
+            >
+            </div>
 
             <!-- Panel 1: Drafting Assistant -->
-            <div class="workflow-panel flex flex-col h-full justify-between gap-6" data-step="1">
+            <div
+              class="workflow-panel flex flex-col h-full justify-between gap-6"
+              data-step="1"
+            >
               <div>
-                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                <div
+                  class="flex items-center justify-between border-b border-border pb-4 mb-4"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">AI Drafting Assistant</span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"
+                    ></span>
+                    <span
+                      class="text-xs font-mono font-semibold uppercase tracking-wider text-muted"
+                      >AI Drafting Assistant</span
+                    >
                   </div>
-                  <span class="text-[10px] font-bold bg-primary/10 border border-primary/20 text-primary px-2.5 py-0.5 rounded-full">Assistant Active</span>
+                  <span
+                    class="text-[10px] font-bold bg-primary/10 border border-primary/20 text-primary px-2.5 py-0.5 rounded-full"
+                    >Assistant Active</span
+                  >
                 </div>
 
                 <div class="space-y-4">
-                  <div class="ui-segmented grid grid-cols-4 bg-surface-soft p-1 rounded-xl gap-1">
-                    <span class="text-[10px] font-semibold bg-surface text-primary border border-border rounded-lg py-1 px-2 text-center shadow-sm">From Topic</span>
-                    <span class="text-[10px] text-muted py-1 px-2 text-center">From Outline</span>
-                    <span class="text-[10px] text-muted py-1 px-2 text-center">References</span>
-                    <span class="text-[10px] text-muted py-1 px-2 text-center">Press Release</span>
+                  <div
+                    class="ui-segmented grid grid-cols-4 bg-surface-soft p-1 rounded-xl gap-1"
+                  >
+                    <span
+                      class="text-[10px] font-semibold bg-surface text-primary border border-border rounded-lg py-1 px-2 text-center shadow-sm"
+                      >From Topic</span
+                    >
+                    <span class="text-[10px] text-muted py-1 px-2 text-center"
+                      >From Outline</span
+                    >
+                    <span class="text-[10px] text-muted py-1 px-2 text-center"
+                      >References</span
+                    >
+                    <span class="text-[10px] text-muted py-1 px-2 text-center"
+                      >Press Release</span
+                    >
                   </div>
 
                   <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-muted block">Topic / Core Idea</label>
-                    <div class="bg-surface-soft border border-border rounded-xl px-4 py-3 text-xs text-text font-medium leading-relaxed">
-                      The impact of Nvidia Blackwell GPUs on Southeast Asia's cloud capacity
+                    <label
+                      class="text-[10px] font-bold uppercase tracking-wider text-muted block"
+                      >Topic / Core Idea</label
+                    >
+                    <div
+                      class="bg-surface-soft border border-border rounded-xl px-4 py-3 text-xs text-text font-medium leading-relaxed"
+                    >
+                      The impact of Nvidia Blackwell GPUs on Southeast Asia's
+                      cloud capacity
                     </div>
                   </div>
 
                   <div class="space-y-2">
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-muted flex items-center justify-between">
+                    <label
+                      class="text-[10px] font-bold uppercase tracking-wider text-muted flex items-center justify-between"
+                    >
                       <span>Import References (URL Scraper)</span>
-                      <span class="text-emerald-500 font-semibold lowercase">Clean text extractor</span>
+                      <span class="text-emerald-500 font-semibold lowercase"
+                        >Clean text extractor</span
+                      >
                     </label>
                     <div class="flex gap-2">
-                      <div class="flex-1 bg-surface-soft border border-border rounded-xl px-3 py-2 text-xs text-muted truncate flex items-center gap-2">
+                      <div
+                        class="flex-1 bg-surface-soft border border-border rounded-xl px-3 py-2 text-xs text-muted truncate flex items-center gap-2"
+                      >
                         https://nvidianews.nvidia.com/news/blackwell-gpus...
                       </div>
-                      <button class="bg-surface border border-border text-text px-3.5 rounded-xl text-[10px] font-bold shrink-0">Fetched</button>
+                      <button
+                        class="bg-surface border border-border text-text px-3.5 rounded-xl text-[10px] font-bold shrink-0"
+                        >Fetched</button
+                      >
                     </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <button class="w-full bg-primary hover:bg-primary-deep text-white text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm">
-                  <svg class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="animation-duration: 3s;">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.473L21 9l-3.473-3.473L9.813 15.904zM9.813 15.904L9 21l3.473-3.473m0-12L15.904 9" />
+                <button
+                  class="w-full bg-primary hover:bg-primary-deep text-on-primary text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <svg
+                    class="w-3.5 h-3.5 animate-spin"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                    style="animation-duration: 3s;"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9.813 15.904L9 21l8.904-4.473L21 9l-3.473-3.473L9.813 15.904zM9.813 15.904L9 21l3.473-3.473m0-12L15.904 9"
+                    ></path>
                   </svg>
                   Generate Rough Draft
                 </button>
@@ -274,192 +453,401 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <!-- Panel 2: Polish -->
-            <div class="workflow-panel hidden flex flex-col h-full justify-between gap-6" data-step="2">
+            <div
+              class="workflow-panel hidden flex flex-col h-full justify-between gap-6"
+              data-step="2"
+            >
               <div>
-                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                <div
+                  class="flex items-center justify-between border-b border-border pb-4 mb-4"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Single-Click Editorial Polish</span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"
+                    ></span>
+                    <span
+                      class="text-xs font-mono font-semibold uppercase tracking-wider text-muted"
+                      >Single-Click Editorial Polish</span
+                    >
                   </div>
-                  <span class="text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 px-2.5 py-0.5 rounded-full">Draft Refining..</span>
+                  <span
+                    class="text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 px-2.5 py-0.5 rounded-full"
+                    >Draft Refining..</span
+                  >
                 </div>
 
                 <div class="space-y-4">
                   <div class="grid grid-cols-3 gap-2">
-                    <div class="bg-surface-soft border border-border rounded-xl p-2.5 text-center">
-                      <p class="text-[9px] font-mono text-muted uppercase">Category</p>
-                      <p class="text-xs font-bold text-text mt-0.5 truncate">Technology & AI</p>
+                    <div
+                      class="bg-surface-soft border border-border rounded-xl p-2.5 text-center"
+                    >
+                      <p class="text-[9px] font-mono text-muted uppercase">
+                        Category
+                      </p>
+                      <p class="text-xs font-bold text-text mt-0.5 truncate">
+                        Technology & AI
+                      </p>
                     </div>
-                    <div class="bg-surface-soft border border-border rounded-xl p-2.5 text-center">
-                      <p class="text-[9px] font-mono text-muted uppercase">Type</p>
-                      <p class="text-xs font-bold text-text mt-0.5 truncate">Analysis</p>
+                    <div
+                      class="bg-surface-soft border border-border rounded-xl p-2.5 text-center"
+                    >
+                      <p class="text-[9px] font-mono text-muted uppercase">
+                        Type
+                      </p>
+                      <p class="text-xs font-bold text-text mt-0.5 truncate">
+                        Analysis
+                      </p>
                     </div>
-                    <div class="bg-surface-soft border border-border rounded-xl p-2.5 text-center">
-                      <p class="text-[9px] font-mono text-muted uppercase">Audience</p>
-                      <p class="text-xs font-bold text-text mt-0.5 truncate">Tech Leaders</p>
+                    <div
+                      class="bg-surface-soft border border-border rounded-xl p-2.5 text-center"
+                    >
+                      <p class="text-[9px] font-mono text-muted uppercase">
+                        Audience
+                      </p>
+                      <p class="text-xs font-bold text-text mt-0.5 truncate">
+                        Tech Leaders
+                      </p>
                     </div>
                   </div>
 
-                  <div class="bg-surface-soft border border-border rounded-xl p-4 font-mono text-[11px] leading-relaxed text-text select-none min-h-[140px]">
-                    <p class="text-primary mb-1">&lt;!-- Stage 2: Rewriting & Polishing Output --&gt;</p>
-                    <span class="animate-pulse">|</span>Unlike standard AI generators that return cookie-cutter summaries, Envoyou's EAI engine processes the draft under a staged rewrite pipeline. This transforms technical specifications into a narrative that aligns directly with your selected brand profile parameters...
+                  <div
+                    class="bg-surface-soft border border-border rounded-xl p-4 font-mono text-[11px] leading-relaxed text-text select-none min-h-[140px]"
+                  >
+                    <p class="text-primary mb-1">
+                      &lt;!-- Stage 2: Rewriting & Polishing Output --&gt;
+                    </p>
+                    <span class="animate-pulse">|</span>Unlike standard AI
+                    generators that return cookie-cutter summaries, Envoyou's
+                    EAI engine processes the draft under a staged rewrite
+                    pipeline. This transforms technical specifications into a
+                    narrative that aligns directly with your selected brand
+                    profile parameters...
                   </div>
                 </div>
               </div>
 
-              <div class="flex items-center justify-between text-xs text-muted border-t border-border pt-4">
+              <div
+                class="flex items-center justify-between text-xs text-muted border-t border-border pt-4"
+              >
                 <span>Mode: Publish Ready</span>
                 <span class="font-bold text-primary">Ctrl+Enter to Refine</span>
               </div>
             </div>
 
             <!-- Panel 3: Quality Gate -->
-            <div class="workflow-panel hidden flex flex-col h-full justify-between gap-6" data-step="3">
+            <div
+              class="workflow-panel hidden flex flex-col h-full justify-between gap-6"
+              data-step="3"
+            >
               <div>
-                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                <div
+                  class="flex items-center justify-between border-b border-border pb-4 mb-4"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Quality Gate & Source Fidelity</span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"
+                    ></span>
+                    <span
+                      class="text-xs font-mono font-semibold uppercase tracking-wider text-muted"
+                      >Quality Gate & Source Fidelity</span
+                    >
                   </div>
-                  <span class="text-[10px] font-bold bg-amber-500/10 border border-amber-500/20 text-amber-500 px-2.5 py-0.5 rounded-full">Audit Active</span>
+                  <span
+                    class="text-[10px] font-bold bg-amber-500/10 border border-amber-500/20 text-amber-500 px-2.5 py-0.5 rounded-full"
+                    >Audit Active</span
+                  >
                 </div>
 
-                <div class="flex items-center gap-6 bg-surface-soft/60 border border-border p-4 rounded-xl mb-4">
+                <div
+                  class="flex items-center gap-6 bg-surface-soft/60 border border-border p-4 rounded-xl mb-4"
+                >
                   <!-- Circular Progress SVG -->
-                  <div class="relative w-16 h-16 shrink-0 flex items-center justify-center">
+                  <div
+                    class="relative w-16 h-16 shrink-0 flex items-center justify-center"
+                  >
                     <svg class="w-full h-full transform -rotate-90">
-                      <circle cx="32" cy="32" r="28" class="stroke-border" stroke-width="5" fill="transparent" />
-                      <circle cx="32" cy="32" r="28" class="stroke-primary" stroke-width="5" fill="transparent" stroke-dasharray="175" stroke-dashoffset="14" />
+                      <circle
+                        cx="32"
+                        cy="32"
+                        r="28"
+                        class="stroke-border"
+                        stroke-width="5"
+                        fill="transparent"></circle>
+                      <circle
+                        cx="32"
+                        cy="32"
+                        r="28"
+                        class="stroke-primary"
+                        stroke-width="5"
+                        fill="transparent"
+                        stroke-dasharray="175"
+                        stroke-dashoffset="14"></circle>
                     </svg>
-                    <span class="absolute text-sm font-extrabold text-text">92%</span>
+                    <span class="absolute text-sm font-extrabold text-text"
+                      >92%</span
+                    >
                   </div>
                   <div>
-                    <h4 class="font-bold text-text text-sm">Fidelity Readiness Score</h4>
-                    <p class="text-xs text-muted mt-0.5">Your draft satisfies all platform accuracy and brand voice checks.</p>
+                    <h4 class="font-bold text-text text-sm">
+                      Fidelity Readiness Score
+                    </h4>
+                    <p class="text-xs text-muted mt-0.5">
+                      Your draft satisfies all platform accuracy and brand voice
+                      checks.
+                    </p>
                   </div>
                 </div>
 
                 <div class="space-y-2">
                   <div class="flex items-center gap-2.5 text-xs text-text">
-                    <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    <svg
+                      class="w-4 h-4 text-emerald-500 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span>Factual claims verified against reference sources</span>
+                    <span
+                      >Factual claims verified against reference sources</span
+                    >
                   </div>
                   <div class="flex items-center gap-2.5 text-xs text-text">
-                    <svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    <svg
+                      class="w-4 h-4 text-emerald-500 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"></path>
                     </svg>
-                    <span>No hallucination or temporal framing risks flagged</span>
+                    <span
+                      >No hallucination or temporal framing risks flagged</span
+                    >
                   </div>
                   <div class="flex items-center gap-2.5 text-xs text-text">
-                    <svg class="w-4 h-4 text-amber-500 shrink-0" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    <svg
+                      class="w-4 h-4 text-amber-500 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      ></path>
                     </svg>
-                    <span>Formatting: Meta description is 165/160 chars (slightly long)</span>
+                    <span
+                      >Formatting: Meta description is 165/160 chars (slightly
+                      long)</span
+                    >
                   </div>
                 </div>
               </div>
 
               <div class="flex gap-2">
-                <button class="flex-1 bg-surface border border-border hover:bg-surface-soft text-text text-xs font-semibold py-2 rounded-xl transition-colors">Reanalyze</button>
-                <button class="flex-1 bg-primary hover:bg-primary-deep text-white text-xs font-semibold py-2 rounded-xl transition-colors">Approve Draft</button>
+                <button
+                  class="flex-1 bg-surface border border-border hover:bg-surface-soft text-text text-xs font-semibold py-2 rounded-xl transition-colors"
+                  >Reanalyze</button
+                >
+                <button
+                  class="flex-1 bg-primary hover:bg-primary-deep text-on-primary text-xs font-semibold py-2 rounded-xl transition-colors"
+                  >Approve Draft</button
+                >
               </div>
             </div>
 
             <!-- Panel 4: SEO Pack -->
-            <div class="workflow-panel hidden flex flex-col h-full justify-between gap-6" data-step="4">
+            <div
+              class="workflow-panel hidden flex flex-col h-full justify-between gap-6"
+              data-step="4"
+            >
               <div>
-                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                <div
+                  class="flex items-center justify-between border-b border-border pb-4 mb-4"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">SEO Metadata Pack</span>
+                    <span
+                      class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"
+                    ></span>
+                    <span
+                      class="text-xs font-mono font-semibold uppercase tracking-wider text-muted"
+                      >SEO Metadata Pack</span
+                    >
                   </div>
-                  <span class="text-[10px] font-bold bg-primary/10 border border-primary/20 text-primary px-2.5 py-0.5 rounded-full">Optimized</span>
+                  <span
+                    class="text-[10px] font-bold bg-primary/10 border border-primary/20 text-primary px-2.5 py-0.5 rounded-full"
+                    >Optimized</span
+                  >
                 </div>
 
                 <div class="space-y-3.5">
                   <div class="space-y-1">
-                    <label class="text-[9px] font-bold uppercase tracking-wider text-muted">Generated Title</label>
-                    <div class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-text font-semibold">
-                      The Rise of Editorial Intelligence: Beyond Simple AI Writers
+                    <label
+                      class="text-[9px] font-bold uppercase tracking-wider text-muted"
+                      >Generated Title</label
+                    >
+                    <div
+                      class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-text font-semibold"
+                    >
+                      The Rise of Editorial Intelligence: Beyond Simple AI
+                      Writers
                     </div>
                   </div>
 
                   <div class="space-y-1">
-                    <label class="text-[9px] font-bold uppercase tracking-wider text-muted">SEO Search Slug</label>
-                    <div class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-primary font-mono truncate">
+                    <label
+                      class="text-[9px] font-bold uppercase tracking-wider text-muted"
+                      >SEO Search Slug</label
+                    >
+                    <div
+                      class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-primary font-mono truncate"
+                    >
                       rise-of-editorial-intelligence-eai
                     </div>
                   </div>
 
                   <div class="space-y-1">
-                    <label class="text-[9px] font-bold uppercase tracking-wider text-muted">Meta Description</label>
-                    <div class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-text leading-relaxed">
-                      Discover how EAI unifies writing, fact-checking, and CMS synchronization into a unified content workflow.
+                    <label
+                      class="text-[9px] font-bold uppercase tracking-wider text-muted"
+                      >Meta Description</label
+                    >
+                    <div
+                      class="bg-surface-soft border border-border rounded-lg p-2.5 text-xs text-text leading-relaxed"
+                    >
+                      Discover how EAI unifies writing, fact-checking, and CMS
+                      synchronization into a unified content workflow.
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="flex gap-2">
-                <button class="w-full bg-surface border border-border hover:bg-surface-soft text-text text-xs font-semibold py-2 rounded-xl transition-colors">Edit Metadata</button>
+                <button
+                  class="w-full bg-surface border border-border hover:bg-surface-soft text-text text-xs font-semibold py-2 rounded-xl transition-colors"
+                  >Edit Metadata</button
+                >
               </div>
             </div>
 
             <!-- Panel 5: Sync -->
-            <div class="workflow-panel hidden flex flex-col h-full justify-between gap-6" data-step="5">
+            <div
+              class="workflow-panel hidden flex flex-col h-full justify-between gap-6"
+              data-step="5"
+            >
               <div>
-                <div class="flex items-center justify-between border-b border-border pb-4 mb-4">
+                <div
+                  class="flex items-center justify-between border-b border-border pb-4 mb-4"
+                >
                   <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                    <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Direct CMS Connector</span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"
+                    ></span>
+                    <span
+                      class="text-xs font-mono font-semibold uppercase tracking-wider text-muted"
+                      >Direct CMS Connector</span
+                    >
                   </div>
-                  <span class="text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 px-2.5 py-0.5 rounded-full">Sync Finished</span>
+                  <span
+                    class="text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 px-2.5 py-0.5 rounded-full"
+                    >Sync Finished</span
+                  >
                 </div>
 
                 <div class="space-y-4">
                   <div>
-                    <label class="text-[10px] font-bold uppercase tracking-wider text-muted block mb-1">Target Integration</label>
-                    <div class="border border-border rounded-xl p-3 flex items-center justify-between bg-surface-soft/60">
+                    <label
+                      class="text-[10px] font-bold uppercase tracking-wider text-muted block mb-1"
+                      >Target Integration</label
+                    >
+                    <div
+                      class="border border-border rounded-xl p-3 flex items-center justify-between bg-surface-soft/60"
+                    >
                       <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 bg-primary/10 rounded flex items-center justify-center font-bold text-xs text-primary font-mono">W</div>
-                        <span class="text-xs font-semibold text-text">CMS Integration</span>
+                        <div
+                          class="w-6 h-6 bg-primary/10 rounded flex items-center justify-center font-bold text-xs text-primary font-mono"
+                        >
+                          W
+                        </div>
+                        <span class="text-xs font-semibold text-text"
+                          >CMS Integration</span
+                        >
                       </div>
-                      <span class="text-[10px] font-bold text-emerald-500 uppercase">Connected</span>
+                      <span
+                        class="text-[10px] font-bold text-emerald-500 uppercase"
+                        >Connected</span
+                      >
                     </div>
                   </div>
 
                   <!-- Simulated Progress -->
-                  <div class="space-y-2 border border-border p-3.5 rounded-xl bg-surface-soft/30">
-                    <div class="flex items-center justify-between text-xs font-semibold text-text">
+                  <div
+                    class="space-y-2 border border-border p-3.5 rounded-xl bg-surface-soft/30"
+                  >
+                    <div
+                      class="flex items-center justify-between text-xs font-semibold text-text"
+                    >
                       <span>Syncing Post Assets & Meta...</span>
                       <span class="text-emerald-500">100%</span>
                     </div>
-                    <div class="w-full bg-border rounded-full h-1.5 overflow-hidden">
-                      <div class="bg-emerald-500 h-full rounded-full" style="width: 100%"></div>
+                    <div
+                      class="w-full bg-border rounded-full h-1.5 overflow-hidden"
+                    >
+                      <div
+                        class="bg-emerald-500 h-full rounded-full"
+                        style="width: 100%"
+                      >
+                      </div>
                     </div>
-                    <div class="space-y-1 mt-2 text-[10px] font-mono text-muted">
-                      <p class="text-emerald-500">✔ Converting article draft to clean HTML structure... Done</p>
-                      <p class="text-emerald-500">✔ Uploading inline asset images to media library... Done</p>
-                      <p class="text-emerald-500">✔ Syncing Yoast-ready SEO metadata fields... Done</p>
-                      <p class="text-emerald-500">✔ Article successfully exported as a CMS draft</p>
+                    <div
+                      class="space-y-1 mt-2 text-[10px] font-mono text-muted"
+                    >
+                      <p class="text-emerald-500">
+                        ✔ Converting article draft to clean HTML structure...
+                        Done
+                      </p>
+                      <p class="text-emerald-500">
+                        ✔ Uploading inline asset images to media library... Done
+                      </p>
+                      <p class="text-emerald-500">
+                        ✔ Syncing Yoast-ready SEO metadata fields... Done
+                      </p>
+                      <p class="text-emerald-500">
+                        ✔ Article successfully exported as a CMS draft
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <a href="https://blog.envoyou.com" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 no-underline">
+              <a
+                href="https://blog.envoyou.com"
+                target="_blank"
+                class="w-full bg-emerald-500 hover:bg-emerald-600 text-on-primary text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 no-underline"
+              >
                 Open Draft in CMS
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                <svg
+                  class="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7v10"></path>
                 </svg>
               </a>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
 
@@ -467,83 +855,203 @@ import Footer from '../components/Footer.astro';
     <section class="max-w-5xl mx-auto px-6 py-24 border-t border-border/60">
       <div class="text-center mb-16">
         <span class="section-label">The EAI Transition</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight">The Shift: From Drafts to Done</h2>
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight"
+        >
+          The Shift: From Drafts to Done
+        </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
         <!-- Before Card -->
-        <div class="card p-8 border-dashed border-border flex flex-col justify-between opacity-85 hover:opacity-100 transition-opacity bg-surface/50">
+        <div
+          class="card p-8 border-dashed border-border flex flex-col justify-between opacity-85 hover:opacity-100 transition-opacity bg-surface/50"
+        >
           <div>
             <div class="flex items-center gap-2 mb-6">
-              <span class="px-2.5 py-1 bg-muted/10 text-muted font-bold text-[10px] uppercase tracking-wider rounded border border-border">Before EAI</span>
-              <span class="text-xs text-muted font-medium">The Fragmented Mess</span>
+              <span
+                class="px-2.5 py-1 bg-muted/10 text-muted font-bold text-[10px] uppercase tracking-wider rounded border border-border"
+                >Before EAI</span
+              >
+              <span class="text-xs text-muted font-medium"
+                >The Fragmented Mess</span
+              >
             </div>
             <ul class="space-y-4">
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  class="w-4 h-4 text-red-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                <span class="text-sm text-text/80">Copying headings and keyword ideas across 4–6 different browser tabs.</span>
+                <span class="text-sm text-text/80"
+                  >Copying headings and keyword ideas across 4–6 different
+                  browser tabs.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  class="w-4 h-4 text-red-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                <span class="text-sm text-text/80">Writing drafts blindly without active SEO parameters or SERP insights.</span>
+                <span class="text-sm text-text/80"
+                  >Writing drafts blindly without active SEO parameters or SERP
+                  insights.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  class="w-4 h-4 text-red-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                <span class="text-sm text-text/80">Heavy revisions required to fix AI inaccuracies, fluff, and format issues.</span>
+                <span class="text-sm text-text/80"
+                  >Heavy revisions required to fix AI inaccuracies, fluff, and
+                  format issues.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  class="w-4 h-4 text-red-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-                <span class="text-sm text-text/80">Manual layout alignment, tag binding, and CMS copy-paste leaks.</span>
+                <span class="text-sm text-text/80"
+                  >Manual layout alignment, tag binding, and CMS copy-paste
+                  leaks.</span
+                >
               </li>
             </ul>
           </div>
-          <p class="text-xs font-mono text-muted mt-8">Workflow time: ~3-5 hours per article</p>
+          <p class="text-xs font-mono text-muted mt-8">
+            Workflow time: ~3-5 hours per article
+          </p>
         </div>
 
         <!-- After Card -->
-        <div class="card p-8 border-primary/50 relative overflow-hidden flex flex-col justify-between shadow-lg">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div
+          class="card p-8 border-primary/50 relative overflow-hidden flex flex-col justify-between shadow-lg"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"
+          >
+          </div>
           <div>
             <div class="flex items-center gap-2 mb-6">
-              <span class="px-2.5 py-1 bg-primary/15 text-primary font-bold text-[10px] uppercase tracking-wider rounded border border-primary/20">After EAI</span>
-              <span class="text-xs text-primary font-semibold">The Envoyou Way</span>
+              <span
+                class="px-2.5 py-1 bg-primary/15 text-primary font-bold text-[10px] uppercase tracking-wider rounded border border-primary/20"
+                >After EAI</span
+              >
+              <span class="text-xs text-primary font-semibold"
+                >The Envoyou Way</span
+              >
             </div>
             <ul class="space-y-4">
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                <svg
+                  class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-text">1 unified workspace with keyword metrics and competitor SERP structures.</span>
+                <span class="text-sm text-text"
+                  >1 unified workspace with keyword metrics and competitor SERP
+                  structures.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                <svg
+                  class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-text">Grounded drafting that uses your uploaded context documents directly.</span>
+                <span class="text-sm text-text"
+                  >Grounded drafting that uses your uploaded context documents
+                  directly.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                <svg
+                  class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-text">Automated, real-time Quality Gate checks ensuring search and text integrity.</span>
+                <span class="text-sm text-text"
+                  >Automated, real-time Quality Gate checks ensuring search and
+                  text integrity.</span
+                >
               </li>
               <li class="flex items-start gap-3">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                <svg
+                  class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
                 </svg>
-                <span class="text-sm text-text">One-click push sync direct to your CMS without layout breaks.</span>
+                <span class="text-sm text-text"
+                  >One-click push sync direct to your CMS without layout breaks.</span
+                >
               </li>
             </ul>
           </div>
-          <p class="text-xs font-mono text-primary font-bold mt-8">Workflow time: ~10-30 minutes per article</p>
+          <p class="text-xs font-mono text-primary font-bold mt-8">
+            Workflow time: ~10-30 minutes per article
+          </p>
         </div>
       </div>
     </section>
@@ -552,9 +1060,14 @@ import Footer from '../components/Footer.astro';
     <section class="max-w-6xl mx-auto px-6 py-20 border-t border-border/60">
       <div class="text-center mb-16">
         <span class="section-label">Target Audience</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight">Who is Envoyou For?</h2>
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight"
+        >
+          Who is Envoyou For?
+        </h2>
         <p class="text-muted mt-3 text-sm sm:text-base max-w-lg mx-auto">
-          We built the Editorial Intelligence workspace for publishers who demand search visibility without dropping editorial standards.
+          We built the Editorial Intelligence workspace for publishers who
+          demand search visibility without dropping editorial standards.
         </p>
       </div>
 
@@ -563,86 +1076,172 @@ import Footer from '../components/Footer.astro';
           <div>
             <h3 class="font-extrabold text-text text-lg">Indie Bloggers</h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              For creators looking to capture SEO rankings and traffic from data-backed keywords without getting bogged down by complicated, expensive operational stacks.
+              For creators looking to capture SEO rankings and traffic from
+              data-backed keywords without getting bogged down by complicated,
+              expensive operational stacks.
             </p>
           </div>
-          <span class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider">Streamlined Traffic</span>
+          <span
+            class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider"
+            >Streamlined Traffic</span
+          >
         </div>
 
         <div class="card p-6 flex flex-col justify-between">
           <div>
             <h3 class="font-extrabold text-text text-lg">Content Builders</h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              For professional writers who need to consistently produce and publish high-quality content assets on a tight schedule without losing formatting or structural consistency.
+              For professional writers who need to consistently produce and
+              publish high-quality content assets on a tight schedule without
+              losing formatting or structural consistency.
             </p>
           </div>
-          <span class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider">Consistent Scaling</span>
+          <span
+            class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider"
+            >Consistent Scaling</span
+          >
         </div>
 
         <div class="card p-6 flex flex-col justify-between">
           <div>
-            <h3 class="font-extrabold text-text text-lg">Small to Mid-sized Publishers</h3>
+            <h3 class="font-extrabold text-text text-lg">
+              Small to Mid-sized Publishers
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              For digital magazines and editorial teams seeking operational efficiency, unified review structures, and direct CMS pipeline exports that require minimal manual polishing.
+              For digital magazines and editorial teams seeking operational
+              efficiency, unified review structures, and direct CMS pipeline
+              exports that require minimal manual polishing.
             </p>
           </div>
-          <span class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider">Operational Velocity</span>
+          <span
+            class="text-[10px] font-mono text-primary font-bold mt-6 uppercase tracking-wider"
+            >Operational Velocity</span
+          >
         </div>
       </div>
 
-      <div class="mt-12 bg-surface border border-border p-6 rounded-2xl max-w-3xl mx-auto flex items-start gap-4">
-        <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <div
+        class="mt-12 bg-surface border border-border p-6 rounded-2xl max-w-3xl mx-auto flex items-start gap-4"
+      >
+        <div
+          class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
           </svg>
         </div>
         <p class="text-xs text-muted leading-relaxed">
-          <strong class="text-text">Note:</strong> If your core goal is simply to bulk-generate thousands of generic, low-quality AI texts to spam search engines, Envoyou may not align with your workflow. But if your goal is to finish and publish search-aligned, credible, and polished content that readers value, Envoyou is built directly for you.
+          <strong class="text-text">Note:</strong> If your core goal is simply to
+          bulk-generate thousands of generic, low-quality AI texts to spam search
+          engines, Envoyou may not align with your workflow. But if your goal is to
+          finish and publish search-aligned, credible, and polished content that readers
+          value, Envoyou is built directly for you.
         </p>
       </div>
     </section>
 
     <!-- ── Why Envoyou is Different ── -->
-    <section class="max-w-[90rem] mx-auto px-6 py-20 border-t border-border/60 bg-surface-soft/20">
+    <section
+      class="max-w-[90rem] mx-auto px-6 py-20 border-t border-border/60 bg-surface-soft/20"
+    >
       <div class="max-w-4xl mx-auto text-center mb-16">
         <span class="section-label">Core Philosophy</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight">Why Envoyou is Different</h2>
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight"
+        >
+          Why Envoyou is Different
+        </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <div class="card p-8">
-          <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+          <div
+            class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+              ></path>
             </svg>
           </div>
-          <h3 class="font-extrabold text-text text-lg">Not a Simple AI Writer</h3>
+          <h3 class="font-extrabold text-text text-lg">
+            Not a Simple AI Writer
+          </h3>
           <p class="text-xs text-muted mt-3 leading-relaxed">
-            We don't measure the value of our system by how many words it can generate. Envoyou is built to refine, structure, and fact-verify draft sections using your custom contextual guidelines, keeping your standards intact.
+            We don't measure the value of our system by how many words it can
+            generate. Envoyou is built to refine, structure, and fact-verify
+            draft sections using your custom contextual guidelines, keeping your
+            standards intact.
           </p>
         </div>
 
         <div class="card p-8">
-          <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.045 9.045 0 00-6-2.24 9.048 9.048 0 00-6 2.24M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0" />
+          <div
+            class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M18 18.72a9.045 9.045 0 00-6-2.24 9.048 9.048 0 00-6 2.24M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0"
+              ></path>
             </svg>
           </div>
           <h3 class="font-extrabold text-text text-lg">Workflow-Oriented</h3>
           <p class="text-xs text-muted mt-3 leading-relaxed">
-            Other platforms offer a disjointed toolbox of standalone generators and checkers. Envoyou is engineered as a single, connected conveyor belt. Every step passes its data directly to the next phase automatically.
+            Other platforms offer a disjointed toolbox of standalone generators
+            and checkers. Envoyou is engineered as a single, connected conveyor
+            belt. Every step passes its data directly to the next phase
+            automatically.
           </p>
         </div>
 
         <div class="card p-8">
-          <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-6"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
           <h3 class="font-extrabold text-text text-lg">Output-Focused</h3>
           <p class="text-xs text-muted mt-3 leading-relaxed">
-            Speed means nothing if the resulting draft spends days stuck in the review queue. We focus on readiness—generating fact-grounded drafts and auditing layout assets so you can publish immediately.
+            Speed means nothing if the resulting draft spends days stuck in the
+            review queue. We focus on readiness—generating fact-grounded drafts
+            and auditing layout assets so you can publish immediately.
           </p>
         </div>
       </div>
@@ -651,32 +1250,86 @@ import Footer from '../components/Footer.astro';
     <!-- ── Founder Section ── -->
     <section class="max-w-4xl mx-auto px-6 py-24 border-t border-border/60">
       <div class="card p-8 sm:p-12 relative overflow-hidden bg-surface">
-        <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-transparent pointer-events-none"></div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative">
+        <div
+          class="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-transparent pointer-events-none"
+        >
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative"
+        >
           <!-- Text -->
           <div class="md:col-span-8">
-            <span class="text-xs font-mono font-bold text-primary uppercase tracking-widest block mb-2">The Founder's Journey</span>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-text tracking-tight">Husni Kusuma</h3>
-            <p class="text-xs text-primary font-semibold uppercase tracking-wider mt-1">Founder & Lead Developer</p>
-            
+            <span
+              class="text-xs font-mono font-bold text-primary uppercase tracking-widest block mb-2"
+              >The Founder's Journey</span
+            >
+            <h3
+              class="text-2xl sm:text-3xl font-extrabold text-text tracking-tight"
+            >
+              Husni Kusuma
+            </h3>
+            <p
+              class="text-xs text-primary font-semibold uppercase tracking-wider mt-1"
+            >
+              Founder & Lead Developer
+            </p>
+
             <p class="text-xs sm:text-sm text-muted mt-4 leading-relaxed">
-              Envoyou was born directly from real-world frustration. While managing multiple SEO content operations, Husni Kusuma experienced first-hand how inefficient, error-prone, and fragmented the editorial loop was.
+              Envoyou was born directly from real-world frustration. While
+              managing multiple SEO content operations, Husni Kusuma experienced
+              first-hand how inefficient, error-prone, and fragmented the
+              editorial loop was.
             </p>
             <p class="text-xs sm:text-sm text-muted mt-3 leading-relaxed">
-              Rather than patching the problem with yet another generic tool, he set out to build Envoyou. The goal is simple: construct a unified, reliable infrastructure that simplifies the journey from raw draft to public reach.
+              Rather than patching the problem with yet another generic tool, he
+              set out to build Envoyou. The goal is simple: construct a unified,
+              reliable infrastructure that simplifies the journey from raw draft
+              to public reach.
             </p>
 
             <div class="flex items-center gap-4 mt-6">
-              <a href="https://github.com/hk-dev13" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-text transition-colors" aria-label="GitHub">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <a
+                href="https://github.com/hk-dev13"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted hover:text-text transition-colors"
+                aria-label="GitHub"
+              >
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                  ></path>
                   <path d="M9 18c-4.51 2-5-2-7-2"></path>
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/in/husni-kusuma" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-text transition-colors" aria-label="LinkedIn">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <a
+                href="https://www.linkedin.com/in/husni-kusuma"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted hover:text-text transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
                   <rect x="2" y="9" width="4" height="12"></rect>
                   <circle cx="4" cy="4" r="2"></circle>
                 </svg>
@@ -686,10 +1339,25 @@ import Footer from '../components/Footer.astro';
 
           <!-- Decorative Brand Icon/Avatar representation -->
           <div class="md:col-span-4 flex justify-center">
-            <div class="w-32 h-32 rounded-3xl bg-surface-soft border border-border flex items-center justify-center shadow-lg relative group overflow-hidden">
-              <div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
-              <svg class="w-16 h-16 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+            <div
+              class="w-32 h-32 rounded-3xl bg-surface-soft border border-border flex items-center justify-center shadow-lg relative group overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"
+              >
+              </div>
+              <svg
+                class="w-16 h-16 text-primary"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                ></path>
               </svg>
             </div>
           </div>
@@ -701,54 +1369,124 @@ import Footer from '../components/Footer.astro';
     <section class="max-w-6xl mx-auto px-6 py-20 border-t border-border/60">
       <div class="text-center mb-16">
         <span class="section-label">Our Architecture</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight">The Envoyou Ecosystem</h2>
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-text tracking-tight"
+        >
+          The Envoyou Ecosystem
+        </h2>
         <p class="text-muted mt-3 text-sm sm:text-base max-w-lg mx-auto">
-          Envoyou is engineered as a three-pillar connected network to coordinate central research, editorial execution, and distribution.
+          Envoyou is engineered as a three-pillar connected network to
+          coordinate central research, editorial execution, and distribution.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <a href="https://www.envoyou.com" class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group no-underline">
+        <a
+          href="https://www.envoyou.com"
+          class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group no-underline"
+        >
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider">Central Portal</span>
-              <svg class="w-4 h-4 text-muted group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24" />
+              <span
+                class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider"
+                >Central Portal</span
+              >
+              <svg
+                class="w-4 h-4 text-muted group-hover:text-primary transition-colors"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24"
+                ></path>
               </svg>
             </div>
-            <h3 class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors">envoyou.com</h3>
+            <h3
+              class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors"
+            >
+              envoyou.com
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              The public hub containing system specifications, resource pages, release updates, and company insights.
+              The public hub containing system specifications, resource pages,
+              release updates, and company insights.
             </p>
           </div>
         </a>
 
-        <a href="https://eai.envoyou.com" target="_blank" class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group border-primary/30 no-underline">
+        <a
+          href="https://eai.envoyou.com"
+          target="_blank"
+          class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group border-primary/30 no-underline"
+        >
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider">EAI Platform</span>
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24" />
+              <span
+                class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider"
+                >EAI Platform</span
+              >
+              <svg
+                class="w-4 h-4 text-primary"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24"
+                ></path>
               </svg>
             </div>
-            <h3 class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors">eai.envoyou.com</h3>
+            <h3
+              class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors"
+            >
+              eai.envoyou.com
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              The primary Editorial Intelligence workspace supporting drafting, outline parsing, quality verification, and CMS synchronization.
+              The primary Editorial Intelligence workspace supporting drafting,
+              outline parsing, quality verification, and CMS synchronization.
             </p>
           </div>
         </a>
 
-        <a href="https://blog.envoyou.com" target="_blank" class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group no-underline">
+        <a
+          href="https://blog.envoyou.com"
+          target="_blank"
+          class="card p-6 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group no-underline"
+        >
           <div>
             <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider">Distribution</span>
-              <svg class="w-4 h-4 text-muted group-hover:text-primary transition-colors" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24" />
+              <span
+                class="text-[10px] font-mono text-primary font-bold uppercase tracking-wider"
+                >Distribution</span
+              >
+              <svg
+                class="w-4 h-4 text-muted group-hover:text-primary transition-colors"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6a9 9 0 011.83 5.4v.6L19.5 12l-4.17 6v.6A9 9 0 0113.5 24"
+                ></path>
               </svg>
             </div>
-            <h3 class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors">blog.envoyou.com</h3>
+            <h3
+              class="font-extrabold text-text text-lg mt-4 group-hover:text-primary transition-colors"
+            >
+              blog.envoyou.com
+            </h3>
             <p class="text-xs text-muted mt-2 leading-relaxed">
-              Our active publishing network showing EAI-generated content in action, proving our layout, speed, and ranking model.
+              Our active publishing network showing EAI-generated content in
+              action, proving our layout, speed, and ranking model.
             </p>
           </div>
         </a>
@@ -756,13 +1494,20 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ── Closing Tagline ── -->
-    <section class="max-w-4xl mx-auto px-6 py-20 text-center relative border-t border-border/60">
-      <h2 class="text-3xl sm:text-5xl font-black text-text tracking-tight leading-tight">
+    <section
+      class="max-w-4xl mx-auto px-6 py-20 text-center relative border-t border-border/60"
+    >
+      <h2
+        class="text-3xl sm:text-5xl font-black text-text tracking-tight leading-tight"
+      >
         Ready to build content that's<br />
         <span class="text-primary">actually ready to publish?</span>
       </h2>
-      <p class="text-muted mt-4 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-        Most AI writing tools help you write. Envoyou helps you finish. In a real publishing operation, that makes all the difference.
+      <p
+        class="text-muted mt-4 text-sm sm:text-base max-w-md mx-auto leading-relaxed"
+      >
+        Most AI writing tools help you write. Envoyou helps you finish. In a
+        real publishing operation, that makes all the difference.
       </p>
       <div class="mt-8">
         <a
@@ -777,7 +1522,6 @@ import Footer from '../components/Footer.astro';
         </a>
       </div>
     </section>
-
   </main>
 
   <Footer />
@@ -794,23 +1538,49 @@ import Footer from '../components/Footer.astro';
 
       // Update tab active classes
       tabs.forEach((t) => {
-        t.classList.remove("active", "border-primary", "bg-primary/5", "dark:bg-primary/10");
+        t.classList.remove(
+          "active",
+          "border-primary",
+          "bg-primary/5",
+          "dark:bg-primary/10",
+        );
         t.classList.add("border-transparent", "hover:bg-surface-soft");
-        
+
         const numBox = t.querySelector("div");
         if (numBox) {
-          numBox.classList.remove("bg-primary/10", "text-primary", "border-primary/20");
-          numBox.classList.add("bg-surface-soft", "text-muted", "border-border");
+          numBox.classList.remove(
+            "bg-primary/10",
+            "text-primary",
+            "border-primary/20",
+          );
+          numBox.classList.add(
+            "bg-surface-soft",
+            "text-muted",
+            "border-border",
+          );
         }
       });
-      
-      tab.classList.add("active", "border-primary", "bg-primary/5", "dark:bg-primary/10");
+
+      tab.classList.add(
+        "active",
+        "border-primary",
+        "bg-primary/5",
+        "dark:bg-primary/10",
+      );
       tab.classList.remove("border-transparent", "hover:bg-surface-soft");
-      
+
       const activeNumBox = tab.querySelector("div");
       if (activeNumBox) {
-        activeNumBox.classList.remove("bg-surface-soft", "text-muted", "border-border");
-        activeNumBox.classList.add("bg-primary/10", "text-primary", "border-primary/20");
+        activeNumBox.classList.remove(
+          "bg-surface-soft",
+          "text-muted",
+          "border-border",
+        );
+        activeNumBox.classList.add(
+          "bg-primary/10",
+          "text-primary",
+          "border-primary/20",
+        );
       }
 
       // Update panel visibility with fade effect
