@@ -19,9 +19,18 @@ const outcomes = [
         Editorial Intelligence for Modern Publishing
       </div>
 
-      <h1 class="text-[clamp(2.5rem,7vw,5.5rem)] font-black tracking-[-0.055em] leading-[0.96] text-text max-w-5xl">
-        Turn raw drafts into verified,<br class="hidden sm:block" />
-        <span class="text-primary">publication-ready articles.</span>
+      <h1
+        class="relative text-[clamp(2.5rem,7vw,5.5rem)] font-black tracking-[-0.055em] leading-[0.96] text-text max-w-5xl"
+        aria-label="Turn raw drafts into verified, publication-ready articles."
+      >
+        <span class="invisible" aria-hidden="true">
+          Turn raw drafts into verified,<br class="hidden sm:block" />
+          <span class="sm:whitespace-nowrap">publication-ready articles.</span>
+        </span>
+        <span class="absolute inset-0" aria-hidden="true">
+          <span data-scramble-text="Turn raw drafts into verified,">Turn raw drafts into verified,</span><br class="hidden sm:block" />
+          <span class="text-primary sm:whitespace-nowrap" data-scramble-text="publication-ready articles.">publication-ready articles.</span>
+        </span>
       </h1>
 
       <p class="section-subtitle mt-7 max-w-2xl text-lg">
@@ -65,3 +74,120 @@ const outcomes = [
     </div>
   </div>
 </section>
+
+<script>
+  const FRAME_INTERVAL_MS = 32;
+  const LINE_DURATION_MS = 1200; // Diturunkan ke 1.2s agar tidak terlalu lama menunggu
+  const BETWEEN_LINES_DELAY_MS = 150; // Dinaikkan sedikit agar jeda antar kalimat terasa natural
+  const LINE_REVEAL_DURATION_MS = 420;
+
+  // Kumpulan karakter acak futuristik kustom
+  const SCRAMBLE_POOL = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+/=";
+
+  const hero = document.querySelector<HTMLElement>('#hero');
+  const lines = hero
+    ? Array.from(hero.querySelectorAll<HTMLElement>('[data-scramble-text]'))
+    : [];
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const wait = (duration: number) =>
+    new Promise<void>((resolve) => window.setTimeout(resolve, duration));
+
+  const scrambleLine = (element: HTMLElement) =>
+    new Promise<void>((resolve) => {
+      const target = element.dataset.scrambleText ?? element.textContent ?? '';
+      const targetCharacters = Array.from(target);
+      
+      // Ambil indeks posisi karakter yang valid di awal (bukan di dalam loop frame)
+      const letterPositions = targetCharacters
+        .map((char, index) => (/[A-Za-z0-9]/.test(char) ? index : -1))
+        .filter((index) => index >= 0);
+
+      let startedAt: number | undefined;
+      let lastRenderedAt = -Infinity;
+
+      const renderFrame = (timestamp: number) => {
+        startedAt ??= timestamp;
+
+        const elapsed = timestamp - startedAt;
+        const progress = Math.min(elapsed / LINE_DURATION_MS, 1);
+        
+        // Kalkulasi progres penguncian huruf dari kiri ke kanan
+        const lockedCount = Math.floor(progress * letterPositions.length);
+        const lockedThrough = letterPositions[lockedCount - 1] ?? -1;
+
+        if (timestamp - lastRenderedAt >= FRAME_INTERVAL_MS || progress === 1) {
+          element.innerHTML = targetCharacters
+            .map((character, index) => {
+              // Jika berupa spasi/simbol atau sudah waktunya mengunci, tampilkan teks asli
+              if (!/[A-Za-z0-9]/.test(character) || index <= lockedThrough) {
+                return character;
+              }
+
+              // Suntikkan karakter acak eksternal dengan gaya redup (Tailwind)
+              const randomChar = SCRAMBLE_POOL[Math.floor(Math.random() * SCRAMBLE_POOL.length)];
+              return `<span class="opacity-40 font-mono text-sky-400">${randomChar}</span>`;
+            })
+            .join('');
+          
+          lastRenderedAt = timestamp;
+        }
+
+        if (progress < 1) {
+          window.requestAnimationFrame(renderFrame);
+          return;
+        }
+
+        // Kembalikan ke teks murni bawaan saat animasi selesai penuh
+        element.textContent = target;
+        resolve();
+      };
+
+      window.requestAnimationFrame(renderFrame);
+    });
+
+  const revealLine = async (element: HTMLElement) => {
+    element.style.opacity = '1';
+    const animation = element.animate(
+      [
+        { opacity: 0, transform: 'translateY(4px)' },
+        { opacity: 1, transform: 'translateY(0px)' },
+      ],
+      {
+        duration: LINE_REVEAL_DURATION_MS,
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        fill: 'both',
+      },
+    );
+
+    await animation.finished;
+    animation.cancel();
+    element.style.opacity = '';
+  };
+
+  const runScrambleSequence = async () => {
+    if (lines.length === 0) return;
+
+    // Eksekusi baris pertama terlebih dahulu secara mandiri
+    await scrambleLine(lines[0]);
+
+    // Eksekusi sisa baris berikutnya secara berurutan satu per satu
+    for (let i = 1; i < lines.length; i++) {
+      const line = lines[i];
+      await wait(BETWEEN_LINES_DELAY_MS);
+      
+      // Jalankan animasi kemunculan pudar berbarengan dengan proses pengacakan teksnya
+      await Promise.all([scrambleLine(line), revealLine(line)]);
+    }
+  };
+
+  if (!prefersReducedMotion && lines.length > 0) {
+    // Sembunyikan semua baris setelah baris pertama di awal render untuk mencegah teks berkedip
+    lines.slice(1).forEach((line) => {
+      line.style.opacity = '0';
+    });
+
+    void runScrambleSequence();
+  }
+</script>
+
