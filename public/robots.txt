@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://envoyou.com/sitemap-index.xml
+Sitemap: https://www.envoyou.com/sitemap-index.xml

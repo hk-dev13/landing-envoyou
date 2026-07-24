@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import stats from '../../data/stats.json';
 
-const canonicalUrl = 'https://envoyou.com/case-studies/e-blog/';
+const canonicalUrl = 'https://www.envoyou.com/case-studies/e-blog/';
 const updatedIso = '2026-07-24';
 const updatedLabel = stats.blogUpdatedAt || '24 July 2026';
 
@@ -17,10 +17,10 @@ const caseStudyStructuredData = {
   dateModified: updatedIso,
   author: {
     '@type': 'Organization',
-    '@id': 'https://envoyou.com/#organization',
+    '@id': 'https://www.envoyou.com/#organization',
   },
   publisher: {
-    '@id': 'https://envoyou.com/#organization',
+    '@id': 'https://www.envoyou.com/#organization',
   },
   mainEntityOfPage: {
     '@id': `${canonicalUrl}#webpage`,

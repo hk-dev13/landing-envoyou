@@ -53,7 +53,7 @@ const {
   lastUpdatedIso,
 } = Astro.props;
 
-const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://envoyou.com').toString();
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://www.envoyou.com').toString();
 const pageStructuredData = [
   {
     '@type': 'WebPage',
@@ -62,10 +62,10 @@ const pageStructuredData = [
     name: metaTitle,
     description,
     isPartOf: {
-      '@id': 'https://envoyou.com/#website',
+      '@id': 'https://www.envoyou.com/#website',
     },
     about: {
-      '@id': 'https://envoyou.com/#eai',
+      '@id': 'https://www.envoyou.com/#eai',
     },
     ...(lastUpdatedIso ? { dateModified: lastUpdatedIso } : {}),
     inLanguage: 'en',
@@ -76,7 +76,7 @@ const pageStructuredData = [
     name: title,
     description,
     provider: {
-      '@id': 'https://envoyou.com/#organization',
+      '@id': 'https://www.envoyou.com/#organization',
     },
     url: canonicalUrl,
   },

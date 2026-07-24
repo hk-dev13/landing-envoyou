@@ -17,8 +17,8 @@ const {
   structuredData = [],
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://envoyou.com");
-const ogImageURL = new URL(ogImage, Astro.site ?? "https://envoyou.com");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://www.envoyou.com");
+const ogImageURL = new URL(ogImage, Astro.site ?? "https://www.envoyou.com");
 
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const pageStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
@@ -27,10 +27,10 @@ const structuredDataGraph = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://envoyou.com/#organization",
+      "@id": "https://www.envoyou.com/#organization",
       name: "Envoyou",
-      url: "https://envoyou.com/",
-      logo: "https://envoyou.com/favicon.svg",
+      url: "https://www.envoyou.com/",
+      logo: "https://www.envoyou.com/favicon.svg",
       sameAs: [
         "https://github.com/Envoyou",
         "https://www.linkedin.com/in/husni-kusuma",
@@ -39,11 +39,11 @@ const structuredDataGraph = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://envoyou.com/#website",
-      url: "https://envoyou.com/",
+      "@id": "https://www.envoyou.com/#website",
+      url: "https://www.envoyou.com/",
       name: "Envoyou",
       publisher: {
-        "@id": "https://envoyou.com/#organization",
+        "@id": "https://www.envoyou.com/#organization",
       },
       inLanguage: "en",
     },
