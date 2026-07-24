@@ -2,12 +2,13 @@
 import '../styles/global.css';
 import BackToTop from '../components/BackToTop.astro';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
+import type { JsonObject } from '../types/json';
 
 export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  structuredData?: JsonObject | JsonObject[];
 }
 
 const {

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from './Navbar.astro';
 import Footer from './Footer.astro';
+import type { JsonObject } from '../types/json';
 
 type ContentItem = {
   title: string;
@@ -54,7 +55,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://www.envoyou.com').toString();
-const pageStructuredData = [
+const pageStructuredData: JsonObject[] = [
   {
     '@type': 'WebPage',
     '@id': `${canonicalUrl}#webpage`,
