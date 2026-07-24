@@ -8,6 +8,7 @@ const outcomes = [
 
 <section
   id="hero"
+  data-scroll-section
   class="relative min-h-[78vh] flex items-center pt-20 overflow-hidden"
 >
   <div class="hero-bg"></div>
@@ -20,15 +21,19 @@ const outcomes = [
       </div>
 
       <h1
-        class="relative text-[clamp(2.5rem,7vw,5.5rem)] font-black tracking-[-0.055em] leading-[0.96] text-text max-w-5xl"
+        class="relative text-[clamp(2.25rem,7vw,4.25rem)] font-black tracking-[-0.025em] leading-[0.96] text-text max-w-5xl"
         aria-label="Turn raw drafts into verified, publication-ready articles."
       >
+        <!-- Invisible placeholder — holds stable layout during scramble animation -->
         <span class="invisible" aria-hidden="true">
           Turn raw drafts into verified,<br class="hidden sm:block" />
+          <span class="sm:hidden">&nbsp;</span>
           <span class="sm:whitespace-nowrap">publication-ready articles.</span>
         </span>
+        <!-- Absolute overlay — animates without causing layout shift -->
         <span class="absolute inset-0" aria-hidden="true">
           <span data-scramble-text="Turn raw drafts into verified,">Turn raw drafts into verified,</span><br class="hidden sm:block" />
+          <span class="sm:hidden">&nbsp;</span>
           <span class="text-primary sm:whitespace-nowrap" data-scramble-text="publication-ready articles.">publication-ready articles.</span>
         </span>
       </h1>
@@ -63,8 +68,8 @@ const outcomes = [
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-14 pt-8 border-t border-border">
         {outcomes.map((outcome) => (
-          <div class="flex items-start gap-3 rounded-2xl border border-border bg-surface/70 px-4 py-4 backdrop-blur-sm">
-            <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <div class="flex items-center gap-3 rounded-2xl border border-border bg-surface/70 px-4 py-4 backdrop-blur-sm">
+            <svg class="w-4 h-4 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M20 6L9 17l-5-5"/>
             </svg>
             <p class="text-sm font-semibold leading-5 text-text">{outcome}</p>

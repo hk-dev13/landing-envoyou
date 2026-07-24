@@ -1,0 +1,312 @@
+---
+// ScrollSystem.astro
+---
+
+<div class="scroll-system pointer-events-none" id="scroll-system-wrapper">
+  <!-- Scroll Spy Track (Desktop Only) -->
+  <div class="scroll-system__track relative w-[2px] mb-2 hidden md:block" id="scroll-system-track">
+    <!-- Background Line -->
+    <div class="absolute inset-0 bg-border/40 rounded-full"></div>
+    
+    <!-- Progress Line -->
+    <div 
+      class="scroll-system__progress absolute inset-y-0 left-0 w-full bg-primary rounded-full origin-top scale-y-0"
+      id="scroll-system-progress"
+      style="transition: transform 0.1s ease-out;"
+    ></div>
+    
+    <!-- Dots Container -->
+    <div class="scroll-system__dots absolute inset-0 w-full" id="scroll-system-dots"></div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button
+    id="scroll-system-button"
+    type="button"
+    class="scroll-system__button relative flex items-center justify-center w-11 h-11 rounded-full border border-transparent md:border-border bg-surface/80 text-muted shadow-lg backdrop-blur-md transition-all duration-300 ease-out pointer-events-auto"
+    aria-label="Back to top"
+    data-active="false"
+  >
+    <!-- Circular Progress (Mobile Only) -->
+    <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none md:hidden" viewBox="0 0 44 44">
+      <!-- Background ring -->
+      <circle cx="22" cy="22" r="21" fill="none" stroke="currentColor" stroke-width="2" class="text-border" />
+      <!-- Progress ring -->
+      <circle 
+        id="scroll-system-ring" 
+        cx="22" cy="22" r="21" fill="none" stroke="currentColor" stroke-width="2" 
+        class="text-primary transition-all duration-75 ease-out" 
+        stroke-dasharray="132" stroke-dashoffset="132" stroke-linecap="round" 
+      />
+    </svg>
+
+    <svg class="w-5 h-5 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .scroll-system {
+    position: fixed;
+    right: 1.5rem;
+    bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Mulai dengan tersembunyi hingga dinilai perlu muncul */
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+  }
+
+  /* Track styling */
+  .scroll-system__track {
+    height: 40vh; /* Tinggi track */
+    min-height: 150px;
+    max-height: 300px;
+  }
+
+  /* Button States */
+  .scroll-system__button {
+    opacity: 0.35;
+    transform: scale(0.92);
+    pointer-events: none;
+  }
+  
+  .scroll-system__button:hover {
+    color: var(--color-primary);
+  }
+
+  .scroll-system__button[data-active='true'] {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  
+  .scroll-system__button[data-active='true']:hover {
+    transform: scale(1) translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  .scroll-system__button[data-active='true']:active {
+    transform: scale(0.95);
+    transition-duration: 100ms;
+  }
+</style>
+
+<script>
+  let controller: AbortController | null = null;
+  let observer: IntersectionObserver | null = null;
+
+  function initializeScrollSystem() {
+    // 1. Cleanup lifecycle sebelumnya
+    controller?.abort();
+    observer?.disconnect();
+    controller = new AbortController();
+
+    const wrapper = document.getElementById('scroll-system-wrapper');
+    const track = document.getElementById('scroll-system-track');
+    const progress = document.getElementById('scroll-system-progress');
+    const dotsContainer = document.getElementById('scroll-system-dots');
+    const button = document.getElementById('scroll-system-button');
+    const ring = document.getElementById('scroll-system-ring');
+
+    if (!wrapper || !track || !progress || !dotsContainer || !button) return;
+
+    // 2. Initial State Assessment
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-scroll-section]'));
+    const state = {
+      hasScrollSpy: sections.length >= 2,
+      isPageScrollable: document.documentElement.scrollHeight > window.innerHeight + 100,
+      activeSectionIndex: 0,
+    };
+
+    // 3. UI Setup
+    if (state.hasScrollSpy) {
+      // HTML sudah memiliki 'hidden md:block', tidak perlu manipulasi ulang
+      
+      // Buat Dots
+      dotsContainer.innerHTML = '';
+      sections.forEach((_, index) => {
+        const dotWrapper = document.createElement('div');
+        const percentage = (index / (sections.length - 1)) * 100;
+        dotWrapper.className = `absolute left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-300`;
+        dotWrapper.style.top = `${percentage}%`;
+        
+        const dot = document.createElement('div');
+        dot.className = `w-2 h-2 rounded-full transition-all duration-300 scale-100 bg-border`;
+        dot.dataset.dotIndex = index.toString();
+        dotWrapper.appendChild(dot);
+        dotsContainer.appendChild(dotWrapper);
+      });
+    } else {
+      track.classList.add('hidden');
+      track.classList.remove('md:block');
+    }
+
+    if (!state.isPageScrollable && !state.hasScrollSpy) {
+       // Tidak perlu menampilkan system jika halaman pendek dan tidak ada spy
+       wrapper.style.opacity = '0';
+       return;
+    }
+    
+    // Tampilkan wrapper utama
+    wrapper.style.opacity = '1';
+
+    // 4. Cache section positions (recalculated on resize only)
+    let cachedTops: number[] = [];
+    const cacheSectionTops = () => {
+      cachedTops = sections.map(s => s.offsetTop);
+    };
+    if (state.hasScrollSpy) {
+      cacheSectionTops();
+    }
+
+    // 5. Scroll Tracking Logic
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const handleScroll = () => {
+      lastScrollY = window.scrollY;
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateUI(lastScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    const updateUI = (scrollY: number) => {
+      // Cek statis isPageScrollable secara dinamis
+      const isPageScrollable = document.documentElement.scrollHeight > window.innerHeight + 100;
+      
+      // Update Button state
+      const threshold = Math.max(400, window.innerHeight * 0.5);
+      const isPastBackToTopThreshold = scrollY > threshold;
+      
+      const enableBackToTop = isPageScrollable && isPastBackToTopThreshold;
+      button.dataset.active = enableBackToTop.toString();
+
+      // Update Track state
+      if (state.hasScrollSpy && sections.length >= 2) {
+        let currentProgress = 0;
+        const sectionTops = cachedTops;
+        
+        // Cari section aktif berdasarkan posisi scroll
+        let currentIndex = sections.length - 1;
+        for (let i = 0; i < sectionTops.length; i++) {
+          if (scrollY < sectionTops[i]) {
+            currentIndex = Math.max(0, i - 1);
+            break;
+          }
+        }
+        
+        if (currentIndex >= sectionTops.length - 1) {
+          currentProgress = 1; 
+        } else {
+          const start = sectionTops[currentIndex];
+          const end = sectionTops[currentIndex + 1];
+          const segmentProgress = (scrollY - start) / (end - start || 1);
+          
+          const baseProgress = currentIndex / (sections.length - 1);
+          const progressStep = 1 / (sections.length - 1);
+          
+          currentProgress = Math.max(0, Math.min(1, baseProgress + (segmentProgress * progressStep)));
+        }
+        
+        progress.style.transform = `scaleY(${currentProgress})`;
+
+        // Update Dots berdasarkan active section dari IntersectionObserver
+        const dots = Array.from(dotsContainer.querySelectorAll<HTMLElement>('[data-dot-index]'));
+        dots.forEach((el, index) => {
+          if (index <= state.activeSectionIndex) {
+            el.classList.add('bg-primary', 'shadow-[0_0_8px_rgba(14,165,233,0.8)]', 'scale-125');
+            el.classList.remove('bg-border', 'scale-100');
+          } else {
+            el.classList.add('bg-border', 'scale-100');
+            el.classList.remove('bg-primary', 'shadow-[0_0_8px_rgba(14,165,233,0.8)]', 'scale-125');
+          }
+        });
+      }
+
+      // Update Circular Progress Ring untuk Mobile (berdasarkan total halaman)
+      if (ring) {
+        const maxPageScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const pageProgress = maxPageScroll > 0 ? Math.max(0, Math.min(1, scrollY / maxPageScroll)) : 0;
+        const offset = 132 - (pageProgress * 132);
+        ring.style.strokeDashoffset = offset.toString();
+      }
+    };
+
+    // 5. Intersection Observer untuk Active Section Dot
+    if (state.hasScrollSpy) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = sections.indexOf(entry.target as HTMLElement);
+            if (index !== -1) {
+               state.activeSectionIndex = index;
+               // Paksa update UI dot segera
+               updateUI(window.scrollY);
+            }
+          }
+        });
+      }, {
+        rootMargin: '-25% 0px -40% 0px',
+        threshold: 0,
+      });
+
+      sections.forEach((section) => observer!.observe(section));
+    }
+
+    // 7. Action Listeners
+    window.addEventListener('scroll', handleScroll, { passive: true, signal: controller.signal });
+    window.addEventListener('resize', () => {
+      // Recalculate cached section positions on resize
+      if (state.hasScrollSpy) {
+        cacheSectionTops();
+      }
+      handleScroll();
+    }, { passive: true, signal: controller.signal });
+    
+    button.addEventListener('click', () => {
+      if (button.dataset.active === 'true') {
+        // Check setiap klik agar reactive terhadap perubahan setting accessibility
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        });
+      }
+    }, { signal: controller.signal });
+
+    // Initial run
+    updateUI(window.scrollY);
+  }
+
+  // 8. Astro Lifecycle Integration
+  // Guard mencegah double-init jika astro:page-load juga fire pada load pertama
+  let initialized = false;
+  const safeInit = () => {
+    if (initialized) return;
+    initialized = true;
+    initializeScrollSystem();
+  };
+
+  document.addEventListener('astro:page-load', () => {
+    initialized = false; // Reset untuk navigasi berikutnya via View Transitions
+    safeInit();
+  });
+  document.addEventListener('astro:before-swap', () => {
+    controller?.abort();
+    observer?.disconnect();
+  });
+
+  // Fallback: jika astro:page-load tidak fire (View Transitions tidak aktif),
+  // init setelah delay singkat. Guard mencegah double execution.
+  setTimeout(safeInit, 50);
+</script>

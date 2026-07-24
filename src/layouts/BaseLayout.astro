@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import BackToTop from '../components/BackToTop.astro';
+import ScrollSystem from '../components/ScrollSystem.astro';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 import type { JsonObject } from '../types/json';
 
@@ -158,7 +158,7 @@ const structuredDataGraph = {
   </head>
   <body class="bg-bg text-text font-sans antialiased transition-colors duration-300">
     <slot />
-    <BackToTop />
+    <ScrollSystem />
     <AnalyticsConsent />
     <script>
       type AnalyticsWindow = Window & {
