@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import stats from '../../data/stats.json';
+
+const canonicalUrl = 'https://envoyou.com/case-studies/e-blog/';
+const updatedIso = '2026-07-24';
+const updatedLabel = stats.blogUpdatedAt || '24 July 2026';
+
+const caseStudyStructuredData = {
+  '@type': 'Article',
+  '@id': `${canonicalUrl}#article`,
+  headline: 'E-Blog: An EAI Draft-to-Publication Case Study',
+  description: 'How Envoyou uses E-Blog as an internal proof of concept for EAI editorial preparation, structured metadata, CMS export, and public publishing.',
+  url: canonicalUrl,
+  dateModified: updatedIso,
+  author: {
+    '@type': 'Organization',
+    '@id': 'https://envoyou.com/#organization',
+  },
+  publisher: {
+    '@id': 'https://envoyou.com/#organization',
+  },
+  mainEntityOfPage: {
+    '@id': `${canonicalUrl}#webpage`,
+  },
+};
+
+const metrics = [
+  { value: String(stats.blog.publishedArticles), label: 'Published articles', note: 'Current total returned by the E-Blog posts API.' },
+  { value: stats.blog.views30Days, label: 'Views in 30 days', note: 'Latest available GA4-backed snapshot retained by the build.' },
+  { value: `${stats.blog.avgReadingTime} min`, label: 'Average reading time', note: 'Average of available article reading-time values.' },
+  { value: String(stats.blog.topArticleViews), label: 'Top article views', note: 'Highest current view count in the posts API response.' },
+];
+---
+
+<BaseLayout
+  title="E-Blog Publishing Workflow Case Study — Envoyou"
+  description="See how E-Blog demonstrates an EAI-powered workflow for editorial preparation, SEO metadata, CMS export, and public publishing."
+  structuredData={caseStudyStructuredData}
+>
+  <Navbar />
+  <main id="main-content" class="pt-24">
+    <article>
+      <header class="section py-20 sm:py-28">
+        <div class="max-w-4xl">
+          <div class="section-label">Internal publishing case study</div>
+          <h1 class="section-title">E-Blog: From Editorial Workspace to Public Publication</h1>
+          <p class="text-xs text-muted mt-4">Envoyou Product Team · Updated {updatedLabel}</p>
+          <p class="section-subtitle mt-6 max-w-3xl">
+            E-Blog is Envoyou's internal proof of concept for a connected publishing pipeline. It demonstrates how article preparation in EAI can feed structured content into a public reading experience.
+          </p>
+          <div class="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 max-w-3xl">
+            <p class="text-xs font-bold uppercase tracking-wider text-primary mb-2">Result snapshot</p>
+            <p class="text-sm sm:text-base leading-7 text-text">
+              As of {updatedLabel}, E-Blog contains {stats.blog.publishedArticles} published articles. The latest retained audience snapshot reports {stats.blog.views30Days} views in 30 days, while available article data shows an average reading time of {stats.blog.avgReadingTime} minutes and a top article view count of {stats.blog.topArticleViews}.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section class="bg-surface-soft border-y border-border">
+        <div class="section py-16">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {metrics.map((metric) => (
+              <div class="card p-6">
+                <p class="text-3xl font-black text-primary font-mono">{metric.value}</p>
+                <h2 class="font-bold text-text mt-2">{metric.label}</h2>
+                <p class="text-xs text-muted leading-5 mt-2">{metric.note}</p>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-muted mt-6">
+            Metric definitions and source freshness are documented in the <a href="/methodology/" class="text-primary hover:underline">public methodology</a>.
+          </p>
+        </div>
+      </section>
+
+      <section class="section py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5">
+            <div class="section-label">What the case study demonstrates</div>
+            <h2 class="section-title">A working publishing destination, not a customer benchmark.</h2>
+          </div>
+          <div class="lg:col-span-7 space-y-6 text-sm text-muted leading-7">
+            <p>
+              E-Blog is operated by Envoyou as an internal showcase. It demonstrates the mechanics of moving editorial output into a live publication, but its results should not be interpreted as guaranteed customer outcomes.
+            </p>
+            <p>
+              The workflow connects refined article content with metadata and public presentation. This makes E-Blog useful for validating export structure, sitemap output, article rendering, and the handoff between EAI and a publishing destination.
+            </p>
+            <p>
+              Audience figures reflect the E-Blog property itself. They do not isolate the effect of EAI from topic selection, distribution, search demand, publication frequency, or other factors that influence readership.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-surface-soft border-y border-border">
+        <div class="section py-20">
+          <div class="max-w-3xl mb-10">
+            <div class="section-label">Pipeline</div>
+            <h2 class="section-title">What moves through the proof-of-concept workflow?</h2>
+          </div>
+          <ol class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              ['Editorial preparation', 'A draft is refined using the active publication context and source material.'],
+              ['Quality and metadata review', 'The article body and publication metadata are checked before export.'],
+              ['Structured export', 'Approved content and available assets move into the E-Blog publishing pipeline.'],
+              ['Public rendering', 'The destination produces article pages, search metadata, and sitemap output for readers and crawlers.'],
+            ].map(([title, description], index) => (
+              <li class="card p-6 flex gap-4">
+                <span class="font-mono text-primary font-black">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 class="font-bold text-text">{title}</h3>
+                  <p class="text-sm text-muted leading-6 mt-2">{description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="section py-20">
+        <div class="card p-8 sm:p-12 text-center">
+          <h2 class="text-2xl sm:text-3xl font-bold text-text">Explore the workflow behind the case study.</h2>
+          <p class="text-sm text-muted mt-4 max-w-xl mx-auto">
+            Review the editorial workspace or inspect the live publication that receives EAI-powered exports.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3 mt-8">
+            <a href="/ai-editorial-workspace/" class="btn-primary">How EAI Works</a>
+            <a href="https://blog.envoyou.com" target="_blank" rel="noopener noreferrer" class="btn-secondary">Visit E-Blog</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

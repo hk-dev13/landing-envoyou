@@ -1,0 +1,101 @@
+---
+import IntentLanding from '../components/IntentLanding.astro';
+
+const benefits = [
+  {
+    title: 'Prepare metadata from the final article',
+    description: 'Generate the search title, description, slug, and tags from the same editorial context used to refine the draft.',
+  },
+  {
+    title: 'Review content and metadata together',
+    description: 'Treat the article body and its publication metadata as one package during the final Quality Gate.',
+  },
+  {
+    title: 'Reduce CMS copy-and-paste work',
+    description: 'Include structured SEO fields in an approved export instead of rebuilding them manually in the destination CMS.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Complete the editorial refinement',
+    description: 'Stabilize the article topic, structure, audience, and publication voice before treating metadata as final.',
+  },
+  {
+    title: 'Generate the SEO package',
+    description: 'Prepare a search title, meta description, clean slug, tags, and available snippet-preview information.',
+  },
+  {
+    title: 'Validate alignment with the article',
+    description: 'Review whether the metadata accurately represents the final draft and follows the active publication guidance.',
+  },
+  {
+    title: 'Export structured fields to the CMS',
+    description: 'Send the approved metadata with the article package through the configured WordPress or custom CMS connection.',
+  },
+];
+
+const capabilities = [
+  'Meta title preparation based on the refined article and target topic.',
+  'Meta description generation aligned with the final article content.',
+  'Clean slug and tag suggestions for the publishing package.',
+  'Search snippet preview during editorial review.',
+  'Quality Gate review of metadata together with the article body.',
+  'Structured CMS export for eligible plans and configured destinations.',
+];
+
+const faqs = [
+  {
+    question: 'What SEO metadata can Envoyou prepare?',
+    answer: 'The workflow can prepare a meta title, meta description, slug, tags, and search snippet information from the final editorial context.',
+  },
+  {
+    question: 'Is metadata generated before or after the article is refined?',
+    answer: 'Final publication metadata should be based on the refined article. Envoyou reviews the article and its metadata together before export.',
+  },
+  {
+    question: 'Does automated metadata guarantee search rankings?',
+    answer: 'No. Metadata improves consistency and search presentation, but rankings also depend on content quality, relevance, authority, technical SEO, competition, and indexing.',
+  },
+  {
+    question: 'Can the metadata be exported to WordPress?',
+    answer: 'Yes. Eligible plans can include structured SEO fields in WordPress or webhook-based CMS exports.',
+  },
+];
+
+const relatedLinks = [
+  {
+    href: '/ai-editorial-workspace/',
+    title: 'AI editorial workspace',
+    description: 'See where SEO preparation fits within the wider editorial process.',
+  },
+  {
+    href: '/integrations/custom-cms/',
+    title: 'Custom CMS integration',
+    description: 'Learn how structured article packages move into publishing systems.',
+  },
+  {
+    href: '/fact-checked-publishing/',
+    title: 'Fact-checked publishing',
+    description: 'Understand how final claims and metadata are reviewed before export.',
+  },
+];
+---
+
+<IntentLanding
+  title="Automate SEO Metadata Inside the Editorial Workflow"
+  metaTitle="SEO Metadata Automation for Editorial Teams — Envoyou"
+  description="Prepare and review SEO titles, descriptions, slugs, tags, and structured CMS fields from the final article inside Envoyou EAI."
+  canonicalPath="/seo-metadata-automation/"
+  eyebrow="SEO metadata workflow"
+  lead="SEO metadata works best when it reflects the final article. Envoyou prepares the publication package after editorial refinement and keeps metadata connected to the content it describes."
+  directAnswer="Envoyou automates SEO metadata by preparing the title, meta description, slug, tags, and snippet information from the refined article and its publication context. The Quality Gate reviews metadata with the article body, and eligible plans can export the approved structured fields through WordPress or a custom CMS pipeline."
+  benefits={benefits}
+  steps={steps}
+  capabilities={capabilities}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+  analyticsLocation="seo_metadata_intent"
+  lastUpdated="24 July 2026"
+  lastUpdatedIso="2026-07-24"
+/>

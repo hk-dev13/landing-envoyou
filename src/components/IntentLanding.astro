@@ -31,6 +31,8 @@ export interface Props {
   faqs: FaqItem[];
   relatedLinks: RelatedLink[];
   analyticsLocation: string;
+  lastUpdated?: string;
+  lastUpdatedIso?: string;
 }
 
 const {
@@ -47,6 +49,8 @@ const {
   faqs,
   relatedLinks,
   analyticsLocation,
+  lastUpdated,
+  lastUpdatedIso,
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://envoyou.com').toString();
@@ -63,6 +67,7 @@ const pageStructuredData = [
     about: {
       '@id': 'https://envoyou.com/#eai',
     },
+    ...(lastUpdatedIso ? { dateModified: lastUpdatedIso } : {}),
     inLanguage: 'en',
   },
   {
@@ -74,6 +79,18 @@ const pageStructuredData = [
       '@id': 'https://envoyou.com/#organization',
     },
     url: canonicalUrl,
+  },
+  {
+    '@type': 'HowTo',
+    '@id': `${canonicalUrl}#workflow`,
+    name: `How ${title} works`,
+    description: lead,
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+    })),
   },
 ];
 
@@ -98,6 +115,9 @@ const faqStructuredData = {
       <div class="max-w-4xl">
         <div class="section-label">{eyebrow}</div>
         <h1 class="section-title max-w-4xl">{title}</h1>
+        {lastUpdated && (
+          <p class="text-xs text-muted mt-4">Reviewed by Envoyou Product Team · Updated {lastUpdated}</p>
+        )}
         <p class="section-subtitle mt-6 max-w-3xl">{lead}</p>
         <div class="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 max-w-3xl">
           <p class="text-xs font-bold uppercase tracking-wider text-primary mb-2">Direct answer</p>

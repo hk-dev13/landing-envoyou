@@ -1,0 +1,101 @@
+---
+import IntentLanding from '../components/IntentLanding.astro';
+
+const benefits = [
+  {
+    title: 'Finish more than a first draft',
+    description: 'Combine refinement, verification, SEO preparation, and export so work does not stop at generic text generation.',
+  },
+  {
+    title: 'Carry context across stages',
+    description: 'Keep source material, publication guidance, audience, and brand voice connected as the article moves through the workflow.',
+  },
+  {
+    title: 'Make readiness visible',
+    description: 'Use Quality Gate verdicts to distinguish content that is ready, needs review, or remains blocked by unresolved issues.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Create or import the working draft',
+    description: 'Begin with a topic, outline, press release, supporting references, or an existing article that needs editorial work.',
+  },
+  {
+    title: 'Refine for the publication',
+    description: 'Improve structure, readability, and presentation using the configured voice, audience, category, and editorial guidance.',
+  },
+  {
+    title: 'Verify integrity and completeness',
+    description: 'Review source fidelity, factual consistency, formatting, and publication metadata through the Quality Gate.',
+  },
+  {
+    title: 'Prepare and export the final package',
+    description: 'Finalize the article body, SEO metadata, and available assets before sending approved output to a connected CMS.',
+  },
+];
+
+const capabilities = [
+  'AI-assisted drafting from topics, outlines, references, or press releases.',
+  'Multi-stage editorial polish aligned with publication-specific guidance.',
+  'Source-fidelity checks and visible publication-readiness verdicts.',
+  'SEO title, description, slug, tag, and snippet preparation.',
+  'Brand voice profiles for distinct publications or content programs.',
+  'Direct WordPress export and configurable webhook-based CMS pipelines.',
+];
+
+const faqs = [
+  {
+    question: 'What is an AI editorial workspace?',
+    answer: 'An AI editorial workspace coordinates drafting, refinement, review, verification, metadata preparation, and publication handoff in one connected environment rather than treating each task as a separate generator.',
+  },
+  {
+    question: 'How is Envoyou different from a general AI writer?',
+    answer: 'Envoyou focuses on finishing and validating an article for publication. Its workflow includes source-fidelity checks, publication guidance, SEO preparation, Quality Gate verdicts, and CMS export.',
+  },
+  {
+    question: 'Does Envoyou publish without human review?',
+    answer: 'No. Editors retain control of the readiness decision and final publication action. The system organizes evidence and surfaces issues so review can be faster and more consistent.',
+  },
+  {
+    question: 'Can different publications use different brand voices?',
+    answer: 'Yes. Eligible plans support one or more brand voice profiles so editorial guidance can reflect the active publication or content program.',
+  },
+];
+
+const relatedLinks = [
+  {
+    href: '/fact-checked-publishing/',
+    title: 'Fact-checked publishing',
+    description: 'See how source fidelity and Quality Gate review fit into the editorial workflow.',
+  },
+  {
+    href: '/seo-metadata-automation/',
+    title: 'SEO metadata automation',
+    description: 'Learn how publication metadata is prepared alongside the article.',
+  },
+  {
+    href: '/integrations/custom-cms/',
+    title: 'Custom CMS integration',
+    description: 'Connect approved editorial output to the publishing infrastructure you already use.',
+  },
+];
+---
+
+<IntentLanding
+  title="What Is an AI Editorial Workspace?"
+  metaTitle="AI Editorial Workspace for Draft-to-Publication Workflows — Envoyou"
+  description="Learn how Envoyou EAI connects drafting, editorial refinement, source-fidelity review, SEO metadata, Quality Gate checks, and CMS export."
+  canonicalPath="/ai-editorial-workspace/"
+  eyebrow="Editorial workspace guide"
+  lead="An AI editorial workspace helps a publishing team coordinate the complete path from working material to approved, publication-ready output—not just generate another draft."
+  directAnswer="Envoyou EAI is an AI editorial workspace that connects drafting, publication-specific refinement, source-fidelity review, SEO metadata preparation, Quality Gate verification, and CMS export. Editors remain responsible for readiness and publication while the workspace keeps context and article state connected across every stage."
+  benefits={benefits}
+  steps={steps}
+  capabilities={capabilities}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+  analyticsLocation="editorial_workspace_intent"
+  lastUpdated="24 July 2026"
+  lastUpdatedIso="2026-07-24"
+/>

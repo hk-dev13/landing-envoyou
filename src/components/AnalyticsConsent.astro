@@ -1,0 +1,71 @@
+---
+const analyticsAvailable = Boolean(import.meta.env.PUBLIC_GA_MEASUREMENT_ID);
+---
+
+{analyticsAvailable && (
+  <aside
+    id="analytics-consent"
+    class="hidden fixed inset-x-4 bottom-4 z-[100] max-w-xl sm:left-auto sm:right-6 rounded-2xl border border-border bg-surface p-5 shadow-2xl"
+    aria-labelledby="analytics-consent-title"
+  >
+    <h2 id="analytics-consent-title" class="text-base font-bold text-text">Optional analytics</h2>
+    <p class="text-xs sm:text-sm text-muted leading-6 mt-2">
+      Envoyou uses Google Analytics only with your permission to understand page and conversion performance. Analytics events do not include form answers or other personal information.
+    </p>
+    <div class="flex flex-wrap gap-3 mt-5">
+      <button id="analytics-consent-accept" type="button" class="btn-primary text-xs py-2.5 px-5">
+        Allow analytics
+      </button>
+      <button id="analytics-consent-reject" type="button" class="btn-secondary text-xs py-2.5 px-5">
+        Continue without analytics
+      </button>
+      <a href="/privacy/" class="self-center text-xs text-primary hover:underline">Privacy details</a>
+    </div>
+  </aside>
+)}
+
+{analyticsAvailable && (
+  <script>
+    const consentPanel = document.getElementById("analytics-consent");
+    const acceptButton = document.getElementById("analytics-consent-accept");
+    const rejectButton = document.getElementById("analytics-consent-reject");
+    const consentStorageKey = "envoyou_analytics_consent";
+
+    function readConsentPreference() {
+      try {
+        return localStorage.getItem(consentStorageKey);
+      } catch {
+        return null;
+      }
+    }
+
+    function saveConsentPreference(value: "granted" | "denied") {
+      try {
+        localStorage.setItem(consentStorageKey, value);
+      } catch {
+        // The in-memory choice still applies when storage is unavailable.
+      }
+    }
+
+    function closeConsentPanel() {
+      consentPanel?.classList.add("hidden");
+    }
+
+    function applyConsent(value: "granted" | "denied") {
+      saveConsentPreference(value);
+      window.dispatchEvent(new CustomEvent("envoyou:analytics-consent", { detail: value }));
+      closeConsentPanel();
+    }
+
+    acceptButton?.addEventListener("click", () => applyConsent("granted"));
+    rejectButton?.addEventListener("click", () => applyConsent("denied"));
+
+    window.addEventListener("envoyou:open-consent-settings", () => {
+      consentPanel?.classList.remove("hidden");
+    });
+
+    if (!readConsentPreference()) {
+      consentPanel?.classList.remove("hidden");
+    }
+  </script>
+)}

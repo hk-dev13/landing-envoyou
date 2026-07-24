@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import stats from '../data/stats.json';
+
+const methodologyStructuredData = {
+  '@type': 'TechArticle',
+  '@id': 'https://envoyou.com/methodology/#article',
+  headline: 'Envoyou Public Metrics Methodology',
+  description: 'Definitions, sources, freshness behavior, and limitations for the product and publishing metrics shown on envoyou.com.',
+  url: 'https://envoyou.com/methodology/',
+  dateModified: '2026-07-24',
+  author: {
+    '@type': 'Organization',
+    '@id': 'https://envoyou.com/#organization',
+  },
+  publisher: {
+    '@id': 'https://envoyou.com/#organization',
+  },
+};
+
+const metricRows = [
+  ['CMS Export Success', 'EAI public-stats endpoint', 'Percentage reported by the EAI backend for its monitored export workflow.', stats.eaiUpdatedAt],
+  ['SEO Packages Completed', 'EAI public-stats endpoint', 'Completion percentage reported for SEO package generation in the monitored EAI workflow.', stats.eaiUpdatedAt],
+  ['Average Process Time', 'EAI public-stats endpoint', 'Average article processing duration reported by the EAI backend, shown in minutes.', stats.eaiUpdatedAt],
+  ['Published Articles', 'E-Blog posts API', 'Current total from the posts API response metadata.', stats.blogUpdatedAt],
+  ['Views in 30 Days', 'Google Analytics 4', 'Page-view total for the configured 30-day GA4 reporting window.', stats.blogUpdatedAt],
+  ['Unique Readers', 'Google Analytics 4', 'Active users returned for the configured 30-day GA4 reporting window.', stats.blogUpdatedAt],
+  ['Top Article Views', 'E-Blog posts API', 'Highest current view count among articles returned by the API.', stats.blogUpdatedAt],
+  ['Average Reading Time', 'E-Blog posts API', 'Rounded mean of the reading-time values available on returned posts.', stats.blogUpdatedAt],
+];
+---
+
+<BaseLayout
+  title="Public Metrics Methodology — Envoyou"
+  description="Review how Envoyou sources, updates, labels, and limits the EAI and E-Blog metrics published on envoyou.com."
+  structuredData={methodologyStructuredData}
+>
+  <Navbar />
+  <main id="main-content" class="pt-24">
+    <article class="section py-20 sm:py-28">
+      <header class="max-w-4xl">
+        <div class="section-label">Transparency</div>
+        <h1 class="section-title">Public Metrics Methodology</h1>
+        <p class="text-xs text-muted mt-4">Envoyou Product Team · Updated 24 July 2026</p>
+        <p class="section-subtitle mt-6 max-w-3xl">
+          This page explains where the operational and publishing metrics on envoyou.com come from, what each value represents, and when a build may retain an older snapshot.
+        </p>
+      </header>
+
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-text">Source and definition table</h2>
+        <div class="overflow-x-auto mt-6 rounded-2xl border border-border">
+          <table class="w-full min-w-[760px] text-left text-sm">
+            <thead class="bg-surface-soft border-b border-border">
+              <tr>
+                <th class="p-4 font-bold text-text">Metric</th>
+                <th class="p-4 font-bold text-text">Source</th>
+                <th class="p-4 font-bold text-text">Definition</th>
+                <th class="p-4 font-bold text-text">Snapshot updated</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              {metricRows.map((row) => (
+                <tr>
+                  <td class="p-4 font-semibold text-text">{row[0]}</td>
+                  <td class="p-4 text-muted">{row[1]}</td>
+                  <td class="p-4 text-muted leading-6">{row[2]}</td>
+                  <td class="p-4 text-muted whitespace-nowrap">{row[3] || 'Not available'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+        <div class="card p-7">
+          <h2 class="text-xl font-bold text-text">Build-time refresh behavior</h2>
+          <p class="text-sm text-muted leading-7 mt-4">
+            The landing-site build attempts to refresh E-Blog, EAI, and GA4 data independently. A successful source refresh updates that source's freshness date. If credentials are unavailable or a request fails, the last known values and their original freshness date are retained.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h2 class="text-xl font-bold text-text">What “snapshot” means</h2>
+          <p class="text-sm text-muted leading-7 mt-4">
+            Values shown on envoyou.com are operational snapshots, not audited financial statements, service-level guarantees, or promises of customer results. Counts and percentages can change as activity and source systems change.
+          </p>
+        </div>
+      </section>
+
+      <section class="mt-16 max-w-4xl">
+        <h2 class="text-2xl font-bold text-text">Known limitations</h2>
+        <ul class="mt-6 space-y-4 text-sm text-muted leading-7 list-disc pl-5">
+          <li>EAI percentages are calculated by the backend source. The landing repository displays the reported values but does not independently recompute their denominators.</li>
+          <li>Published-article and top-view counts are cumulative API values, while GA4 views and active users use a 30-day reporting window.</li>
+          <li>E-Blog audience results are influenced by topics, distribution, search demand, and publishing frequency; they do not isolate the effect of EAI.</li>
+          <li>A missing credential intentionally preserves the previous snapshot instead of replacing it with a fabricated fallback value.</li>
+        </ul>
+      </section>
+
+      <section class="mt-16 rounded-2xl border border-primary/20 bg-primary/5 p-7 max-w-4xl">
+        <h2 class="text-xl font-bold text-text">Questions about a metric?</h2>
+        <p class="text-sm text-muted leading-7 mt-3">
+          Contact <a href="mailto:hello@envoyou.com" class="text-primary hover:underline">hello@envoyou.com</a> with the metric name, page URL, and snapshot date so the source can be reviewed.
+        </p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

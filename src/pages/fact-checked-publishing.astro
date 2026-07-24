@@ -1,0 +1,101 @@
+---
+import IntentLanding from '../components/IntentLanding.astro';
+
+const benefits = [
+  {
+    title: 'Check claims against supplied sources',
+    description: 'Source-fidelity review compares the article with the references and context available inside the editorial workflow.',
+  },
+  {
+    title: 'Surface uncertainty before publication',
+    description: 'Quality Gate verdicts keep unresolved factual, temporal, structural, or formatting issues visible to the editor.',
+  },
+  {
+    title: 'Keep humans in the approval loop',
+    description: 'The system supports editorial judgment; it does not turn an AI-generated assertion into a verified fact automatically.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Attach the source material',
+    description: 'Provide the references, press release, documents, links, or other context that should anchor the article.',
+  },
+  {
+    title: 'Refine without discarding source intent',
+    description: 'Improve clarity and structure while preserving the claims and meaning supported by the available material.',
+  },
+  {
+    title: 'Run source-fidelity and consistency checks',
+    description: 'Review factual claims, numbers, names, dates, temporal language, and structural requirements against the supplied context.',
+  },
+  {
+    title: 'Resolve issues before approval',
+    description: 'Editors inspect flagged findings, correct the draft or supporting context, and repeat the Quality Gate when needed.',
+  },
+];
+
+const capabilities = [
+  'Reference-grounded editorial review rather than unsupported claim generation.',
+  'Checks for factual, numeric, naming, and temporal consistency.',
+  'Publication-readiness verdicts: Ready, Needs Review, or Blocked.',
+  'Interactive correction and re-evaluation before export.',
+  'Final review of the article body together with its publication metadata.',
+  'Clear human responsibility for final verification and publication.',
+];
+
+const faqs = [
+  {
+    question: 'Does AI fact checking guarantee that every claim is true?',
+    answer: 'No. EAI checks claims against the references and context available to the workflow. Editors must still assess source quality, resolve uncertainty, and approve the final article.',
+  },
+  {
+    question: 'What does source fidelity mean?',
+    answer: 'Source fidelity means that the article preserves the facts, numbers, names, dates, and meaning supported by its supplied references instead of introducing unsupported changes.',
+  },
+  {
+    question: 'What happens when the Quality Gate finds a problem?',
+    answer: 'The article can receive a Needs Review or Blocked verdict with issues that require attention. The editor can correct the content or context and run the review again.',
+  },
+  {
+    question: 'Can the final metadata be reviewed with the article?',
+    answer: 'Yes. The publishing workflow can evaluate the canonical title, description, and article body as one final package before export.',
+  },
+];
+
+const relatedLinks = [
+  {
+    href: '/ai-editorial-workspace/',
+    title: 'AI editorial workspace',
+    description: 'Understand the full workflow that surrounds verification and approval.',
+  },
+  {
+    href: '/seo-metadata-automation/',
+    title: 'SEO metadata preparation',
+    description: 'See how metadata is prepared and reviewed with the final article.',
+  },
+  {
+    href: '/methodology/',
+    title: 'Metrics methodology',
+    description: 'Review how Envoyou presents product and publishing metrics on this site.',
+  },
+];
+---
+
+<IntentLanding
+  title="How AI-Assisted Fact-Checked Publishing Works"
+  metaTitle="AI-Assisted Fact-Checked Publishing Workflow — Envoyou"
+  description="See how Envoyou uses source-fidelity checks, Quality Gate verdicts, editorial review, and repeat verification before an article is exported."
+  canonicalPath="/fact-checked-publishing/"
+  eyebrow="Source-fidelity workflow"
+  lead="Fact-checked publishing is a controlled review process: claims are compared with available references, uncertainty stays visible, and a human editor decides whether the article is ready."
+  directAnswer="Envoyou supports fact-checked publishing by evaluating article claims against supplied references, checking factual and temporal consistency, and assigning a visible Quality Gate verdict. It does not replace source evaluation or human approval; editors resolve flagged issues and repeat review before the final article package is exported."
+  benefits={benefits}
+  steps={steps}
+  capabilities={capabilities}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+  analyticsLocation="fact_checked_publishing_intent"
+  lastUpdated="24 July 2026"
+  lastUpdatedIso="2026-07-24"
+/>
