@@ -1,97 +1,66 @@
 ---
-import stats from '../../data/stats.json';
-
-// EAI operational metrics from stats.json
-const cmsExportSuccess = stats.eai?.cmsExportSuccess || "—";
-const seoCompletionRate = stats.eai?.seoCompletionRate || "—";
-const avgProcessTimeMins = stats.eai?.avgProcessTimeMins;
-const eaiUpdatedAt = stats.eaiUpdatedAt;
+const outcomes = [
+  "Refine under your editorial profile",
+  "Surface unsupported or altered claims",
+  "Prepare the draft and SEO package together",
+];
 ---
 
 <section
   id="hero"
-  class="relative min-h-[80vh] flex items-center pt-16 overflow-hidden"
+  class="relative min-h-[78vh] flex items-center pt-20 overflow-hidden"
 >
-  <!-- Subtle background gradient -->
   <div class="hero-bg"></div>
 
   <div class="section relative z-10 w-full">
-    <div class="max-w-4xl">
-      <!-- Label -->
+    <div class="max-w-5xl">
       <div class="section-label">
         <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
-        The Envoyou Ecosystem
+        Editorial Intelligence for Modern Publishing
       </div>
 
-      <!-- Headline -->
-      <h1 class="section-title">
-        Publishing Intelligence,<br />
-        <span class="text-primary">Redefined.</span>
+      <h1 class="text-[clamp(2.5rem,7vw,5.5rem)] font-black tracking-[-0.055em] leading-[0.96] text-text max-w-5xl">
+        Turn raw drafts into verified,<br class="hidden sm:block" />
+        <span class="text-primary">publication-ready articles.</span>
       </h1>
 
-      <p class="section-subtitle mt-5 max-w-xl">
-        Envoyou provides an AI editorial workspace designed to polish raw drafts, verify factual integrity, optimize SEO, and export directly to your custom CMS.
+      <p class="section-subtitle mt-7 max-w-2xl text-lg">
+        EAI brings editorial refinement, claim review, SEO preparation, and CMS draft export into one controlled workflow for independent publishers and lean content teams.
       </p>
 
-      <!-- CTA Buttons -->
-      <div>
-        <div class="flex flex-wrap items-center gap-3 mt-10">
-          <a
-            href="#tally-open=ODy5xM&tally-emoji-text=👋&tally-emoji-animation=wave&ref=hero"
-            id="hero-cta-eai-login"
-            data-analytics-event="beta_access_clicked"
-            data-analytics-location="homepage_hero"
-            class="btn-primary"
-          >
-            Request Beta Access
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-          <a
-            href="#products"
-            id="hero-cta-features"
-            class="btn-secondary"
-          >
-            Explore Features
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-        <p class="text-xs text-muted/80 mt-3 pl-1">
-          Get 10 free credits or try refining 2 articles without logging in.
-        </p>
+      <div class="flex flex-wrap items-center gap-3 mt-10">
+        <a
+          href="https://eai.envoyou.com/login"
+          id="hero-cta-eai-login"
+          data-analytics-event="eai_login_clicked"
+          data-analytics-location="homepage_hero"
+          class="btn-primary"
+        >
+          Log in to EAI
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
+        <a href="#product-preview" id="hero-cta-features" class="btn-secondary">
+          See how it works
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
       </div>
+      <p class="text-xs text-muted mt-3 pl-1">
+        New eligible workspaces receive 10 trial credits. No payment card is required to start.
+      </p>
 
-      <!-- Social proof / quick stats -->
-      <div class="flex flex-wrap items-center gap-6 mt-14 pt-10 border-t border-border">
-        <div>
-          <p class="text-2xl font-bold text-text tabular-nums">{cmsExportSuccess}</p>
-          <p class="text-xs text-muted mt-0.5">CMS Export Success</p>
-        </div>
-        <div class="w-px h-8 bg-border"></div>
-        <div>
-          <p class="text-2xl font-bold text-text tabular-nums">{seoCompletionRate}</p>
-          <p class="text-xs text-muted mt-0.5">SEO Packages Completed</p>
-        </div>
-        <div class="w-px h-8 bg-border"></div>
-        <div>
-          <p class="text-2xl font-bold text-text tabular-nums">
-            {typeof avgProcessTimeMins === "number" ? `${avgProcessTimeMins}m` : "—"}
-          </p>
-          <p class="text-xs text-muted mt-0.5">Average Process Time</p>
-        </div>
-        <div class="w-px h-8 bg-border"></div>
-        <div class="flex flex-col gap-1">
-          <div class="flex items-center gap-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-success"></span>
-            <p class="text-sm font-medium text-muted">Operational Metrics</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-14 pt-8 border-t border-border">
+        {outcomes.map((outcome) => (
+          <div class="flex items-start gap-3 rounded-2xl border border-border bg-surface/70 px-4 py-4 backdrop-blur-sm">
+            <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <p class="text-sm font-semibold leading-5 text-text">{outcome}</p>
           </div>
-          {eaiUpdatedAt && (
-            <p class="text-[10px] text-muted/80">Updated {eaiUpdatedAt}</p>
-          )}
-        </div>
+        ))}
       </div>
     </div>
   </div>

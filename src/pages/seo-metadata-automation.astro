@@ -31,7 +31,7 @@ const steps = [
   },
   {
     title: 'Export structured fields to the CMS',
-    description: 'Send the approved metadata with the article package through the configured WordPress or custom CMS connection.',
+    description: 'Send approved metadata with the article package through a configured EAI REST CMS connection.',
   },
 ];
 
@@ -58,8 +58,8 @@ const faqs = [
     answer: 'No. Metadata improves consistency and search presentation, but rankings also depend on content quality, relevance, authority, technical SEO, competition, and indexing.',
   },
   {
-    question: 'Can the metadata be exported to WordPress?',
-    answer: 'Yes. Eligible plans can include structured SEO fields in WordPress or webhook-based CMS exports.',
+    question: 'Can the metadata be exported to my CMS?',
+    answer: 'A configured EAI REST connection can receive the approved article and its structured SEO fields as a draft. Adapter availability depends on the organization setup.',
   },
 ];
 
@@ -89,7 +89,7 @@ const relatedLinks = [
   canonicalPath="/seo-metadata-automation/"
   eyebrow="SEO metadata workflow"
   lead="SEO metadata works best when it reflects the final article. Envoyou prepares the publication package after editorial refinement and keeps metadata connected to the content it describes."
-  directAnswer="Envoyou automates SEO metadata by preparing the title, meta description, slug, tags, and snippet information from the refined article and its publication context. The Quality Gate reviews metadata with the article body, and eligible plans can export the approved structured fields through WordPress or a custom CMS pipeline."
+  directAnswer="Envoyou automates SEO metadata by preparing the title, meta description, slug, tags, and snippet information from the refined article and its publication context. The Quality Gate reviews metadata with the article body, and a configured EAI REST connection can export the approved structured fields as a CMS draft."
   benefits={benefits}
   steps={steps}
   capabilities={capabilities}

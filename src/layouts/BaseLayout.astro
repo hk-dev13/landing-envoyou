@@ -12,7 +12,7 @@ export interface Props {
 
 const {
   title = "Envoyou — Publishing Intelligence, Redefined",
-  description = "Envoyou combines publishing, editorial workflows, and intelligent content tools into a connected ecosystem designed to move ideas from draft to publication.",
+  description = "Envoyou provides EAI, an editorial intelligence workspace for controlled draft refinement, source-sensitive review, SEO preparation, and CMS draft export.",
   ogImage = "/og-image.png",
   structuredData = [],
 } = Astro.props;
@@ -158,7 +158,6 @@ const structuredDataGraph = {
     <slot />
     <BackToTop />
     <AnalyticsConsent />
-    <script async src="https://tally.so/widgets/embed.js"></script>
     <script>
       type AnalyticsWindow = Window & {
         gtag?: (...args: unknown[]) => void;
@@ -194,47 +193,7 @@ const structuredDataGraph = {
           properties.destination_host = new URL(trackedElement.href, window.location.href).host;
         }
 
-        if (eventName === "beta_access_clicked") {
-          try {
-            sessionStorage.setItem("envoyou_last_beta_cta", properties.cta_location);
-          } catch {
-            // Attribution remains optional when session storage is unavailable.
-          }
-        }
-
         analyticsWindow.gtag?.("event", eventName, properties);
-      });
-
-      // Tally embeds use postMessage for lifecycle events. Only the event name
-      // and public form ID are read; submission answers are never accessed.
-      window.addEventListener("message", (messageEvent) => {
-        const analyticsWindow = window as AnalyticsWindow;
-        if (!analyticsWindow.envoyouAnalyticsGranted) return;
-        if (messageEvent.origin !== "https://tally.so" || typeof messageEvent.data !== "string") return;
-        if (!messageEvent.data.includes("Tally.FormLoaded") && !messageEvent.data.includes("Tally.FormSubmitted")) return;
-
-        try {
-          const tallyEvent = JSON.parse(messageEvent.data);
-          if (tallyEvent?.payload?.formId !== "ODy5xM") return;
-
-          let ctaLocation = "unknown";
-          try {
-            ctaLocation = sessionStorage.getItem("envoyou_last_beta_cta") ?? "unknown";
-          } catch {
-            // Attribution remains optional when session storage is unavailable.
-          }
-
-          const eventName = messageEvent.data.includes("Tally.FormSubmitted")
-            ? "tally_form_submitted"
-            : "tally_form_opened";
-
-          analyticsWindow.gtag?.("event", eventName, {
-            form_id: "ODy5xM",
-            cta_location: ctaLocation,
-          });
-        } catch {
-          // Ignore unrelated or malformed postMessage payloads.
-        }
       });
     </script>
   </body>

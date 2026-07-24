@@ -1,25 +1,24 @@
 ---
-// FAQ section
 const faqs = [
   {
-    question: "What is Envoyou?",
-    answer: "Envoyou is an editorial technology provider that offers EAI, an AI-powered Editorial Workspace designed to scale content operations, verify factual integrity, and publish directly to your custom CMS."
+    question: "What happens after I log in to EAI?",
+    answer: "You enter the authenticated EAI onboarding and workspace flow. An eligible new workspace receives 10 trial credits, so you can run the real editorial workflow before purchasing a plan."
   },
   {
-    question: "Can I try EAI for free?",
-    answer: "Yes, absolutely! You can try refining drafts for up to 2 articles for free directly at <a href='https://eai.envoyou.com' target='_blank' rel='noopener noreferrer' class='text-primary hover:underline'>eai.envoyou.com</a> without needing to register or log in."
+    question: "What does EAI produce?",
+    answer: "In Publish-ready mode, EAI prepares a refined article plus a publication package: title, slug, excerpt, meta title, meta description, tags, and cover-image guidance. The package is reviewed by the Final Quality Gate before export."
   },
   {
-    question: "How does EAI help refine articles?",
-    answer: "EAI (Editorial Intelligence) evaluates the structure of your drafts, verifies factual claims against original sources (source fidelity check), improves readability and voice flow, and prepares complete SEO packages (Meta Title, Description, and Slug)."
+    question: "Does EAI automatically approve AI-written content?",
+    answer: "No. The Quality Gate returns <strong>Ready</strong>, <strong>Needs review</strong>, or <strong>Blocked</strong>. Source-fidelity and publication checks can keep export unavailable until critical feedback is resolved."
   },
   {
-    question: "How do I publish drafts from EAI to E-Blog?",
-    answer: "<strong>E-Blog is reserved exclusively for our internal blog team</strong> to publish and export content. For external organizations and tenants, you can register for EAI and <strong>connect your own custom CMS (such as WordPress, Ghost, or Headless APIs)</strong> to publish refined drafts directly to your own site."
+    question: "How do CMS connections work?",
+    answer: "An organization can configure a supported REST CMS connection. EAI encrypts the stored connection secret and exports an approved article as a <strong>draft</strong> for the publisher to review in the CMS. Availability depends on the configured adapter; E‑Blog is Envoyou’s internal implementation."
   },
   {
-    question: "Are my drafts and writings safe in EAI?",
-    answer: "Yes, completely. Your privacy and intellectual property are our top priorities. All processed drafts are kept strictly private for your organization and are never used to train public AI models."
+    question: "How do plans and payments work?",
+    answer: "Starter, Pro, and Team are prepaid credit plans with monthly or annual options. Checkout is handled through Midtrans, 11% VAT (PPN) is added to the final checkout amount, and automatic recurring billing is not currently enabled."
   }
 ];
 
@@ -40,20 +39,16 @@ const faqStructuredData = {
 <section id="faq" class="bg-surface">
   <div class="section">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-      
-      <!-- Left Column: Header -->
       <div class="lg:col-span-4 lg:sticky lg:top-28 h-fit">
         <div class="section-label">FAQ</div>
-        <h2 class="section-title text-left">
-          Have questions?<br />We have answers.
-        </h2>
+        <h2 class="section-title text-left">Before you enter the workspace.</h2>
         <p class="section-subtitle text-left mt-4">
-          Learn more about how the Envoyou ecosystem and EAI editorial intelligence work together to streamline your publishing workflow.
+          Clear answers about access, output, review controls, CMS export, and payment.
         </p>
         <div class="mt-8">
-          <p class="text-xs text-muted font-medium">Still need help?</p>
-          <a href="mailto:hello@envoyou.com" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-deep transition-colors mt-2">
-            Contact Our Team
+          <p class="text-xs text-muted font-medium">Need account or billing help?</p>
+          <a href="https://eai.envoyou.com/support" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-primary-deep transition-colors mt-2">
+            Contact EAI Support
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
@@ -61,7 +56,6 @@ const faqStructuredData = {
         </div>
       </div>
 
-      <!-- Right Column: Accordion Stack -->
       <div class="lg:col-span-8 divide-y divide-border">
         {faqs.map((faq) => (
           <details class="faq-item group py-5 cursor-pointer outline-none">
@@ -79,7 +73,6 @@ const faqStructuredData = {
           </details>
         ))}
       </div>
-
     </div>
   </div>
 </section>
@@ -87,11 +80,10 @@ const faqStructuredData = {
 <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
 
 <style>
-  /* Remove default disclosure triangle indicator */
   details summary::-webkit-details-marker {
     display: none;
   }
-  
+
   .faq-item[open] .faq-icon {
     border-color: var(--color-primary);
     background-color: var(--color-primary);
@@ -103,13 +95,7 @@ const faqStructuredData = {
   }
 
   @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>

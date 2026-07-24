@@ -5,11 +5,11 @@ import Footer from '../components/Footer.astro';
 import Hero from '../components/sections/Hero.astro';
 import Products from '../components/sections/Products.astro';
 import EcosystemPreview from '../components/sections/EcosystemPreview.astro';
-import ArticleShowcase from '../components/sections/ArticleShowcase.astro';
-import Analytics from '../components/sections/Analytics.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
 import Faq from '../components/sections/Faq.astro';
-import Mission from '../components/sections/Mission.astro';
+import DecisionSections from '../components/sections/DecisionSections.astro';
+import ConversionSections from '../components/sections/ConversionSections.astro';
+import FinalCta from '../components/sections/FinalCta.astro';
 
 const homepageStructuredData = {
   "@type": "SoftwareApplication",
@@ -19,8 +19,16 @@ const homepageStructuredData = {
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "Editorial workflow software",
   operatingSystem: "Web",
-  url: "https://eai.envoyou.com/",
-  description: "An AI-powered editorial workspace for draft refinement, factual integrity checks, SEO optimization, and secure CMS export.",
+  url: "https://eai.envoyou.com/login",
+  description: "An editorial intelligence workspace for draft refinement, source-sensitive quality review, SEO preparation, and controlled CMS draft export.",
+  featureList: [
+    "Tenant-aware editorial profiles",
+    "Draft refinement and targeted fixes",
+    "Final Quality Gate readiness verdict",
+    "SEO publication package",
+    "Editorial history and analytics",
+    "Configured CMS draft export",
+  ],
   publisher: {
     "@id": "https://www.envoyou.com/#organization",
   },
@@ -28,80 +36,20 @@ const homepageStructuredData = {
 ---
 
 <BaseLayout
-  title="Envoyou — Publishing Intelligence, Redefined"
-  description="Envoyou provides a premium AI-powered editorial workspace (EAI) designed to polish raw drafts, check factual integrity, optimize SEO, and streamline exports to your CMS."
+  title="EAI Editorial Intelligence for Publishers — Envoyou"
+  description="Turn raw drafts into publication-ready articles with controlled refinement, source-sensitive Quality Gate review, SEO preparation, and CMS draft export."
   structuredData={homepageStructuredData}
 >
   <Navbar />
   <main id="main-content">
     <Hero />
-    <Products />
     <EcosystemPreview />
-    <ArticleShowcase />
-    <Analytics />
+    <Products />
+    <DecisionSections />
     <HowItWorks />
+    <ConversionSections />
     <Faq />
-    <Mission />
+    <FinalCta />
   </main>
   <Footer />
 </BaseLayout>
-
-<!-- Animated number counter script -->
-<script>
-  function animateCount(el: HTMLElement) {
-    const raw = el.dataset.value ?? el.textContent ?? "0";
-    const suffix = el.dataset.suffix ?? "";
-
-    // Handle values like "1.2K"
-    const isFormatted = /[KkMm]/.test(raw);
-    if (isFormatted) {
-      el.textContent = raw + suffix;
-      return;
-    }
-
-    const target = parseFloat(raw);
-    if (isNaN(target)) return;
-
-    const duration = 1200;
-    const start = performance.now();
-    const hasDecimal = raw.includes(".");
-    const decimals = hasDecimal ? (raw.split(".")[1]?.length ?? 1) : 0;
-
-    function update(now: number) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = target * eased;
-
-      el.textContent = current.toFixed(decimals) + suffix;
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = target.toFixed(decimals) + suffix;
-      }
-    }
-
-    requestAnimationFrame(update);
-  }
-
-  // Intersection Observer to trigger when in view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          animateCount(el);
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  // Observe all elements with data-count or data-value
-  document.querySelectorAll<HTMLElement>("[data-count], [data-value]").forEach((el) => {
-    observer.observe(el);
-  });
-</script>

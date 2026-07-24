@@ -1,0 +1,84 @@
+---
+const audiences = [
+  {
+    title: "Independent publishers",
+    description: "Move from a working draft to a complete publication package without assembling a large editorial stack.",
+  },
+  {
+    title: "Lean content teams",
+    description: "Standardize brand voice, review priorities, and publication readiness across a shared organization workspace.",
+  },
+  {
+    title: "Editors with an existing CMS",
+    description: "Keep editorial control in EAI, then export an approved article as a draft through a configured REST connection.",
+  },
+];
+---
+
+<section id="audience" class="bg-surface-soft border-y border-border">
+  <div class="section">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="section-label mx-auto">Who EAI is for</div>
+      <h2 class="section-title">Built for publishers who need rigor without more handoffs.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {audiences.map((audience) => (
+        <article class="card p-7">
+          <h3 class="text-lg font-bold text-text">{audience.title}</h3>
+          <p class="text-sm leading-6 text-muted mt-3">{audience.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="pricing-summary">
+  <div class="section">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div class="lg:col-span-7 card p-8 md:p-10">
+        <div class="section-label">Ready to use</div>
+        <h2 class="section-title">Start with 10 trial credits. Upgrade when the workflow fits.</h2>
+        <p class="section-subtitle">
+          Starter begins at $10 for 50 monthly credits. Pro includes 100, and Team includes 300. Paid plans use prepaid Midtrans checkout with monthly or annual options; automatic recurring billing is not enabled.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a
+            href="https://eai.envoyou.com/login"
+            data-analytics-event="eai_login_clicked"
+            data-analytics-location="homepage_pricing"
+            class="btn-primary"
+          >
+            Log in to EAI
+          </a>
+          <a href="/pricing" class="btn-secondary">Compare plans</a>
+        </div>
+      </div>
+
+      <div id="security" class="lg:col-span-5 card p-8 md:p-10 bg-surface-soft">
+        <div class="section-label">Security by boundary</div>
+        <h2 class="text-2xl font-extrabold tracking-tight text-text">Workspace data stays scoped to its organization.</h2>
+        <ul class="mt-6 space-y-4 text-sm leading-6 text-muted">
+          <li><strong class="text-text">Authenticated access.</strong> Clerk protects workspace routes and organization context.</li>
+          <li><strong class="text-text">Tenant-scoped history.</strong> Article history and analytics queries are filtered by the active organization.</li>
+          <li><strong class="text-text">Encrypted CMS secrets.</strong> Stored connection credentials use AES-256-GCM encryption.</li>
+          <li><strong class="text-text">Draft-first export.</strong> A configured CMS receives an approved article as a draft, not an automatic live post.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="case-study" class="bg-surface-soft border-y border-border">
+  <div class="section py-16">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div class="max-w-3xl">
+        <div class="section-label">Internal proof</div>
+        <h2 class="section-title">E‑Blog is where Envoyou validates the workflow.</h2>
+        <p class="section-subtitle">
+          E‑Blog is an internal publishing case study—not a second SaaS product. It demonstrates how EAI output moves into a real editorial and SEO workflow.
+        </p>
+      </div>
+      <a href="/case-studies/e-blog/" class="btn-secondary shrink-0">Read the case study</a>
+    </div>
+  </div>
+</section>

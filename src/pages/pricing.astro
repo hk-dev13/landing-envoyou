@@ -4,22 +4,19 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { Zap, Check, ChevronDown } from 'lucide-astro';
 
-const DISCOUNT_RATE = 0.20; // 20% discount for annual billing
-const BETA_FORM_ID = 'ODy5xM';
-
 const basePlans = [
   {
     id: 'starter',
     name: 'Starter',
     priceMonthly: 10,
+    priceYearly: 96,
     creditsMonthly: 50,
     description: 'Perfect for independent writers and journalists starting out.',
     features: [
-      'Draft Refinement',
-      'SEO Optimization Pack',
-      '1 Custom Brand Voice Profile',
-      'Editorial Reports',
-      'Standard Support'
+      'Full Editorial Refinement Pipeline',
+      'SEO Publication Package',
+      'Custom Editorial Profile',
+      'Analysis History'
     ],
     highlight: false,
   },
@@ -27,14 +24,14 @@ const basePlans = [
     id: 'pro',
     name: 'Pro',
     priceMonthly: 19,
+    priceYearly: 182,
     creditsMonthly: 100,
     description: 'Ideal for professional editors needing deeper research and integration.',
     features: [
-      'Advanced Fact Checking & Auditing',
-      'Direct CMS Export (WordPress, Webhook)',
-      'Unlimited Brand Voice Profiles',
-      'AI Drafting Assistant',
-      'Priority Email Support'
+      'Full Editorial Refinement Pipeline',
+      'Source-sensitive Quality Gate',
+      'Configured CMS Draft Export',
+      'SEO Publication Package'
     ],
     highlight: true,
   },
@@ -42,24 +39,23 @@ const basePlans = [
     id: 'team',
     name: 'Team',
     priceMonthly: 79,
+    priceYearly: 758,
     creditsMonthly: 300,
     description: 'For editorial rooms and workspaces needing shared collaboration.',
     features: [
-      'Up to 10 Seats Included',
-      'Shared Workspace & Brand Profiles',
-      'Team Collaboration Tools',
-      'Centralized Team Analytics',
-      'Dedicated Slack Support'
+      'Organization Workspace',
+      'Shared Editorial Profile',
+      'Member Roles and Collaboration',
+      'Editorial Analytics'
     ],
     highlight: false,
   }
 ];
 
 const plans = basePlans.map(plan => {
-  const equivalentMonthly = Math.floor(plan.priceMonthly * (1 - DISCOUNT_RATE));
+  const equivalentMonthly = Number((plan.priceYearly / 12).toFixed(2));
   return {
     ...plan,
-    priceYearly: equivalentMonthly * 12,
     equivalentMonthly,
     creditsYearly: plan.creditsMonthly * 12,
     cta: 'Get Started',
@@ -69,18 +65,18 @@ const plans = basePlans.map(plan => {
 });
 
 const comparisonFeatures = [
-  { name: 'Editorial Credits', starter: '50/mo (600/yr)', pro: '100/mo (1200/yr)', team: '300/mo (3600/yr)' },
+  { name: 'Editorial Credits', starter: '50/month', pro: '100/month', team: '300/month' },
   { name: 'Draft Refinement', starter: true, pro: true, team: true },
   { name: 'SEO Optimization', starter: true, pro: true, team: true },
-  { name: 'Brand Voice Profiles', starter: '1 Profile', pro: 'Unlimited', team: 'Unlimited' },
+  { name: 'Editorial Profile', starter: true, pro: true, team: true },
   { name: 'Editorial Reports', starter: true, pro: true, team: true },
   { name: 'Advanced Fact Checking', starter: false, pro: true, team: true },
-  { name: 'CMS Export', starter: false, pro: true, team: true },
+  { name: 'Configured CMS Draft Export', starter: false, pro: true, team: true },
   { name: 'AI Drafting Assistant', starter: false, pro: true, team: true },
   { name: 'Shared Workspace', starter: false, pro: false, team: true },
   { name: 'Team Collaboration', starter: false, pro: false, team: true },
   { name: 'Team Analytics', starter: false, pro: false, team: true },
-  { name: 'Seats Included', starter: '1', pro: '1', team: 'Up to 10' },
+  { name: 'Organization Member Roles', starter: false, pro: false, team: true },
 ];
 
 const faqs = [
@@ -90,7 +86,7 @@ const faqs = [
   },
   {
     q: 'Do unused credits roll over?',
-    a: 'Monthly plan credits reset when a new monthly payment activates the next period. Annual plans grant the full prepaid annual credit allocation up front. Additional Credits purchased separately never expire.'
+    a: 'Subscription credits reset with each monthly allocation. Annual plans are prepaid for 12 months and refill the plan’s credit allowance monthly during the active term. Additional Credits purchased separately do not expire under the current terms.'
   },
   {
     q: 'When is a credit consumed?',
@@ -106,7 +102,7 @@ const faqs = [
   },
   {
     q: 'Is there a free trial?',
-    a: 'Yes. Every new account receives 10 free Editorial Credits to explore the platform before purchasing a subscription.'
+    a: 'Yes. Eligible new workspaces receive 10 trial Editorial Credits to explore the platform before purchasing a plan.'
   },
   {
     q: 'Do I need a team plan to collaborate?',
@@ -181,7 +177,7 @@ const faqs = [
                   <span 
                     class="text-4xl font-black text-text plan-price" 
                     data-monthly={`$${plan.priceMonthly}`} 
-                    data-yearly={`$${plan.equivalentMonthly}`}
+                  data-yearly={`$${plan.equivalentMonthly.toFixed(2).replace(/\.00$/, '')}`}
                   >
                     ${plan.priceMonthly}
                   </span>
@@ -209,7 +205,7 @@ const faqs = [
               <li 
                 class="flex items-start gap-2.5 text-text/80 font-bold plan-credits-feature"
                 data-monthly={`${plan.creditsMonthly} Editorial Credits/month`}
-                data-yearly={`${plan.creditsYearly} Credits granted up-front`}
+                data-yearly={`${plan.creditsMonthly} Editorial Credits/month`}
               >
                 <Check class="w-4.5 h-4.5 text-primary shrink-0 mt-0.5" />
                 <span class="feature-text">{plan.creditsMonthly} Editorial Credits/month</span>
@@ -265,13 +261,13 @@ const faqs = [
           </div>
 
           <a
-            href={`#tally-open=${BETA_FORM_ID}&tally-emoji-text=👋&tally-emoji-animation=wave&plan=addon`}
-            data-analytics-event="beta_access_clicked"
+            href="https://eai.envoyou.com/pricing?plan=addon"
+            data-analytics-event="pricing_plan_selected"
             data-analytics-location="pricing_addon"
             data-analytics-plan="addon"
             class="w-full py-3 bg-primary hover:bg-primary/95 text-white font-bold rounded-xl transition-all text-xs cursor-pointer block text-center"
           >
-            Request Access
+            Buy add-on
           </a>
         </div>
       </section>
@@ -389,15 +385,15 @@ const faqs = [
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 pt-2">
           <a
-            href={`#tally-open=${BETA_FORM_ID}&tally-emoji-text=👋&tally-emoji-animation=wave`}
-            data-analytics-event="beta_access_clicked"
+            href="https://eai.envoyou.com/login"
+            data-analytics-event="eai_login_clicked"
             data-analytics-location="pricing_closing"
             class="px-6 py-3.5 bg-primary hover:bg-primary/95 text-white font-bold rounded-2xl transition-all shadow-lg shadow-primary/10 active:scale-98 text-sm cursor-pointer block"
           >
-            Request Beta Access
+            Log in to EAI
           </a>
           <span class="text-xs text-muted">
-            Get 10 free credits when you join the beta.
+            Eligible new workspaces receive 10 trial credits.
           </span>
         </div>
       </section>
