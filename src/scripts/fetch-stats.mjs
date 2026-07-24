@@ -167,17 +167,12 @@ function formatDate(date) {
   return `${day} ${month} ${year}`;
 }
 
-function get30DaysRangeString() {
-  const today = new Date();
-  const thirtyDaysAgo = new Date();
-  thirtyDaysAgo.setDate(today.getDate() - 30);
-  return `${formatDate(thirtyDaysAgo)} - ${formatDate(today)}`;
-}
-
 async function main() {
   // Load existing stats as fallbacks
   let stats = {
     dateRange: "13 May 2026 - 12 June 2026",
+    blogUpdatedAt: "12 June 2026",
+    eaiUpdatedAt: "12 June 2026",
     totalDrafts: 17,
     readyRate: 43,
     monthlyReaders: "2.4K",
@@ -218,8 +213,6 @@ async function main() {
 
   const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 
-  stats.dateRange = get30DaysRangeString();
-
   // 1. Fetch Blog Stats
   try {
     console.log('Fetching Blog stats...');
@@ -229,6 +222,7 @@ async function main() {
     stats.blog.topCategory = blogData.topCategory;
     stats.blog.topArticleViews = blogData.topArticleViews;
     stats.blog.avgReadingTime = blogData.avgReadingTime;
+    stats.blogUpdatedAt = formatDate(new Date());
     console.log('Blog stats successfully fetched:', blogData);
   } catch (err) {
     console.warn('WARNING: Failed to fetch Blog stats (falling back to stats.json):', err.message);
@@ -264,6 +258,7 @@ async function main() {
       if (eaiData.seoCompletionRate !== undefined) {
         stats.eai.seoCompletionRate = eaiData.seoCompletionRate;
       }
+      stats.eaiUpdatedAt = formatDate(new Date());
       console.log('EAI stats successfully fetched:', eaiData);
     } catch (err) {
       console.warn('WARNING: Failed to fetch EAI stats (falling back to stats.json):', err.message);
@@ -291,6 +286,7 @@ async function main() {
         stats.blog.views30Days = formatReaders(gaData.pageViews);
         console.log('GA4 page views successfully fetched:', gaData.pageViews, `(${stats.blog.views30Days})`);
       }
+      stats.blogUpdatedAt = formatDate(new Date());
     } catch (err) {
       console.warn('WARNING: Failed to fetch GA4 stats (falling back to stats.json):', err.message);
     }

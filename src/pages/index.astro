@@ -10,11 +10,27 @@ import Analytics from '../components/sections/Analytics.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
 import Faq from '../components/sections/Faq.astro';
 import Mission from '../components/sections/Mission.astro';
+
+const homepageStructuredData = {
+  "@type": "SoftwareApplication",
+  "@id": "https://envoyou.com/#eai",
+  name: "Envoyou AI Editorial Intelligence",
+  alternateName: "EAI",
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "Editorial workflow software",
+  operatingSystem: "Web",
+  url: "https://eai.envoyou.com/",
+  description: "An AI-powered editorial workspace for draft refinement, factual integrity checks, SEO optimization, and secure CMS export.",
+  publisher: {
+    "@id": "https://envoyou.com/#organization",
+  },
+};
 ---
 
 <BaseLayout
   title="Envoyou — Publishing Intelligence, Redefined"
   description="Envoyou provides a premium AI-powered editorial workspace (EAI) designed to polish raw drafts, check factual integrity, optimize SEO, and streamline exports to your CMS."
+  structuredData={homepageStructuredData}
 >
   <Navbar />
   <main id="main-content">

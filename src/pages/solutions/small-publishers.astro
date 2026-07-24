@@ -1,0 +1,99 @@
+---
+import IntentLanding from '../../components/IntentLanding.astro';
+
+const benefits = [
+  {
+    title: 'One connected editorial loop',
+    description: 'Move from draft and source context through refinement, verification, SEO preparation, and export without rebuilding the article in several tools.',
+  },
+  {
+    title: 'Quality controls for lean teams',
+    description: 'Use source-fidelity checks and publication-readiness verdicts when a small team cannot dedicate a specialist to every editorial stage.',
+  },
+  {
+    title: 'Scale with visible costs',
+    description: 'Credit-based individual and team plans make it easier to match editorial capacity to the volume a publication actually handles.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Start with the material the team already has',
+    description: 'Submit a raw draft, outline, idea, press release, or supporting references instead of rebuilding context for every tool.',
+  },
+  {
+    title: 'Apply the publication voice and editorial rules',
+    description: 'Refine structure, readability, and presentation using the workspace and brand profiles configured for the publication.',
+  },
+  {
+    title: 'Review factual integrity and readiness',
+    description: 'Use the Quality Gate to surface source-fidelity, consistency, SEO, and formatting issues that still require attention.',
+  },
+  {
+    title: 'Finish the package and publish',
+    description: 'Prepare SEO metadata and move the approved article into the connected CMS rather than repeating manual copy-and-paste work.',
+  },
+];
+
+const capabilities = [
+  'A free trial provides 10 Editorial Credits, with a limited no-login refinement option.',
+  'Starter supports independent writers; Pro adds advanced fact checking and CMS export.',
+  'Team supports shared workspaces, multiple seats, collaboration, and centralized analytics.',
+  'Brand voice profiles help keep output aligned with publication-specific guidance.',
+  'Press Release Mode helps turn promotional source material into more objective editorial copy.',
+  'The E-Blog case study demonstrates an EAI-powered draft-to-publication workflow.',
+];
+
+const faqs = [
+  {
+    question: 'What size publishing team is Envoyou designed for?',
+    answer: 'Envoyou supports independent writers as well as small and mid-sized editorial teams. The appropriate plan depends on collaboration, seat, fact-checking, and CMS-export needs.',
+  },
+  {
+    question: 'Can a small publisher try the workflow before subscribing?',
+    answer: 'Yes. New accounts receive 10 free Editorial Credits, and a limited refinement experience is available without registration.',
+  },
+  {
+    question: 'Does the workflow remove editorial review?',
+    answer: 'No. EAI is designed to structure and accelerate review. Editors still control the readiness decision and the final publication action.',
+  },
+  {
+    question: 'Can the finished article go to an existing CMS?',
+    answer: 'Yes. Eligible plans support WordPress and webhook export, with custom pipelines available for Ghost and headless CMS destinations.',
+  },
+];
+
+const relatedLinks = [
+  {
+    href: '/integrations/custom-cms/',
+    title: 'Custom CMS integration',
+    description: 'Understand how approved article packages move into an existing publishing stack.',
+  },
+  {
+    href: '/pricing/',
+    title: 'Compare plans',
+    description: 'Review credits, collaboration features, fact checking, and CMS export availability.',
+  },
+  {
+    href: '/about/',
+    title: 'Why Envoyou',
+    description: 'See the complete editorial workflow and the principles behind the product.',
+  },
+];
+---
+
+<IntentLanding
+  title="An AI Editorial Workspace for Small Publishing Teams"
+  metaTitle="AI Editorial Workspace for Small Publishers — Envoyou"
+  description="Envoyou helps small publishing teams refine drafts, verify factual integrity, prepare SEO metadata, and export approved articles without a fragmented tool stack."
+  canonicalPath="/solutions/small-publishers/"
+  eyebrow="Small publisher workflow"
+  lead="Small editorial teams need to increase output without turning quality control into a separate full-time operation. Envoyou brings the essential finishing stages into one workspace."
+  directAnswer="Envoyou fits small publisher workflows by combining draft refinement, publication-specific voice guidance, source-fidelity checks, SEO package generation, and CMS export in one controlled process. It reduces repeated handoffs while keeping editors responsible for the final readiness and publishing decision."
+  benefits={benefits}
+  steps={steps}
+  capabilities={capabilities}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+  analyticsLocation="small_publishers_intent"
+/>

@@ -22,6 +22,19 @@ const faqs = [
     answer: "Yes, completely. Your privacy and intellectual property are our top priorities. All processed drafts are kept strictly private for your organization and are never used to train public AI models."
   }
 ];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim(),
+    },
+  })),
+};
 ---
 
 <section id="faq" class="bg-surface">
@@ -70,6 +83,8 @@ const faqs = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
 
 <style>
   /* Remove default disclosure triangle indicator */

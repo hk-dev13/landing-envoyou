@@ -2,9 +2,10 @@
 import stats from '../../data/stats.json';
 
 // EAI operational metrics from stats.json
-const totalDrafts = stats.totalDrafts || 42;
-const readyRate = stats.readyRate || 17;
-const systemUptime = stats.systemUptime || "99.9%";
+const cmsExportSuccess = stats.eai?.cmsExportSuccess || "—";
+const seoCompletionRate = stats.eai?.seoCompletionRate || "—";
+const avgProcessTimeMins = stats.eai?.avgProcessTimeMins;
+const eaiUpdatedAt = stats.eaiUpdatedAt;
 ---
 
 <section
@@ -38,6 +39,8 @@ const systemUptime = stats.systemUptime || "99.9%";
           <a
             href="#tally-open=ODy5xM&tally-emoji-text=👋&tally-emoji-animation=wave&ref=hero"
             id="hero-cta-eai-login"
+            data-analytics-event="beta_access_clicked"
+            data-analytics-location="homepage_hero"
             class="btn-primary"
           >
             Request Beta Access
@@ -64,23 +67,30 @@ const systemUptime = stats.systemUptime || "99.9%";
       <!-- Social proof / quick stats -->
       <div class="flex flex-wrap items-center gap-6 mt-14 pt-10 border-t border-border">
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value={totalDrafts} data-count="true">—</p>
-          <p class="text-xs text-muted mt-0.5">Drafts Processed</p>
+          <p class="text-2xl font-bold text-text tabular-nums">{cmsExportSuccess}</p>
+          <p class="text-xs text-muted mt-0.5">CMS Export Success</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums" data-value={readyRate} data-suffix="%" data-count="true">—</p>
-          <p class="text-xs text-muted mt-0.5">Readiness Rate</p>
+          <p class="text-2xl font-bold text-text tabular-nums">{seoCompletionRate}</p>
+          <p class="text-xs text-muted mt-0.5">SEO Packages Completed</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
         <div>
-          <p class="text-2xl font-bold text-text tabular-nums">{systemUptime}</p>
-          <p class="text-xs text-muted mt-0.5">System Uptime</p>
+          <p class="text-2xl font-bold text-text tabular-nums">
+            {typeof avgProcessTimeMins === "number" ? `${avgProcessTimeMins}m` : "—"}
+          </p>
+          <p class="text-xs text-muted mt-0.5">Average Process Time</p>
         </div>
         <div class="w-px h-8 bg-border"></div>
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-2 h-2 rounded-full bg-success animate-pulse"></span>
-          <p class="text-sm font-medium text-muted">Always Improving</p>
+        <div class="flex flex-col gap-1">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-success"></span>
+            <p class="text-sm font-medium text-muted">Operational Metrics</p>
+          </div>
+          {eaiUpdatedAt && (
+            <p class="text-[10px] text-muted/80">Updated {eaiUpdatedAt}</p>
+          )}
         </div>
       </div>
     </div>

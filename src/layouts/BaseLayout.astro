@@ -6,18 +6,49 @@ export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = "Envoyou — Publishing Intelligence, Redefined",
   description = "Envoyou combines publishing, editorial workflows, and intelligent content tools into a connected ecosystem designed to move ideas from draft to publication.",
   ogImage = "/og-image.png",
+  structuredData = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://envoyou.com");
 const ogImageURL = new URL(ogImage, Astro.site ?? "https://envoyou.com");
 
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const pageStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
+const structuredDataGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://envoyou.com/#organization",
+      name: "Envoyou",
+      url: "https://envoyou.com/",
+      logo: "https://envoyou.com/favicon.svg",
+      sameAs: [
+        "https://github.com/Envoyou",
+        "https://www.linkedin.com/in/husni-kusuma",
+        "https://x.com/EnvoyouAPI",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://envoyou.com/#website",
+      url: "https://envoyou.com/",
+      name: "Envoyou",
+      publisher: {
+        "@id": "https://envoyou.com/#organization",
+      },
+      inLanguage: "en",
+    },
+    ...pageStructuredData,
+  ],
+};
 ---
 
 <!doctype html>
@@ -48,6 +79,9 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)}></script>
+
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -72,9 +106,9 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
         <script is:inline define:vars={{ gaMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', gaMeasurementId);
+          window.gtag = function(){window.dataLayer.push(arguments);}
+          window.gtag('js', new Date());
+          window.gtag('config', gaMeasurementId);
         </script>
       </>
     )}
@@ -83,5 +117,39 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <slot />
     <BackToTop />
     <script async src="https://tally.so/widgets/embed.js"></script>
+    <script>
+      type AnalyticsWindow = Window & {
+        gtag?: (command: string, eventName: string, properties?: Record<string, string>) => void;
+      };
+
+      document.addEventListener("click", (clickEvent) => {
+        const eventTarget = clickEvent.target;
+        if (!(eventTarget instanceof Element)) return;
+
+        const trackedElement = eventTarget.closest<HTMLElement>("[data-analytics-event]");
+        if (!trackedElement) return;
+
+        const eventName = trackedElement.dataset.analyticsEvent;
+        if (!eventName) return;
+
+        const properties: Record<string, string> = {
+          cta_location: trackedElement.dataset.analyticsLocation ?? "unknown",
+        };
+
+        if (trackedElement.dataset.analyticsPlan) {
+          properties.plan = trackedElement.dataset.analyticsPlan;
+        }
+
+        if (trackedElement.dataset.analyticsBillingCycle) {
+          properties.billing_cycle = trackedElement.dataset.analyticsBillingCycle;
+        }
+
+        if (trackedElement instanceof HTMLAnchorElement) {
+          properties.destination_host = new URL(trackedElement.href, window.location.href).host;
+        }
+
+        (window as AnalyticsWindow).gtag?.("event", eventName, properties);
+      });
+    </script>
   </body>
 </html>

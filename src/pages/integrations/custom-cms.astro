@@ -1,0 +1,99 @@
+---
+import IntentLanding from '../../components/IntentLanding.astro';
+
+const benefits = [
+  {
+    title: 'Keep your existing CMS',
+    description: 'Use EAI as the editorial preparation layer while your current publishing system remains the destination and system of record.',
+  },
+  {
+    title: 'Move complete article packages',
+    description: 'Prepare finalized copy, cover images, and structured SEO fields before sending content into the connected publishing pipeline.',
+  },
+  {
+    title: 'Preserve editorial control',
+    description: 'Run refinement and the final Quality Gate before export so teams decide what is ready to enter the CMS.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Bring the draft and source context into EAI',
+    description: 'Writers can begin with a draft, outline, topic, press release, or supporting references inside the editorial workspace.',
+  },
+  {
+    title: 'Refine, verify, and prepare SEO metadata',
+    description: 'EAI improves the draft, checks source fidelity, and prepares the title, description, slug, tags, and publishing structure.',
+  },
+  {
+    title: 'Review the publication-readiness verdict',
+    description: 'The Quality Gate identifies issues that need attention before the content package is treated as final.',
+  },
+  {
+    title: 'Export through the configured CMS connection',
+    description: 'Approved content can move through WordPress export, a secure webhook, or a configured Ghost or headless CMS pipeline.',
+  },
+];
+
+const capabilities = [
+  'Direct CMS export is available on eligible EAI plans.',
+  'WordPress and webhook-based export paths are supported by the current product offering.',
+  'Ghost and headless CMS workflows can use configured custom publishing pipelines.',
+  'SEO packages can include the meta title, description, slug, and tags.',
+  'Finalized exports can include clean article markup and cover images.',
+  'CMS credentials and payloads are protected within the organization workflow.',
+];
+
+const faqs = [
+  {
+    question: 'Does Envoyou replace our CMS?',
+    answer: 'No. EAI works as an editorial intelligence and preparation layer. Your CMS remains the publishing destination.',
+  },
+  {
+    question: 'Which CMS connections are available?',
+    answer: 'The current product offering lists WordPress and secure webhook export. Ghost and other headless systems can be connected through a configured custom publishing pipeline.',
+  },
+  {
+    question: 'Can editors review an article before it is exported?',
+    answer: 'Yes. The workflow includes refinement, verification, and a final Quality Gate before the article package is treated as publication-ready.',
+  },
+  {
+    question: 'What information can be included in an export?',
+    answer: 'A finalized export can include article markup, a cover image, and structured SEO fields such as title, description, slug, and tags.',
+  },
+];
+
+const relatedLinks = [
+  {
+    href: '/solutions/small-publishers/',
+    title: 'For small publishing teams',
+    description: 'See how a compact editorial team can run a connected draft-to-publication workflow.',
+  },
+  {
+    href: '/pricing/',
+    title: 'Plans and credits',
+    description: 'Compare the plans that include advanced fact checking and CMS export.',
+  },
+  {
+    href: '/about/',
+    title: 'How EAI works',
+    description: 'Explore the product philosophy and the complete editorial workflow.',
+  },
+];
+---
+
+<IntentLanding
+  title="Connect AI Editorial Workflows to Your Custom CMS"
+  metaTitle="Custom CMS Integration for AI Editorial Workflows — Envoyou"
+  description="Connect Envoyou EAI to WordPress, webhooks, Ghost, or a headless CMS workflow after editorial refinement, Quality Gate verification, and SEO preparation."
+  canonicalPath="/integrations/custom-cms/"
+  eyebrow="Custom CMS integration"
+  lead="Envoyou EAI prepares publication-ready article packages inside a controlled editorial workflow, then sends approved output into the publishing infrastructure your team already uses."
+  directAnswer="Envoyou connects AI-assisted editorial work to existing CMS pipelines by keeping refinement, source-fidelity checks, SEO preparation, and publication approval in EAI before an approved content package is exported through WordPress, secure webhooks, or a configured Ghost or headless CMS connection."
+  benefits={benefits}
+  steps={steps}
+  capabilities={capabilities}
+  faqs={faqs}
+  relatedLinks={relatedLinks}
+  analyticsLocation="custom_cms_intent"
+/>

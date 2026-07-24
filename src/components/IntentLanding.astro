@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+
+type ContentItem = {
+  title: string;
+  description: string;
+};
+
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+type RelatedLink = ContentItem & {
+  href: string;
+};
+
+export interface Props {
+  title: string;
+  metaTitle: string;
+  description: string;
+  canonicalPath: string;
+  eyebrow: string;
+  lead: string;
+  directAnswer: string;
+  benefits: ContentItem[];
+  steps: ContentItem[];
+  capabilities: string[];
+  faqs: FaqItem[];
+  relatedLinks: RelatedLink[];
+  analyticsLocation: string;
+}
+
+const {
+  title,
+  metaTitle,
+  description,
+  canonicalPath,
+  eyebrow,
+  lead,
+  directAnswer,
+  benefits,
+  steps,
+  capabilities,
+  faqs,
+  relatedLinks,
+  analyticsLocation,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://envoyou.com').toString();
+const pageStructuredData = [
+  {
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: metaTitle,
+    description,
+    isPartOf: {
+      '@id': 'https://envoyou.com/#website',
+    },
+    about: {
+      '@id': 'https://envoyou.com/#eai',
+    },
+    inLanguage: 'en',
+  },
+  {
+    '@type': 'Service',
+    '@id': `${canonicalUrl}#service`,
+    name: title,
+    description,
+    provider: {
+      '@id': 'https://envoyou.com/#organization',
+    },
+    url: canonicalUrl,
+  },
+];
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout title={metaTitle} description={description} structuredData={pageStructuredData}>
+  <Navbar />
+  <main id="main-content" class="pt-24">
+    <section class="section py-20 sm:py-28">
+      <div class="max-w-4xl">
+        <div class="section-label">{eyebrow}</div>
+        <h1 class="section-title max-w-4xl">{title}</h1>
+        <p class="section-subtitle mt-6 max-w-3xl">{lead}</p>
+        <div class="mt-8 rounded-2xl border border-primary/20 bg-primary/5 p-6 max-w-3xl">
+          <p class="text-xs font-bold uppercase tracking-wider text-primary mb-2">Direct answer</p>
+          <p class="text-sm sm:text-base leading-7 text-text">{directAnswer}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 mt-10">
+          <a
+            href="#tally-open=ODy5xM&tally-emoji-text=👋&tally-emoji-animation=wave"
+            data-analytics-event="beta_access_clicked"
+            data-analytics-location={analyticsLocation}
+            class="btn-primary"
+          >
+            Request Beta Access
+          </a>
+          <a
+            href="https://eai.envoyou.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="eai_outbound_clicked"
+            data-analytics-location={analyticsLocation}
+            class="btn-secondary"
+          >
+            Explore EAI
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-surface-soft border-y border-border">
+      <div class="section py-20">
+        <div class="max-w-3xl mb-12">
+          <div class="section-label">Operational outcomes</div>
+          <h2 class="section-title">Built around the publishing work that must get finished.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {benefits.map((benefit) => (
+            <article class="card p-7">
+              <h3 class="text-lg font-bold text-text">{benefit.title}</h3>
+              <p class="text-sm text-muted leading-6 mt-3">{benefit.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5">
+          <div class="section-label">Workflow</div>
+          <h2 class="section-title">From working draft to controlled publication.</h2>
+          <p class="section-subtitle mt-4">
+            Each stage keeps editorial context attached to the article instead of scattering work across disconnected tools.
+          </p>
+        </div>
+        <ol class="lg:col-span-7 space-y-4">
+          {steps.map((step, index) => (
+            <li class="card p-6 flex gap-5">
+              <span class="text-sm font-black text-primary font-mono">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-bold text-text">{step.title}</h3>
+                <p class="text-sm text-muted leading-6 mt-2">{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="bg-surface-soft border-y border-border">
+      <div class="section py-20">
+        <div class="max-w-3xl">
+          <div class="section-label">Included capabilities</div>
+          <h2 class="section-title">A practical editorial operating layer.</h2>
+        </div>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-5xl">
+          {capabilities.map((capability) => (
+            <li class="card p-5 flex items-start gap-3 text-sm text-text">
+              <span class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></span>
+              {capability}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <div class="section-label">FAQ</div>
+          <h2 class="section-title">Questions teams ask before connecting.</h2>
+        </div>
+        <div class="lg:col-span-8 divide-y divide-border">
+          {faqs.map((faq) => (
+            <details class="py-5 group">
+              <summary class="font-bold text-text cursor-pointer">{faq.question}</summary>
+              <p class="text-sm text-muted leading-7 mt-3 pr-8">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section pb-24">
+      <div class="border-t border-border pt-16">
+        <div class="section-label">Continue exploring</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
+          {relatedLinks.map((link) => (
+            <a href={link.href} class="card p-6 group no-underline">
+              <h2 class="font-bold text-text group-hover:text-primary transition-colors">{link.title}</h2>
+              <p class="text-xs text-muted leading-5 mt-2">{link.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
+</BaseLayout>
