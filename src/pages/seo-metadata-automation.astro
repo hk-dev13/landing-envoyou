@@ -35,15 +35,6 @@ const steps = [
   },
 ];
 
-const capabilities = [
-  'Meta title preparation based on the refined article and target topic.',
-  'Meta description generation aligned with the final article content.',
-  'Clean slug and tag suggestions for the publishing package.',
-  'Search snippet preview during editorial review.',
-  'Quality Gate review of metadata together with the article body.',
-  'Structured CMS export for eligible plans and configured destinations.',
-];
-
 const faqs = [
   {
     question: 'What SEO metadata can Envoyou prepare?',
@@ -83,6 +74,7 @@ const relatedLinks = [
 ---
 
 <IntentLanding
+  contentType="service"
   title="Automate SEO Metadata Inside the Editorial Workflow"
   metaTitle="SEO Metadata Automation for Editorial Teams — Envoyou"
   description="Prepare and review SEO titles, descriptions, slugs, tags, and structured CMS fields from the final article inside Envoyou EAI."
@@ -91,9 +83,12 @@ const relatedLinks = [
   lead="SEO metadata works best when it reflects the final article. Envoyou prepares the publication package after editorial refinement and keeps metadata connected to the content it describes."
   directAnswer="Envoyou automates SEO metadata by preparing the title, meta description, slug, tags, and snippet information from the refined article and its publication context. The Quality Gate reviews metadata with the article body, and a configured EAI REST connection can export the approved structured fields as a CMS draft."
   benefits={benefits}
+  benefitsTitle="Prepare metadata from the version readers will see."
   steps={steps}
-  capabilities={capabilities}
+  stepsTitle="Build the SEO package after refinement."
+  stepsLead="The final article supplies the context for each field, then editors review the article and metadata as one publication package."
   faqs={faqs}
+  faqTitle="What SEO automation does and does not decide."
   relatedLinks={relatedLinks}
   analyticsLocation="seo_metadata_intent"
   lastUpdated="24 July 2026"

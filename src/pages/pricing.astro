@@ -3,64 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { Zap, Check, ChevronDown } from "lucide-astro";
+import {
+  creditComparison,
+  pricingComparison,
+  pricingFeatures,
+  pricingPlans,
+} from "../data/pricing";
 
-const basePlans = [
-  {
-    id: "starter",
-    name: "Starter",
-    priceMonthly: 10,
-    priceYearly: 96,
-    creditsMonthly: 50,
-    description:
-      "Perfect for independent writers and journalists starting out.",
-    features: [
-      "Full Editorial Refinement Pipeline",
-      "SEO Publication Package",
-      "Custom Editorial Profile",
-      "Analysis History",
-    ],
-    highlight: false,
-  },
-  {
-    id: "pro",
-    name: "Pro",
-    priceMonthly: 19,
-    priceYearly: 182,
-    creditsMonthly: 100,
-    description:
-      "Ideal for professional editors needing deeper research and integration.",
-    features: [
-      "Full Editorial Refinement Pipeline",
-      "Source-sensitive Quality Gate",
-      "Configured CMS Draft Export",
-      "SEO Publication Package",
-    ],
-    highlight: true,
-  },
-  {
-    id: "team",
-    name: "Team",
-    priceMonthly: 79,
-    priceYearly: 758,
-    creditsMonthly: 300,
-    description:
-      "For editorial rooms and workspaces needing shared collaboration.",
-    features: [
-      "Organization Workspace",
-      "Shared Editorial Profile",
-      "Member Roles and Collaboration",
-      "Editorial Analytics",
-    ],
-    highlight: false,
-  },
-];
-
-const plans = basePlans.map((plan) => {
+const plans = pricingPlans.map((plan) => {
   const equivalentMonthly = Number((plan.priceYearly / 12).toFixed(2));
   return {
     ...plan,
     equivalentMonthly,
-    creditsYearly: plan.creditsMonthly * 12,
     cta: "Get Started",
     hrefMonthly: `https://eai.envoyou.com/pricing?plan=${plan.id}`,
     hrefYearly: `https://eai.envoyou.com/pricing?plan=${plan.id}_yearly`,
@@ -68,28 +22,8 @@ const plans = basePlans.map((plan) => {
 });
 
 const comparisonFeatures = [
-  {
-    name: "Editorial Credits",
-    starter: "50/month",
-    pro: "100/month",
-    team: "300/month",
-  },
-  { name: "Draft Refinement", starter: true, pro: true, team: true },
-  { name: "SEO Optimization", starter: true, pro: true, team: true },
-  { name: "Editorial Profile", starter: true, pro: true, team: true },
-  { name: "Editorial Reports", starter: true, pro: true, team: true },
-  { name: "Advanced Fact Checking", starter: false, pro: true, team: true },
-  {
-    name: "Configured CMS Draft Export",
-    starter: false,
-    pro: true,
-    team: true,
-  },
-  { name: "AI Drafting Assistant", starter: false, pro: true, team: true },
-  { name: "Shared Workspace", starter: false, pro: false, team: true },
-  { name: "Team Collaboration", starter: false, pro: false, team: true },
-  { name: "Team Analytics", starter: false, pro: false, team: true },
-  { name: "Organization Member Roles", starter: false, pro: false, team: true },
+  creditComparison,
+  ...pricingComparison,
 ];
 
 const faqs = [
@@ -251,10 +185,10 @@ const faqs = [
                     {plan.creditsMonthly} Editorial Credits/month
                   </span>
                 </li>
-                {plan.features.map((feature) => (
+                {plan.cardFeatureIds.map((featureId) => (
                   <li class="flex items-start gap-2.5 text-text/80">
                     <Check class="w-4.5 h-4.5 text-primary shrink-0 mt-0.5" />
-                    <span>{feature}</span>
+                    <span>{pricingFeatures[featureId].label}</span>
                   </li>
                 ))}
               </ul>

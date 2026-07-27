@@ -35,15 +35,6 @@ const steps = [
   },
 ];
 
-const capabilities = [
-  'Direct CMS export is available on eligible EAI plans.',
-  'The current production adapter uses the EAI REST draft-import contract.',
-  'Adapter availability depends on the active organization and its configured CMS connection.',
-  'SEO packages can include the meta title, description, slug, and tags.',
-  'Finalized exports can include clean article markup and cover images.',
-  'CMS credentials and payloads are protected within the organization workflow.',
-];
-
 const faqs = [
   {
     question: 'Does Envoyou replace our CMS?',
@@ -83,6 +74,7 @@ const relatedLinks = [
 ---
 
 <IntentLanding
+  contentType="service"
   title="Connect AI Editorial Workflows to Your Custom CMS"
   metaTitle="Custom CMS Integration for AI Editorial Workflows — Envoyou"
   description="Connect Envoyou EAI to a configured REST CMS workflow after editorial refinement, Quality Gate verification, and SEO preparation."
@@ -91,9 +83,12 @@ const relatedLinks = [
   lead="Envoyou EAI prepares publication-ready article packages inside a controlled editorial workflow, then sends approved output into the publishing infrastructure your team already uses."
   directAnswer="Envoyou connects AI-assisted editorial work to a configured CMS pipeline by keeping refinement, source-fidelity checks, SEO preparation, and publication approval in EAI before an approved content package is exported as a draft through the EAI REST contract."
   benefits={benefits}
+  benefitsTitle="Add editorial control before CMS handoff."
   steps={steps}
-  capabilities={capabilities}
+  stepsTitle="Send one approved package into the CMS."
+  stepsLead="A configured connection receives the article only after EAI has assembled its content, metadata, and available assets."
   faqs={faqs}
+  faqTitle="What to confirm before connecting a CMS."
   relatedLinks={relatedLinks}
   analyticsLocation="custom_cms_intent"
 />

@@ -18,7 +18,10 @@ type RelatedLink = ContentItem & {
   href: string;
 };
 
+type ContentType = 'conceptual' | 'how-to' | 'service';
+
 export interface Props {
+  contentType: ContentType;
   title: string;
   metaTitle: string;
   description: string;
@@ -26,10 +29,15 @@ export interface Props {
   eyebrow: string;
   lead: string;
   directAnswer: string;
-  benefits: ContentItem[];
-  steps: ContentItem[];
-  capabilities: string[];
+  benefits?: ContentItem[];
+  benefitsTitle?: string;
+  steps?: ContentItem[];
+  stepsTitle?: string;
+  stepsLead?: string;
+  capabilities?: string[];
+  capabilitiesTitle?: string;
   faqs: FaqItem[];
+  faqTitle?: string;
   relatedLinks: RelatedLink[];
   analyticsLocation: string;
   lastUpdated?: string;
@@ -37,6 +45,7 @@ export interface Props {
 }
 
 const {
+  contentType,
   title,
   metaTitle,
   description,
@@ -44,10 +53,15 @@ const {
   eyebrow,
   lead,
   directAnswer,
-  benefits,
-  steps,
-  capabilities,
+  benefits = [],
+  benefitsTitle = 'Built around the publishing work that must get finished.',
+  steps = [],
+  stepsTitle = 'From working draft to controlled publication.',
+  stepsLead = 'Each stage keeps editorial context attached to the article instead of scattering work across disconnected tools.',
+  capabilities = [],
+  capabilitiesTitle = 'A practical editorial operating layer.',
   faqs,
+  faqTitle = 'Questions teams ask before connecting.',
   relatedLinks,
   analyticsLocation,
   lastUpdated,
@@ -55,23 +69,24 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://www.envoyou.com').toString();
-const pageStructuredData: JsonObject[] = [
-  {
-    '@type': 'WebPage',
-    '@id': `${canonicalUrl}#webpage`,
-    url: canonicalUrl,
-    name: metaTitle,
-    description,
-    isPartOf: {
-      '@id': 'https://www.envoyou.com/#website',
-    },
-    about: {
-      '@id': 'https://www.envoyou.com/#eai',
-    },
-    ...(lastUpdatedIso ? { dateModified: lastUpdatedIso } : {}),
-    inLanguage: 'en',
+const pageStructuredData: JsonObject[] = [{
+  '@type': 'WebPage',
+  '@id': `${canonicalUrl}#webpage`,
+  url: canonicalUrl,
+  name: metaTitle,
+  description,
+  isPartOf: {
+    '@id': 'https://www.envoyou.com/#website',
   },
-  {
+  about: {
+    '@id': 'https://www.envoyou.com/#eai',
+  },
+  ...(lastUpdatedIso ? { dateModified: lastUpdatedIso } : {}),
+  inLanguage: 'en',
+}];
+
+if (contentType === 'service') {
+  pageStructuredData.push({
     '@type': 'Service',
     '@id': `${canonicalUrl}#service`,
     name: title,
@@ -80,11 +95,14 @@ const pageStructuredData: JsonObject[] = [
       '@id': 'https://www.envoyou.com/#organization',
     },
     url: canonicalUrl,
-  },
-  {
+  });
+}
+
+if (contentType === 'how-to' && steps.length > 0) {
+  pageStructuredData.push({
     '@type': 'HowTo',
     '@id': `${canonicalUrl}#workflow`,
-    name: `How ${title} works`,
+    name: title,
     description: lead,
     step: steps.map((step, index) => ({
       '@type': 'HowToStep',
@@ -92,8 +110,8 @@ const pageStructuredData: JsonObject[] = [
       name: step.title,
       text: step.description,
     })),
-  },
-];
+  });
+}
 
 const faqStructuredData = {
   '@context': 'https://schema.org',
@@ -145,68 +163,72 @@ const faqStructuredData = {
       </div>
     </section>
 
-    <section class="bg-surface-soft border-y border-border">
-      <div class="section py-20">
-        <div class="max-w-3xl mb-12">
-          <div class="section-label">Operational outcomes</div>
-          <h2 class="section-title">Built around the publishing work that must get finished.</h2>
+    {benefits.length > 0 && (
+      <section class="bg-surface-soft border-y border-border">
+        <div class="section py-20">
+          <div class="max-w-3xl mb-12">
+            <div class="section-label">Operational outcomes</div>
+            <h2 class="section-title">{benefitsTitle}</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {benefits.map((benefit) => (
+              <article class="card p-7">
+                <h3 class="text-lg font-bold text-text">{benefit.title}</h3>
+                <p class="text-sm text-muted leading-6 mt-3">{benefit.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {benefits.map((benefit) => (
-            <article class="card p-7">
-              <h3 class="text-lg font-bold text-text">{benefit.title}</h3>
-              <p class="text-sm text-muted leading-6 mt-3">{benefit.description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    )}
 
-    <section class="section py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div class="lg:col-span-5">
-          <div class="section-label">Workflow</div>
-          <h2 class="section-title">From working draft to controlled publication.</h2>
-          <p class="section-subtitle mt-4">
-            Each stage keeps editorial context attached to the article instead of scattering work across disconnected tools.
-          </p>
+    {steps.length > 0 && (
+      <section class="section py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5">
+            <div class="section-label">Workflow</div>
+            <h2 class="section-title">{stepsTitle}</h2>
+            <p class="section-subtitle mt-4">{stepsLead}</p>
+          </div>
+          <ol class="lg:col-span-7 space-y-4">
+            {steps.map((step, index) => (
+              <li class="card p-6 flex gap-5">
+                <span class="text-sm font-black text-primary font-mono">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 class="font-bold text-text">{step.title}</h3>
+                  <p class="text-sm text-muted leading-6 mt-2">{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
-        <ol class="lg:col-span-7 space-y-4">
-          {steps.map((step, index) => (
-            <li class="card p-6 flex gap-5">
-              <span class="text-sm font-black text-primary font-mono">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <h3 class="font-bold text-text">{step.title}</h3>
-                <p class="text-sm text-muted leading-6 mt-2">{step.description}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+      </section>
+    )}
 
-    <section class="bg-surface-soft border-y border-border">
-      <div class="section py-20">
-        <div class="max-w-3xl">
-          <div class="section-label">Included capabilities</div>
-          <h2 class="section-title">A practical editorial operating layer.</h2>
+    {capabilities.length > 0 && (
+      <section class="bg-surface-soft border-y border-border">
+        <div class="section py-20">
+          <div class="max-w-3xl">
+            <div class="section-label">Included capabilities</div>
+            <h2 class="section-title">{capabilitiesTitle}</h2>
+          </div>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-5xl">
+            {capabilities.map((capability) => (
+              <li class="card p-5 flex items-start gap-3 text-sm text-text">
+                <span class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></span>
+                {capability}
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-5xl">
-          {capabilities.map((capability) => (
-            <li class="card p-5 flex items-start gap-3 text-sm text-text">
-              <span class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></span>
-              {capability}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+      </section>
+    )}
 
     <section class="section py-20">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div class="lg:col-span-4">
           <div class="section-label">FAQ</div>
-          <h2 class="section-title">Questions teams ask before connecting.</h2>
+          <h2 class="section-title">{faqTitle}</h2>
         </div>
         <div class="lg:col-span-8 divide-y divide-border">
           {faqs.map((faq) => (

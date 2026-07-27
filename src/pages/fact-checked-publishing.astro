@@ -1,21 +1,6 @@
 ---
 import IntentLanding from '../components/IntentLanding.astro';
 
-const benefits = [
-  {
-    title: 'Check claims against supplied sources',
-    description: 'Source-fidelity review compares the article with the references and context available inside the editorial workflow.',
-  },
-  {
-    title: 'Surface uncertainty before publication',
-    description: 'Quality Gate verdicts keep unresolved factual, temporal, structural, or formatting issues visible to the editor.',
-  },
-  {
-    title: 'Keep humans in the approval loop',
-    description: 'The system supports editorial judgment; it does not turn an AI-generated assertion into a verified fact automatically.',
-  },
-];
-
 const steps = [
   {
     title: 'Attach the source material',
@@ -83,6 +68,7 @@ const relatedLinks = [
 ---
 
 <IntentLanding
+  contentType="how-to"
   title="How AI-Assisted Fact-Checked Publishing Works"
   metaTitle="AI-Assisted Fact-Checked Publishing Workflow — Envoyou"
   description="See how Envoyou uses source-fidelity checks, Quality Gate verdicts, editorial review, and repeat verification before an article is exported."
@@ -90,10 +76,13 @@ const relatedLinks = [
   eyebrow="Source-fidelity workflow"
   lead="Fact-checked publishing is a controlled review process: claims are compared with available references, uncertainty stays visible, and a human editor decides whether the article is ready."
   directAnswer="Envoyou supports fact-checked publishing by evaluating article claims against supplied references, checking factual and temporal consistency, and assigning a visible Quality Gate verdict. It does not replace source evaluation or human approval; editors resolve flagged issues and repeat review before the final article package is exported."
-  benefits={benefits}
   steps={steps}
+  stepsTitle="Verify claims before the article can move forward."
+  stepsLead="The review stays anchored to supplied evidence, and unresolved issues remain visible until an editor addresses them."
   capabilities={capabilities}
+  capabilitiesTitle="What the Quality Gate keeps visible."
   faqs={faqs}
+  faqTitle="Limits and responsibilities in factual review."
   relatedLinks={relatedLinks}
   analyticsLocation="fact_checked_publishing_intent"
   lastUpdated="24 July 2026"

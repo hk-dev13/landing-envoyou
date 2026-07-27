@@ -35,15 +35,6 @@ const steps = [
   },
 ];
 
-const capabilities = [
-  'AI-assisted drafting from topics, outlines, references, or press releases.',
-  'Multi-stage editorial polish aligned with publication-specific guidance.',
-  'Source-fidelity checks and visible publication-readiness verdicts.',
-  'SEO title, description, slug, tag, and snippet preparation.',
-  'Brand voice profiles for distinct publications or content programs.',
-  'Controlled CMS draft export through a configured EAI REST connection.',
-];
-
 const faqs = [
   {
     question: 'What is an AI editorial workspace?',
@@ -83,6 +74,7 @@ const relatedLinks = [
 ---
 
 <IntentLanding
+  contentType="conceptual"
   title="What Is an AI Editorial Workspace?"
   metaTitle="AI Editorial Workspace for Draft-to-Publication Workflows — Envoyou"
   description="Learn how Envoyou EAI connects drafting, editorial refinement, source-fidelity review, SEO metadata, Quality Gate checks, and CMS export."
@@ -91,9 +83,12 @@ const relatedLinks = [
   lead="An AI editorial workspace helps a publishing team coordinate the complete path from working material to approved, publication-ready output—not just generate another draft."
   directAnswer="Envoyou EAI is an AI editorial workspace that connects drafting, publication-specific refinement, source-fidelity review, SEO metadata preparation, Quality Gate verification, and CMS export. Editors remain responsible for readiness and publication while the workspace keeps context and article state connected across every stage."
   benefits={benefits}
+  benefitsTitle="Finish the editorial work after generation."
   steps={steps}
-  capabilities={capabilities}
+  stepsTitle="Keep context attached from draft to export."
+  stepsLead="The workspace preserves source material, publication guidance, and article state while each editorial stage changes the draft."
   faqs={faqs}
+  faqTitle="What editors need to know about the workspace."
   relatedLinks={relatedLinks}
   analyticsLocation="editorial_workspace_intent"
   lastUpdated="24 July 2026"

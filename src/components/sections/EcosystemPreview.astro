@@ -1,977 +1,263 @@
 ---
-// Product walkthrough — miniature pixel-perfect interactive replica of the real EAI /workspace UI
+const stages = [
+  {
+    id: "refine",
+    number: "01",
+    label: "Refine",
+    title: "Follow every editorial step as it happens.",
+    description:
+      "The live pipeline makes source review, rewriting, SEO preparation, quality checks, and finalization visible instead of hiding them behind a loading state.",
+    image: "https://cdn.envoyou.com/landing/refinement-pipeline.png",
+    alt: "EAI refinement pipeline showing source review, article rewriting, SEO metadata, quality checks, and draft finalization",
+  },
+  {
+    id: "review",
+    number: "02",
+    label: "Review",
+    title: "Review the decision and the publication package.",
+    description:
+      "Editors see what EAI improved alongside the title, slug, excerpt, description, cover alt text, and other SEO fields prepared for handoff.",
+    image: "https://cdn.envoyou.com/landing/editorial-review.png",
+    alt: "EAI editorial review with improvement summary and complete SEO metadata",
+  },
+  {
+    id: "finalize",
+    number: "03",
+    label: "Finalize",
+    title: "Keep the final draft under editorial control.",
+    description:
+      "Inspect the refined article, compare changes, edit the draft, or return for another refinement before choosing Export to CMS.",
+    image: "https://cdn.envoyou.com/landing/final-draft.png",
+    alt: "EAI final draft ready for editorial review and CMS export",
+  },
+  {
+    id: "handoff",
+    number: "04",
+    label: "CMS handoff",
+    title: "Send a complete draft, not a loose block of text.",
+    description:
+      "The connected CMS receives the article, slug, excerpt, category, and SEO settings as an editable draft ready for the publisher’s final review.",
+    image: "https://cdn.envoyou.com/landing/cms-handoff.png",
+    alt: "CMS admin panel containing an EAI draft with article content and SEO settings",
+  },
+];
 ---
 
-<section id="product-preview" data-scroll-section>
+<section id="product-preview" data-scroll-section class="overflow-x-clip">
   <div class="section">
-    <div class="text-center mb-14">
-      <div class="section-label mx-auto">Product walkthrough · interactive preview</div>
-      <h2 class="section-title">See the editorial decision, not just the rewrite.</h2>
-      <p class="section-subtitle mx-auto text-center">
-        This preview mirrors the real EAI workspace flow: collapsible navigation, editorial refinement, source-sensitive feedback, readiness review, and draft export.
+    <div class="mb-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:mb-20">
+      <div>
+        <div class="section-label">Inside the real EAI workflow</div>
+        <h2 class="section-title text-pretty">
+          See the editorial decision,<br class="hidden sm:block" /> not just the rewrite.
+        </h2>
+      </div>
+      <p class="section-subtitle lg:ml-auto lg:mt-0">
+        Real product views from a single draft-to-publication journey. EAI keeps the
+        work observable from refinement through CMS handoff.
       </p>
     </div>
 
-    <!-- Tabs selector -->
-    <div class="flex justify-center mb-10">
-      <div class="inline-flex p-1.5 rounded-2xl bg-surface-soft border border-border shadow-sm">
-        <button
-          id="tab-btn-eai"
-          class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer active"
-          data-tab="eai"
-        >
-          <svg class="w-4 h-4 text-primary" viewBox="0 0 600 600" fill="currentColor">
-            <path d="M289 67v56h22V10h-22zm89 11-21 53q0 2 9 5l10 4 1-2 21-52c22-56 21-51 15-53l-10-4-5-2zM187 33l-10 4 44 104 19-8-44-104zM95 95l-7 8 40 40 39 40 8-8 8-8-40-39-40-40zm362 33-39 39 7 8 8 8 40-40 39-40-7-8-8-7zm53 71-51 22 8 19 103-43 1-1-9-19zM34 184l-4 9-3 9 104 41q2 0 5-9l4-10-3-1-51-21-50-20zM10 300v11h113v-22H10zm279 0v11h301v-22H289zm178 58-4 10-3 8 3 1 51 21 50 19c1 1 9-18 9-19zM92 377l-51 22-12 5 9 19 103-44-9-19zm36 80-39 40 15 15 40-39 39-40-7-7-8-8zm298-31-7 7 39 40 40 39 15-15-79-79zm-56 37-9 4 20 48 22 51 1 5 20-9-45-103zm-146 0-40 101 19 9 41-104q0-2-9-5l-10-4zm66 71v56h22V477h-22z"/>
-          </svg>
-          EAI Workspace
-        </button>
-        <button
-          id="tab-btn-blog"
-          class="tab-btn flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer"
-          data-tab="blog"
-        >
-          <svg class="w-4 h-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-          </svg>
-          CMS Export (E-Blog)
-        </button>
+    <!-- Desktop scrollytelling -->
+    <div
+      class="product-story hidden lg:grid lg:grid-cols-[minmax(0,1.65fr)_minmax(18rem,0.65fr)] lg:gap-16 xl:gap-24"
+    >
+      <div>
+        <div class="sticky top-24">
+          <div class="product-story-frame relative aspect-video overflow-hidden rounded-[1.5rem] bg-[#08111f] shadow-[0_30px_90px_rgba(15,23,42,0.2)]">
+            {stages.map((stage, index) => (
+              <figure
+                class:list={["product-story-visual absolute inset-0", index === 0 && "is-active"]}
+                data-story-visual={stage.id}
+                aria-hidden={index !== 0 ? "true" : "false"}
+              >
+                <img
+                  src={stage.image}
+                  alt={stage.alt}
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                  decoding="async"
+                  class="block h-full w-full object-cover"
+                />
+              </figure>
+            ))}
+          </div>
+
+          <div class="mt-5 flex items-center justify-between text-xs text-muted" aria-hidden="true">
+            <span class="font-medium tracking-wide">Real EAI product view</span>
+            <span class="font-mono tabular-nums">
+              <span data-story-current>01</span> / {String(stages.length).padStart(2, "0")}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-story-copy">
+        {stages.map((stage, index) => (
+          <article
+            class:list={["product-story-step relative flex min-h-[58vh] flex-col justify-center py-12", index === 0 && "is-active"]}
+            data-story-step={stage.id}
+            data-story-number={stage.number}
+          >
+            <span class="mb-8 flex items-center gap-4">
+              <span class="story-step-number font-mono text-xs tabular-nums text-muted">{stage.number}</span>
+              <span class="story-step-rule h-px w-10 bg-border"></span>
+              <span class="story-step-label text-xs font-bold uppercase tracking-[0.16em] text-muted">
+                {stage.label}
+              </span>
+            </span>
+            <h3 class="story-step-title max-w-sm text-3xl font-bold leading-[1.14] tracking-[-0.025em] text-text text-pretty">
+              {stage.title}
+            </h3>
+            <p class="story-step-description mt-6 max-w-sm text-base leading-7 text-muted">
+              {stage.description}
+            </p>
+          </article>
+        ))}
       </div>
     </div>
 
-    <!-- Preview Windows Container -->
-    <div class="relative max-w-6xl mx-auto">
-      <div class="relative bg-surface-soft rounded-2xl min-h-[640px] flex flex-col overflow-hidden shadow-2xl border border-border">
-        
-        <!-- Window Titlebar -->
-        <div class="flex items-center justify-between px-5 py-3 border-b border-border bg-surface-soft/80 select-none">
-          <div class="flex items-center gap-2">
-            <span class="w-3.5 h-3.5 rounded-full bg-rose-500/80"></span>
-            <span class="w-3.5 h-3.5 rounded-full bg-amber-500/80"></span>
-            <span class="w-3.5 h-3.5 rounded-full bg-emerald-500/80"></span>
+    <!-- Linear mobile presentation -->
+    <div class="space-y-16 lg:hidden">
+      {stages.map((stage) => (
+        <article>
+          <div class="overflow-hidden rounded-[1.25rem] bg-[#08111f] shadow-[0_20px_60px_rgba(15,23,42,0.16)]">
+            <img
+              src={stage.image}
+              alt={stage.alt}
+              width="1920"
+              height="1080"
+              loading="lazy"
+              decoding="async"
+              class="block aspect-video h-auto w-full"
+            />
           </div>
-          <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-muted">
-            <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span id="window-title">https://eai.envoyou.com/workspace</span>
+          <div class="pt-6">
+            <span class="mb-4 flex items-center gap-3">
+              <span class="font-mono text-xs tabular-nums text-muted">{stage.number}</span>
+              <span class="h-px w-8 bg-border"></span>
+              <span class="text-xs font-bold uppercase tracking-[0.14em] text-muted">{stage.label}</span>
+            </span>
+            <h3 class="text-xl font-bold leading-snug tracking-[-0.02em] text-text text-pretty">{stage.title}</h3>
+            <p class="mt-3 text-sm leading-6 text-muted">{stage.description}</p>
           </div>
-          <div class="w-12"></div>
-        </div>
-
-        <!-- TAB 1: EAI WORKSPACE INTERACTIVE APP -->
-        <div id="tab-content-eai" class="tab-pane active flex flex-1 flex-col lg:flex-row min-w-0 bg-[#101114] dark:bg-[#101114] text-[#f7f8f8] relative overflow-hidden font-sans">
-          
-          <!-- 1. LEFT SIDEBAR PANEL (Exact EAI AppSidebarShell Layout) -->
-          <aside 
-            id="eai-sidebar" 
-            class="hidden flex flex-col lg:flex border-none bg-[#101114] transition-all duration-300 ease-in-out shrink-0 w-full lg:w-[240px]"
-            data-sidebar-open="true"
-          >
-            <!-- Top Section: Brand & Sidebar Toggle -->
-            <div class="p-3 flex items-center justify-between gap-2 border-b border-white/5">
-              <div class="sidebar-text flex items-center gap-2.5 min-w-0 overflow-hidden">
-                <div class="w-7 h-7 flex items-center justify-center text-white shrink-0">
-                  <!-- Authentic EAI SVG Logo -->
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="24" height="24">
-                    <path fill="currentColor" stroke="currentColor" stroke-width="20" stroke-linejoin="round" stroke-linecap="round" d="M289 67v56h22V10h-22zm89 11-21 53q0 2 9 5l10 4 1-2 21-52c22-56 21-51 15-53l-10-4-5-2zM187 33l-10 4 44 104 19-8-44-104zM95 95l-7 8 40 40 39 40 8-8 8-8-40-39-40-40zm362 33-39 39 7 8 8 8 40-40 39-40-7-8-8-7zm53 71-51 22 8 19 103-43 1-1-9-19zM34 184l-4 9-3 9 104 41q2 0 5-9l4-10-3-1-51-21-50-20zM10 300v11h113v-22H10zm279 0v11h301v-22H289zm178 58-4 10-3 8 3 1 51 21 50 19c1 1 9-18 9-19zM92 377l-51 22-12 5 9 19 103-44-9-19zm36 80-39 40 15 15 40-39 39-40-7-7-8-8zm298-31-7 7 39 40 40 39 15-15-79-79zm-56 37-9 4 20 48 22 51 1 5 20-9-45-103zm-146 0-40 101 19 9 41-104q0-2-9-5l-10-4zm66 71v56h22V477h-22z"/>
-                  </svg>
-                </div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-xs font-bold tracking-tight text-white truncate">Envoyou AI</span>
-                  <span class="text-[8.5px] text-gray-400 font-semibold tracking-wider uppercase truncate">EDITORIAL INTELLIGENCE</span>
-                </div>
-              </div>
-
-              <!-- Sidebar Toggle Button (PanelLeft) -->
-              <button 
-                id="sidebar-toggle-btn"
-                type="button"
-                class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center shrink-0"
-                title="Hide / Expand Sidebar"
-              >
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="9" y1="3" x2="9" y2="21"/>
-                </svg>
-              </button>
-            </div>
-
-            <!-- Organization Switcher Pill -->
-            <div class="p-2.5 border-b border-white/5 sidebar-text">
-              <div class="flex items-center justify-between px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
-                <div class="flex items-center gap-1.5 truncate">
-                  <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                  <span class="font-semibold text-white truncate">Envoyou</span>
-                </div>
-                <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 uppercase tracking-wide">TEAM</span>
-              </div>
-            </div>
-
-            <!-- Navigation Menu Items -->
-            <div class="p-2 space-y-1">
-              <button
-                id="nav-item-editor"
-                class="nav-tab-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer bg-white/10 text-white"
-                data-target="editor"
-              >
-                <svg class="w-4 h-4 shrink-0 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                <span class="sidebar-text truncate">Editor</span>
-              </button>
-              <button
-                id="nav-item-dashboard"
-                class="nav-tab-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-gray-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
-                data-target="dashboard"
-              >
-                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                <span class="sidebar-text truncate">Dashboard</span>
-              </button>
-            </div>
-
-            <!-- + New Article Button & Search/Filter Section -->
-            <div class="p-2.5 border-t border-white/5 sidebar-text space-y-2.5">
-              <button 
-                id="btn-new-article"
-                class="w-full py-2 px-3 rounded-full bg-white text-black text-xs font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
-              >
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                New Article
-              </button>
-
-              <div class="relative">
-                <input 
-                  type="text" 
-                  placeholder="Search drafts..." 
-                  class="w-full px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-white/20" 
-                />
-              </div>
-
-              <!-- Filter Pills -->
-              <div class="flex items-center justify-between gap-1 pt-1">
-                <button class="filter-pill active px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/15 text-white" data-filter="all">All</button>
-                <button class="filter-pill px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/5 text-gray-400 hover:text-white" data-filter="ready">Ready</button>
-                <button class="filter-pill px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/5 text-gray-400 hover:text-white" data-filter="review">Review</button>
-                <button class="filter-pill px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/5 text-gray-400 hover:text-white" data-filter="blocked">Blocked</button>
-              </div>
-            </div>
-
-            <!-- History Draft List -->
-            <div class="sidebar-text flex-1 overflow-y-auto px-2 space-y-1">
-              <!-- Draft Item 1 -->
-              <button
-                class="draft-history-btn w-full text-left p-2 rounded-xl border border-white/15 bg-white/10 transition-all cursor-pointer group active"
-                data-draft="q3-tech"
-                data-status="review"
-              >
-                <p class="text-xs font-semibold text-white group-hover:text-sky-400 truncate">Q3 Editorial Review</p>
-                <div class="flex items-center justify-between mt-1">
-                  <span class="text-[10px] text-gray-400">2 mins ago</span>
-                  <span id="badge-history-q3-tech" class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Review</span>
-                </div>
-              </button>
-
-              <!-- Draft Item 2 -->
-              <button
-                class="draft-history-btn w-full text-left p-2 rounded-xl border border-transparent hover:border-white/10 hover:bg-white/5 transition-all cursor-pointer group"
-                data-draft="ai-policy"
-                data-status="ready"
-              >
-                <p class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">AI Policy & Brand Tone</p>
-                <div class="flex items-center justify-between mt-1">
-                  <span class="text-[10px] text-gray-500">1 hour ago</span>
-                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">Ready</span>
-                </div>
-              </button>
-
-              <!-- Draft Item 3 -->
-              <button
-                class="draft-history-btn w-full text-left p-2 rounded-xl border border-transparent hover:border-white/10 hover:bg-white/5 transition-all cursor-pointer group"
-                data-draft="cms-guide"
-                data-status="blocked"
-              >
-                <p class="text-xs font-semibold text-gray-300 group-hover:text-white truncate">CMS Connection Guide</p>
-                <div class="flex items-center justify-between mt-1">
-                  <span class="text-[10px] text-gray-500">Yesterday</span>
-                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-400">Blocked</span>
-                </div>
-              </button>
-            </div>
-
-            <!-- Sidebar Bottom User & Settings Footer -->
-            <div class="p-2.5 border-t border-white/5 sidebar-text space-y-1">
-              <button class="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/5 transition-all">
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                <span>Settings</span>
-              </button>
-              
-              <div class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-white/5 bg-white/5 mt-1">
-                <div class="w-5 h-5 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 text-[10px] font-bold text-white flex items-center justify-center">HK</div>
-                <div class="flex flex-col min-w-0">
-                  <span class="text-[11px] font-bold text-white leading-tight truncate">Husni Kusuma</span>
-                  <span class="text-[9px] text-gray-400 truncate">husnikusuma@envoyou.com</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-
-          <!-- 2. MAIN WORKSPACE VIEW CONTAINER -->
-          <div class="flex-1 flex flex-col min-w-0 bg-[#101114]">
-            
-            <!-- VIEW A: EDITOR VIEW -->
-            <div id="view-editor" class="workspace-view active flex-1 flex flex-col lg:flex-row min-w-0 relative">
-              <!-- Center Column: Editor Canvas (Floating Inset Panel) -->
-              <div class="flex-1 flex flex-col min-w-0 relative bg-[#0c0d0e]/95 backdrop-blur-md shadow-2xl m-0 lg:m-2 rounded-none lg:rounded-2xl border border-white/10 overflow-hidden">
-                
-                <!-- Workspace Top Breadcrumb & Header Action Bar -->
-                <div class="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-white/10 bg-[#080809]">
-                  <div class="flex items-center gap-1.5 text-xs text-gray-400 min-w-0 truncate">
-                    <span class="font-bold text-white truncate">Workspace</span>
-                    <span>/</span>
-                    <span class="text-gray-300 truncate">Draft Article</span>
-                  </div>
-
-                  <div class="flex items-center gap-2 shrink-0">
-                    <button class="hidden md:flex text-xs text-gray-400 hover:text-white transition-colors items-center gap-1">
-                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"/></svg>
-                      What's New
-                    </button>
-                    <button class="hidden md:flex text-xs text-gray-400 hover:text-white transition-colors items-center gap-1">
-                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
-                      Undo
-                    </button>
-
-                    <!-- Cloud Icon -->
-                    <button class="p-1 text-gray-400 hover:text-white transition-colors cursor-pointer" title="Save to Cloud">
-                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
-                    </button>
-                    
-                    <!-- Publish Ready Dropdown Pill -->
-                    <button class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/15 text-white text-xs font-semibold flex items-center gap-1 border border-white/10 cursor-pointer">
-                      <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.71 1.26-1.5 1.5-2.5l-4.5-4.5c-1 1-1.79 1.79-2.5 2.5z"/><path d="M12 15l-3-3 7.5-7.5c1.5-1.5 4-1.5 4 0s0 2.5-1.5 4L12 15z"/></svg>
-                      <span class="hidden sm:inline">Publish Ready</span>
-                      <svg class="w-3 h-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                    </button>
-
-                    <!-- Refine Draft Action Button (Wand Icon) -->
-                    <button 
-                      id="eai-refine-btn"
-                      type="button"
-                      class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/20 transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
-                      title="Refine Draft"
-                    >
-                      <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-3.5-6.5l-2 2m-7 7l-2 2m11 0l-2-2m-7-7l-2-2"/></svg>
-                      <span class="hidden sm:inline">Refine Draft</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Secondary Tabs & Collapsible Metadata Accordion Card -->
-                <div class="px-4 py-3 border-b border-white/5 bg-[#0c0d0e] space-y-3 text-xs">
-                  <!-- Draft vs Refined Draft Tabs -->
-                  <div class="flex items-center gap-4 border-b border-white/10 pb-2">
-                    <button id="btn-tab-draft" class="text-white font-bold flex items-center gap-1.5 relative py-0.5 cursor-pointer">
-                      <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                      <span>Draft</span>
-                      <span class="absolute bottom-[-9px] left-0 right-0 h-[2px] bg-white rounded-full"></span>
-                    </button>
-                    <button id="btn-tab-refined" class="text-gray-400 hover:text-white font-medium flex items-center gap-1.5 py-0.5 cursor-pointer">
-                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                      <span>Refined Draft</span>
-                    </button>
-                  </div>
-
-                  <!-- Collapsible Draft Article Card (Matching App Screenshot) -->
-                  <div class="p-3 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2.5">
-                    <!-- Card Header -->
-                    <div class="flex items-center justify-between">
-                      <div class="flex items-center gap-2">
-                        <svg class="w-3.5 h-3.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        <span class="font-bold text-white text-xs">Draft Article</span>
-                      </div>
-                      <div class="flex items-center gap-2 text-gray-400">
-                        <button id="toggle-meta-card-btn" class="hover:text-white transition-colors cursor-pointer" title="Toggle Card">
-                          <svg id="meta-card-chevron" class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-                        </button>
-                        <button class="hover:text-white transition-colors cursor-pointer" title="Duplicate Draft">
-                          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                        </button>
-                        <button class="hover:text-rose-400 transition-colors cursor-pointer" title="Delete Draft">
-                          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Stacked Dropdowns & Inputs -->
-                    <div id="meta-card-body" class="space-y-2 pt-1 transition-all duration-200">
-                      <div class="relative">
-                        <select class="w-full px-3 py-2 pr-8 rounded-xl bg-[#16181d] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-white/20 appearance-none cursor-pointer">
-                          <option class="bg-[#16181d] text-gray-200 py-1">Technology & AI</option>
-                          <option class="bg-[#16181d] text-gray-200 py-1">News & Trend Analysis</option>
-                          <option class="bg-[#16181d] text-gray-200 py-1">Business & Strategy</option>
-                        </select>
-                        <svg class="w-3.5 h-3.5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                      </div>
-
-                      <div class="relative">
-                        <select class="w-full px-3 py-2 pr-8 rounded-xl bg-[#16181d] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-white/20 appearance-none cursor-pointer">
-                          <option class="bg-[#16181d] text-gray-200 py-1">News & Trend Analysis</option>
-                          <option class="bg-[#16181d] text-gray-200 py-1">Editorial Opinion</option>
-                          <option class="bg-[#16181d] text-gray-200 py-1">Deep Dive Report</option>
-                        </select>
-                        <svg class="w-3.5 h-3.5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                      </div>
-
-                      <input 
-                        type="text" 
-                        placeholder="Target audience..." 
-                        class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-white/20" 
-                      />
-
-                      <input 
-                        type="text" 
-                        placeholder="Target length, e.g. 800 words..." 
-                        class="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-white/20" 
-                      />
-
-                      <button type="button" class="flex items-center gap-1.5 text-xs text-gray-400 hover:text-white pt-1 transition-colors font-medium cursor-pointer">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                        <span>Writing Instructions</span>
-                        <svg class="w-3 h-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Editor Body / Canvas Area (Short & Concise Mock Draft) -->
-                <div id="editor-body-container" class="flex-1 p-5 overflow-y-auto space-y-3">
-                  <div class="flex items-center justify-between pb-2 border-b border-white/10">
-                    <span class="text-xs font-semibold text-gray-400">Draft Article</span>
-                    <span id="eai-quality-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">Needs Review</span>
-                  </div>
-
-                  <div>
-                    <h1 id="draft-title" class="text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
-                      Q3 Editorial Intelligence Review
-                    </h1>
-                    <p id="draft-excerpt" class="text-xs text-gray-400 mt-1.5 leading-relaxed">
-                      EAI integrates editorial constraints and automated CMS export into a unified workflow.
-                    </p>
-                  </div>
-
-                  <div id="draft-body-text" class="text-xs text-gray-300 leading-relaxed space-y-2 pt-1">
-                    <p>
-                      Publishers verify raw AI outputs before publishing. EAI validates brand tone, source policy, and SEO metadata prior to CMS export.
-                    </p>
-                    <p class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-white text-[11px]">
-                      Reported <span class="font-bold underline decoration-amber-500">Rp8.4B in sales</span>. Note: Source report pending attachment.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Editor Bottom Status Bar (Exact EAI Status Bar) -->
-                <div class="px-4 py-2 border-t border-white/10 bg-[#080809] flex items-center justify-between text-xs text-gray-400 font-mono">
-                  <div class="flex items-center gap-2">
-                    <span class="font-bold text-white">EAI 3.17.0</span>
-                    <span class="text-gray-500">•</span>
-                    <span>Article Draft</span>
-                  </div>
-                  <div class="hidden sm:flex items-center gap-3 text-[11px]">
-                    <span><strong id="char-count" class="text-white font-bold">164</strong> / 15,000 chars</span>
-                    <button class="hover:text-white" title="Keyboard Shortcuts"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M8 16h8"/></svg></button>
-                  </div>
-                </div>
-
-                <!-- Floating Assistant Trigger FAB (hidden on mobile to prevent overlapping) -->
-                <button 
-                  id="eai-floating-chat-fab" 
-                  type="button"
-                  class="hidden absolute bottom-12 right-5 z-40 px-3.5 py-2 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-xs font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-white/20 cursor-pointer"
-                  title="Open Floating EAI Assistant"
-                >
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  <span>Chat with EAI</span>
-                </button>
-              </div>
-
-              <!-- 3. RIGHT COLUMN: AI STRATEGIST & CHAT WITH EAI (Floating & Collapsible Inset Panel) -->
-              <aside 
-                id="eai-right-panel" 
-                class="hidden flex flex-col lg:flex w-full lg:w-[340px] shrink-0 bg-[#0c0d0e]/95 backdrop-blur-md transition-all duration-300 ease-in-out relative shadow-2xl m-0 lg:m-2 rounded-none lg:rounded-2xl border border-white/10 overflow-hidden"
-                data-panel-open="true"
-              >
-                <!-- Header Tabs -->
-                <div class="flex items-center justify-between border-b border-white/10 bg-[#080809] text-[11px] select-none">
-                  <div class="flex flex-1 overflow-x-auto no-scrollbar">
-                    <button 
-                      id="panel-tab-chat"
-                      class="right-tab-btn flex-1 py-2.5 px-2 text-[11px] font-bold border-b-2 border-white text-white transition-all cursor-pointer flex items-center justify-center gap-1 shrink-0"
-                      data-tab="chat"
-                    >
-                      <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                      <span class="whitespace-nowrap">Chat with EAI</span>
-                    </button>
-                    <button 
-                      id="panel-tab-feedback"
-                      class="right-tab-btn flex-1 py-2.5 px-2 text-[11px] font-bold border-b-2 border-transparent text-gray-400 hover:text-white transition-all cursor-pointer shrink-0"
-                      data-tab="feedback"
-                    >
-                      <span>Feedback</span>
-                    </button>
-                    <button 
-                      id="panel-tab-notes"
-                      class="right-tab-btn flex-1 py-2.5 px-2 text-[11px] font-bold border-b-2 border-transparent text-gray-400 hover:text-white transition-all cursor-pointer shrink-0"
-                      data-tab="notes"
-                    >
-                      <span>Notes</span>
-                    </button>
-                    <button 
-                      id="panel-tab-report"
-                      class="right-tab-btn flex-1 py-2.5 px-2 text-[11px] font-bold border-b-2 border-transparent text-gray-400 hover:text-white transition-all cursor-pointer shrink-0"
-                      data-tab="report"
-                    >
-                      <span class="whitespace-nowrap">Deep Report</span>
-                    </button>
-                  </div>
-
-                  <!-- Panel Collapse/Float Toggle Button -->
-                  <button 
-                    id="toggle-right-panel-btn"
-                    type="button"
-                    class="p-2.5 text-gray-400 hover:text-white hover:bg-white/10 transition-all cursor-pointer flex items-center justify-center shrink-0 border-l border-white/5"
-                    title="Toggle Floating Panel"
-                  >
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="15" y1="3" x2="15" y2="21"/>
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- Sub-header -->
-                <div class="px-3 py-2 border-b border-white/5 flex items-center justify-between text-xs text-gray-400">
-                  <div class="flex items-center gap-1 font-semibold text-white">
-                    <span>←</span> AI Strategist
-                  </div>
-                  <button class="px-2 py-0.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-bold text-[11px] flex items-center gap-1">
-                    + New Chat
-                  </button>
-                </div>
-
-                <!-- Right Pane Content: Chat with EAI (Default) -->
-                <div id="right-content-chat" class="right-tab-pane active p-4 flex-1 flex flex-col justify-between overflow-y-auto space-y-4">
-                  <div class="flex flex-col items-center justify-center my-auto text-center space-y-3 py-8">
-                    <!-- Spinning / Animated EAI Icon -->
-                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-sky-400 animate-spin">
-                      <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                    </div>
-                    <h3 class="text-sm font-bold text-white">Hey there! What are we working on today?</h3>
-                    <p class="text-xs text-gray-400 max-w-[220px] leading-relaxed">
-                      Let's dive into content strategy, SEO outlines, or source data analysis.
-                    </p>
-                  </div>
-
-                  <!-- Chat Input Box (Exact from Screenshot) -->
-                  <div class="p-2.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-                    <input 
-                      type="text" 
-                      placeholder="Ask about your article..." 
-                      class="w-full bg-transparent text-xs text-white placeholder-gray-500 focus:outline-none" 
-                    />
-                    <div class="flex items-center justify-between pt-1 text-gray-400">
-                      <div class="flex items-center gap-2">
-                        <button class="hover:text-white" title="Attach file"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
-                        <button class="hover:text-white" title="Web search"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></button>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-gray-300">fast v</span>
-                        <button class="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs hover:bg-gray-200">↑</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Right Pane Content: Feedback -->
-                <div id="right-content-feedback" class="right-tab-pane hidden p-4 space-y-3 flex-1 overflow-y-auto">
-                  <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
-                    <span class="text-[10px] font-bold uppercase text-amber-400 bg-amber-500/20 px-2 py-0.5 rounded">Claim Verification</span>
-                    <p class="text-xs text-gray-300">Sales figure "Rp8.4 billion" requires verified attachment or citation link before public export.</p>
-                  </div>
-                </div>
-
-                <!-- Right Pane Content: Notes -->
-                <div id="right-content-notes" class="right-tab-pane hidden p-4 space-y-3 flex-1 overflow-y-auto text-xs text-gray-400">
-                  <p>No editorial notes added to this article yet.</p>
-                </div>
-
-                <!-- Right Pane Content: Deep Report -->
-                <div id="right-content-report" class="right-tab-pane hidden p-4 space-y-3 flex-1 overflow-y-auto text-xs text-gray-300">
-                  <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                    <div class="flex items-center justify-between text-[10px] font-mono text-gray-400">
-                      <span>DEEP REPORT ANALYSIS</span>
-                      <span class="text-sky-400 font-bold">PDF Ready</span>
-                    </div>
-                    <h4 class="font-bold text-white text-xs">Editorial Authority & Source Audit</h4>
-                    <div class="space-y-1 text-gray-400 text-[11px]">
-                      <div class="flex justify-between"><span>Citation Score</span><strong class="text-emerald-400">94/100</strong></div>
-                      <div class="flex justify-between"><span>Tone Consistency</span><strong class="text-emerald-400">Strict Match</strong></div>
-                      <div class="flex justify-between"><span>SEO Readability</span><strong class="text-sky-400">Optimal</strong></div>
-                    </div>
-                  </div>
-                </div>
-
-              </aside>
-
-            </div>
-
-            <!-- VIEW B: DASHBOARD VIEW -->
-            <div id="view-dashboard" class="workspace-view hidden flex-1 p-6 space-y-6 overflow-y-auto">
-              <div class="flex items-center justify-between pb-4 border-b border-white/10">
-                <div>
-                  <h2 class="text-xl font-bold text-white">Ecosystem Analytics & Performance</h2>
-                  <p class="text-xs text-gray-400 mt-1">Real-time metrics from active organization workspaces.</p>
-                </div>
-                <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">All Systems Operational</span>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <span class="text-xs text-gray-400 font-medium">Refined Articles</span>
-                  <p class="text-2xl font-black text-white">142</p>
-                  <span class="text-[10px] text-emerald-400 font-bold">+18% this month</span>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <span class="text-xs text-gray-400 font-medium">Avg. Process Time</span>
-                  <p class="text-2xl font-black text-white">1.8m</p>
-                  <span class="text-[10px] text-emerald-400 font-bold">Fast publication</span>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <span class="text-xs text-gray-400 font-medium">CMS Export Rate</span>
-                  <p class="text-2xl font-black text-white">99.4%</p>
-                  <span class="text-[10px] text-emerald-400 font-bold">E-Blog & Custom CMS</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Mobile Bottom Navigation Bar (Matching Workspace Mobile Layout) -->
-          <nav id="eai-mobile-nav" class="lg:hidden flex items-center justify-around border-t border-white/10 bg-[#080809] py-2 px-2 z-40 select-none shrink-0">
-            <button 
-              id="mobile-nav-history"
-              type="button"
-              class="mobile-nav-btn flex flex-1 flex-col items-center justify-center gap-1 py-1.5 text-gray-400 hover:text-white transition-colors cursor-pointer"
-              data-mobile-target="history"
-            >
-              <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <span class="text-[10px] font-medium tracking-tight">History</span>
-            </button>
-
-            <button 
-              id="mobile-nav-editor"
-              type="button"
-              class="mobile-nav-btn flex flex-1 flex-col items-center justify-center gap-1 py-1.5 text-white font-bold transition-colors cursor-pointer active"
-              data-mobile-target="editor"
-            >
-              <svg class="w-4.5 h-4.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-              <span class="text-[10px] font-bold tracking-tight">Editor</span>
-            </button>
-
-            <button 
-              id="mobile-nav-chat"
-              type="button"
-              class="mobile-nav-btn flex flex-1 flex-col items-center justify-center gap-1 py-1.5 text-gray-400 hover:text-white transition-colors cursor-pointer"
-              data-mobile-target="chat"
-            >
-              <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              <span class="text-[10px] font-medium tracking-tight">EAI Chat</span>
-            </button>
-          </nav>
-
-        </div>
-
-        <!-- TAB 2: CMS EXPORT (E-BLOG) -->
-        <div id="tab-content-blog" class="tab-pane hidden flex-1 p-6 bg-[#0c0d0e] text-white overflow-y-auto space-y-4">
-          <div class="max-w-3xl mx-auto space-y-4">
-            <div class="flex items-center gap-2 text-xs text-gray-400 font-mono">
-              <span>CMS: E-Blog (Internal Adapter)</span>
-              <span>•</span>
-              <span class="text-emerald-400 font-bold">Status: Draft Imported</span>
-            </div>
-            <h1 class="text-2xl font-black text-white">Q3 Editorial Intelligence & Automated Content Review</h1>
-            <div class="p-4 rounded-2xl border border-white/10 bg-white/5 space-y-2">
-              <p class="text-sm text-gray-300 leading-relaxed">
-                This is a preview of how an exported article draft arrives inside your CMS. Content, excerpt, meta tags, and quality gate review records are pre-filled as a draft before final publishing.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
 <script>
-  // Top Outer Tab Switcher (Workspace vs E-Blog)
-  const tabBtnEai = document.getElementById('tab-btn-eai');
-  const tabBtnBlog = document.getElementById('tab-btn-blog');
-  const tabContentEai = document.getElementById('tab-content-eai');
-  const tabContentBlog = document.getElementById('tab-content-blog');
-  const windowTitle = document.getElementById('window-title');
+  const stories = document.querySelectorAll<HTMLElement>(".product-story");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  tabBtnEai?.addEventListener('click', () => {
-    tabBtnEai.classList.add('active', 'bg-surface-soft', 'text-text');
-    tabBtnBlog?.classList.remove('active', 'bg-surface-soft', 'text-text');
-    tabContentEai?.classList.remove('hidden');
-    tabContentEai?.classList.add('active');
-    tabContentBlog?.classList.add('hidden');
-    if (windowTitle) windowTitle.textContent = 'https://eai.envoyou.com/workspace';
-  });
+  stories.forEach((story) => {
+    const steps = Array.from(story.querySelectorAll<HTMLElement>("[data-story-step]"));
+    const visuals = Array.from(story.querySelectorAll<HTMLElement>("[data-story-visual]"));
+    const counter = story.querySelector<HTMLElement>("[data-story-current]");
 
-  tabBtnBlog?.addEventListener('click', () => {
-    tabBtnBlog.classList.add('active', 'bg-surface-soft', 'text-text');
-    tabBtnEai?.classList.remove('active', 'bg-surface-soft', 'text-text');
-    tabContentBlog?.classList.remove('hidden');
-    tabContentBlog?.classList.add('active');
-    tabContentEai?.classList.add('hidden');
-    if (windowTitle) windowTitle.textContent = 'https://e-blog.envoyou.com/admin/drafts/142';
-  });
+    const activateStage = (activeStep: HTMLElement) => {
+      const activeId = activeStep.dataset.storyStep;
 
-  // 1. COLLAPSIBLE SIDEBAR TOGGLE (PanelLeft icon)
-  const sidebar = document.getElementById('eai-sidebar');
-  const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
-
-  sidebarToggleBtn?.addEventListener('click', () => {
-    const isOpen = sidebar?.getAttribute('data-sidebar-open') === 'true';
-    if (isOpen) {
-      sidebar?.setAttribute('data-sidebar-open', 'false');
-      sidebar?.classList.remove('lg:w-[240px]', 'w-[240px]');
-      sidebar?.classList.add('lg:w-[60px]', 'w-[60px]');
-      document.querySelectorAll('.sidebar-text').forEach((el) => el.classList.add('hidden'));
-    } else {
-      sidebar?.setAttribute('data-sidebar-open', 'true');
-      sidebar?.classList.remove('lg:w-[60px]', 'w-[60px]');
-      sidebar?.classList.add('lg:w-[240px]', 'w-[240px]');
-      document.querySelectorAll('.sidebar-text').forEach((el) => el.classList.remove('hidden'));
-    }
-  });
-
-  // 2. INNER WORKSPACE VIEW SWITCHER (Editor vs Dashboard)
-  const navEditorBtn = document.getElementById('nav-item-editor');
-  const navDashboardBtn = document.getElementById('nav-item-dashboard');
-  const viewEditor = document.getElementById('view-editor');
-  const viewDashboard = document.getElementById('view-dashboard');
-
-  navEditorBtn?.addEventListener('click', () => {
-    navEditorBtn.classList.add('bg-white/10', 'text-white');
-    navEditorBtn.classList.remove('text-gray-400');
-    navDashboardBtn?.classList.remove('bg-white/10', 'text-white');
-    navDashboardBtn?.classList.add('text-gray-400');
-
-    viewEditor?.classList.remove('hidden');
-    viewDashboard?.classList.add('hidden');
-  });
-
-  navDashboardBtn?.addEventListener('click', () => {
-    navDashboardBtn.classList.add('bg-white/10', 'text-white');
-    navDashboardBtn.classList.remove('text-gray-400');
-    navEditorBtn?.classList.remove('bg-white/10', 'text-white');
-    navEditorBtn?.classList.add('text-gray-400');
-
-    viewDashboard?.classList.remove('hidden');
-    viewEditor?.classList.add('hidden');
-  });
-
-  // 3. RIGHT PANEL TAB SWITCHER & FLOATING TOGGLE
-  const rightPanel = document.getElementById('eai-right-panel');
-  const toggleRightPanelBtn = document.getElementById('toggle-right-panel-btn');
-  const floatingChatFab = document.getElementById('eai-floating-chat-fab');
-
-  const panelTabChat = document.getElementById('panel-tab-chat');
-  const panelTabFeedback = document.getElementById('panel-tab-feedback');
-  const panelTabNotes = document.getElementById('panel-tab-notes');
-  const panelTabReport = document.getElementById('panel-tab-report');
-  
-  const rightContentChat = document.getElementById('right-content-chat');
-  const rightContentFeedback = document.getElementById('right-content-feedback');
-  const rightContentNotes = document.getElementById('right-content-notes');
-  const rightContentReport = document.getElementById('right-content-report');
-
-  const resetRightTabs = () => {
-    [panelTabChat, panelTabFeedback, panelTabNotes, panelTabReport].forEach((tab) => {
-      tab?.classList.remove('border-white', 'text-white');
-      tab?.classList.add('border-transparent', 'text-gray-400');
-    });
-    [rightContentChat, rightContentFeedback, rightContentNotes, rightContentReport].forEach((pane) => {
-      pane?.classList.add('hidden');
-    });
-  };
-
-  panelTabChat?.addEventListener('click', () => {
-    resetRightTabs();
-    panelTabChat.classList.add('border-white', 'text-white');
-    rightContentChat?.classList.remove('hidden');
-  });
-
-  panelTabFeedback?.addEventListener('click', () => {
-    resetRightTabs();
-    panelTabFeedback.classList.add('border-white', 'text-white');
-    rightContentFeedback?.classList.remove('hidden');
-  });
-
-  panelTabNotes?.addEventListener('click', () => {
-    resetRightTabs();
-    panelTabNotes.classList.add('border-white', 'text-white');
-    rightContentNotes?.classList.remove('hidden');
-  });
-
-  panelTabReport?.addEventListener('click', () => {
-    resetRightTabs();
-    panelTabReport.classList.add('border-white', 'text-white');
-    rightContentReport?.classList.remove('hidden');
-  });
-
-  // Toggle Assistant Right Panel (Collapse / Floating FAB)
-  const toggleRightPanel = (open?: boolean) => {
-    const isCurrentlyOpen = rightPanel?.getAttribute('data-panel-open') === 'true';
-    const shouldOpen = open !== undefined ? open : !isCurrentlyOpen;
-
-    if (shouldOpen) {
-      rightPanel?.setAttribute('data-panel-open', 'true');
-      rightPanel?.classList.remove('hidden', 'lg:hidden');
-      rightPanel?.classList.add('flex', 'lg:flex');
-      floatingChatFab?.classList.add('hidden');
-    } else {
-      rightPanel?.setAttribute('data-panel-open', 'false');
-      rightPanel?.classList.add('hidden', 'lg:hidden');
-      rightPanel?.classList.remove('flex', 'lg:flex');
-      if (window.innerWidth >= 1024) {
-        floatingChatFab?.classList.remove('hidden');
-      }
-    }
-  };
-
-  toggleRightPanelBtn?.addEventListener('click', () => toggleRightPanel());
-  floatingChatFab?.addEventListener('click', () => toggleRightPanel(true));
-
-  // Toggle Draft Article Metadata Accordion Card
-  const toggleMetaCardBtn = document.getElementById('toggle-meta-card-btn');
-  const metaCardBody = document.getElementById('meta-card-body');
-  const metaCardChevron = document.getElementById('meta-card-chevron');
-
-  toggleMetaCardBtn?.addEventListener('click', () => {
-    const isHidden = metaCardBody?.classList.contains('hidden');
-    if (isHidden) {
-      metaCardBody?.classList.remove('hidden');
-      metaCardChevron?.classList.remove('rotate-180');
-    } else {
-      metaCardBody?.classList.add('hidden');
-      metaCardChevron?.classList.add('rotate-180');
-    }
-  });
-
-  // 4. MOCK REFINE ANIMATION & TOAST
-  const refineBtn = document.getElementById('eai-refine-btn');
-  const qualityBadge = document.getElementById('eai-quality-badge');
-  const badgeHistoryQ3 = document.getElementById('badge-history-q3-tech');
-  const toast = document.getElementById('eai-toast');
-  const toastMessage = document.getElementById('eai-toast-message');
-
-  const showToast = (msg: string) => {
-    if (!toast || !toastMessage) return;
-    toastMessage.textContent = msg;
-    toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-    toast.classList.add('opacity-100', 'translate-y-0');
-    setTimeout(() => {
-      toast.classList.remove('opacity-100', 'translate-y-0');
-      toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-    }, 3000);
-  };
-
-  refineBtn?.addEventListener('click', () => {
-    refineBtn.setAttribute('disabled', 'true');
-    refineBtn.classList.add('opacity-50');
-
-    // Fast refinement pulse
-    setTimeout(() => {
-      refineBtn.removeAttribute('disabled');
-      refineBtn.classList.remove('opacity-50');
-
-      if (qualityBadge) {
-        qualityBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-        qualityBadge.textContent = 'Ready';
-      }
-
-      if (badgeHistoryQ3) {
-        badgeHistoryQ3.className = 'text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400';
-        badgeHistoryQ3.textContent = 'Ready';
-      }
-
-      showToast('Draft refined & Quality Gate status updated to Ready!');
-    }, 700);
-  });
-
-  // 5. DRAFT HISTORY ITEM CLICK HANDLER (Short & Concise Mock Drafts)
-  const draftTitle = document.getElementById('draft-title');
-  const draftExcerpt = document.getElementById('draft-excerpt');
-  const draftHistoryBtns = document.querySelectorAll('.draft-history-btn');
-
-  const mockDrafts: Record<string, { title: string; excerpt: string; status: string }> = {
-    'q3-tech': {
-      title: 'Q3 Editorial Intelligence Review',
-      excerpt: 'EAI integrates editorial constraints and automated CMS export into a unified workflow.',
-      status: 'Review',
-    },
-    'ai-policy': {
-      title: 'AI Policy & Tone Standards',
-      excerpt: 'Clear boundaries for automated drafting, citation, and editorial sign-off.',
-      status: 'Ready',
-    },
-    'cms-guide': {
-      title: 'CMS Connection Architecture',
-      excerpt: 'REST CMS connectors and draft-first export guarantees.',
-      status: 'Blocked',
-    },
-  };
-
-  draftHistoryBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const draftKey = btn.getAttribute('data-draft');
-      if (!draftKey || !mockDrafts[draftKey]) return;
-
-      draftHistoryBtns.forEach((b) => b.classList.remove('border-white/15', 'bg-white/10'));
-      btn.classList.add('border-white/15', 'bg-white/10');
-
-      const data = mockDrafts[draftKey];
-      if (draftTitle) draftTitle.textContent = data.title;
-      if (draftExcerpt) draftExcerpt.textContent = data.excerpt;
-
-      if (qualityBadge) {
-        if (data.status === 'Ready') {
-          qualityBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
-          qualityBadge.textContent = 'Ready';
-        } else if (data.status === 'Blocked') {
-          qualityBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30';
-          qualityBadge.textContent = 'Blocked';
-        } else {
-          qualityBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
-          qualityBadge.textContent = 'Needs Review';
-        }
-      }
-
-      showToast(`Loaded draft: ${data.title}`);
-    });
-  });
-
-  // 6. FILTER PILLS CLICK HANDLER
-  const filterPills = document.querySelectorAll('.filter-pill');
-  filterPills.forEach((pill) => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach((p) => {
-        p.classList.remove('active', 'bg-white/15', 'text-white');
-        p.classList.add('bg-white/5', 'text-gray-400');
+      steps.forEach((step) => {
+        step.classList.toggle("is-active", step === activeStep);
       });
-      pill.classList.add('active', 'bg-white/15', 'text-white');
-      pill.classList.remove('bg-white/5', 'text-gray-400');
 
-      const filterVal = pill.getAttribute('data-filter');
-      draftHistoryBtns.forEach((btn) => {
-        const itemStatus = btn.getAttribute('data-status');
-        if (filterVal === 'all' || itemStatus === filterVal) {
-          (btn as HTMLElement).style.display = 'block';
-        } else {
-          (btn as HTMLElement).style.display = 'none';
+      visuals.forEach((visual) => {
+        const isActive = visual.dataset.storyVisual === activeId;
+        visual.classList.toggle("is-active", isActive);
+        visual.setAttribute("aria-hidden", String(!isActive));
+      });
+
+      if (counter) {
+        counter.textContent = activeStep.dataset.storyNumber ?? "01";
+      }
+    };
+
+    let frameRequested = false;
+
+    const updateFromScroll = () => {
+      const viewportFocus = window.innerHeight * 0.5;
+      let closestStep = steps[0];
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      steps.forEach((step) => {
+        const bounds = step.getBoundingClientRect();
+        const stepCenter = bounds.top + bounds.height * 0.5;
+        const distance = Math.abs(stepCenter - viewportFocus);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestStep = step;
         }
       });
-    });
-  });
 
-  // 7. MOBILE BOTTOM NAV SWITCHER (History vs Editor vs EAI Chat)
-  const mobileNavHistory = document.getElementById('mobile-nav-history');
-  const mobileNavEditor = document.getElementById('mobile-nav-editor');
-  const mobileNavChat = document.getElementById('mobile-nav-chat');
+      activateStage(closestStep);
+      frameRequested = false;
+    };
 
-  const setMobileActiveTab = (target: 'history' | 'editor' | 'chat') => {
-    if (window.innerWidth >= 1024) return;
+    const requestScrollUpdate = () => {
+      if (frameRequested) return;
+      frameRequested = true;
+      window.requestAnimationFrame(updateFromScroll);
+    };
 
-    [mobileNavHistory, mobileNavEditor, mobileNavChat].forEach((btn) => {
-      btn?.classList.remove('text-white', 'font-bold', 'active');
-      btn?.classList.add('text-gray-400');
-      const icon = btn?.querySelector('svg');
-      if (icon) icon.classList.remove('text-sky-400');
-    });
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollUpdate, { passive: true });
+    requestScrollUpdate();
 
-    // Hide all 3 panels on mobile
-    sidebar?.classList.add('hidden');
-    sidebar?.classList.remove('w-full');
-    
-    viewEditor?.classList.add('hidden');
-    
-    rightPanel?.classList.add('hidden');
-    rightPanel?.classList.remove('w-full');
-
-    if (target === 'history') {
-      mobileNavHistory?.classList.add('text-white', 'font-bold', 'active');
-      mobileNavHistory?.classList.remove('text-gray-400');
-      mobileNavHistory?.querySelector('svg')?.classList.add('text-sky-400');
-
-      if (sidebar) {
-        sidebar.classList.remove('hidden');
-        sidebar.classList.add('w-full');
-        document.querySelectorAll('.sidebar-text').forEach((el) => el.classList.remove('hidden'));
-      }
-    } else if (target === 'chat') {
-      mobileNavChat?.classList.add('text-white', 'font-bold', 'active');
-      mobileNavChat?.classList.remove('text-gray-400');
-      mobileNavChat?.querySelector('svg')?.classList.add('text-sky-400');
-
-      if (rightPanel) {
-        rightPanel.classList.remove('hidden');
-        rightPanel.classList.add('w-full');
-      }
-    } else {
-      mobileNavEditor?.classList.add('text-white', 'font-bold', 'active');
-      mobileNavEditor?.classList.remove('text-gray-400');
-      mobileNavEditor?.querySelector('svg')?.classList.add('text-sky-400');
-
-      if (viewEditor) {
-        viewEditor.classList.remove('hidden');
-      }
-    }
-  };
-
-  mobileNavHistory?.addEventListener('click', () => setMobileActiveTab('history'));
-  mobileNavEditor?.addEventListener('click', () => setMobileActiveTab('editor'));
-  mobileNavChat?.addEventListener('click', () => setMobileActiveTab('chat'));
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024) {
-      sidebar?.classList.remove('w-full');
-      rightPanel?.classList.remove('w-full');
-
-      const isSidebarOpen = sidebar?.getAttribute('data-sidebar-open') !== 'false';
-      sidebar?.classList.remove('hidden');
-      if (isSidebarOpen) {
-        sidebar?.classList.remove('lg:w-[60px]', 'w-[60px]');
-        sidebar?.classList.add('lg:w-[240px]', 'w-[240px]');
-        document.querySelectorAll('.sidebar-text').forEach((el) => el.classList.remove('hidden'));
-      } else {
-        sidebar?.classList.remove('lg:w-[240px]', 'w-[240px]');
-        sidebar?.classList.add('lg:w-[60px]', 'w-[60px]');
-        document.querySelectorAll('.sidebar-text').forEach((el) => el.classList.add('hidden'));
-      }
-
-      viewEditor?.classList.remove('hidden');
-
-      const isPanelOpen = rightPanel?.getAttribute('data-panel-open') !== 'false';
-      if (isPanelOpen) {
-        rightPanel?.classList.remove('hidden', 'lg:hidden');
-        rightPanel?.classList.add('flex', 'lg:flex');
-        floatingChatFab?.classList.add('hidden');
-      } else {
-        rightPanel?.classList.add('hidden', 'lg:hidden');
-        rightPanel?.classList.remove('flex', 'lg:flex');
-        floatingChatFab?.classList.remove('hidden');
-      }
-    } else {
-      setMobileActiveTab('editor');
+    if (prefersReducedMotion) {
+      visuals.forEach((visual) => visual.classList.add("reduce-motion"));
     }
   });
 </script>
+
+<style>
+  .product-story-visual {
+    opacity: 0;
+    transform: scale(1.012);
+    transition:
+      opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .product-story-visual.is-active {
+    z-index: 1;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .product-story-step {
+    opacity: 0.36;
+    transition: opacity 280ms ease;
+  }
+
+  .product-story-step.is-active {
+    opacity: 1;
+  }
+
+  .product-story-step.is-active .story-step-rule {
+    width: 4rem;
+    background: var(--color-primary);
+  }
+
+  .story-step-rule {
+    transition:
+      width 280ms ease,
+      background-color 280ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-story-visual,
+    .product-story-step,
+    .story-step-rule {
+      transition: none;
+    }
+
+    .product-story-visual {
+      transform: none;
+    }
+  }
+</style>
