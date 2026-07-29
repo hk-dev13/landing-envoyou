@@ -104,7 +104,7 @@ export const pricingPlans: PricingPlan[] = [
     priceMonthly: 19,
     priceYearly: 182,
     creditsMonthly: 100,
-    description: 'For professional editors who need deeper verification and publishing integrations.',
+    description: 'For professional editors who need deeper factual-risk review and publishing integrations.',
     cardFeatureIds: [
       'editorial_refinement',
       'advanced_fact_checking',
