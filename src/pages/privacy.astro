@@ -22,7 +22,7 @@ import Footer from '../components/Footer.astro';
         </span>
         <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">Privacy Policy</h1>
         <p class="text-muted text-sm sm:text-base leading-relaxed">
-          Last Updated: July 24, 2026. Envoyou is committed to safeguarding your personal and workspace data.
+          Last Updated: July 31, 2026. Envoyou is committed to safeguarding your personal and workspace data.
         </p>
       </div>
 
@@ -133,7 +133,7 @@ import Footer from '../components/Footer.astro';
               <strong class="text-text">Workspace Inputs:</strong> Article drafts, outlines, URL references, briefs, and categories uploaded to the EAI Editor.
             </li>
             <li>
-              <strong class="text-text">Payment Metadata:</strong> Transaction totals, subscription status, and billing logs. We do not store full credit card numbers directly on our servers; payments are processed securely by our licensed gateway partner, Midtrans.
+              <strong class="text-text">Payment Metadata:</strong> We process transaction identifiers, payment status, subscription plan, billing period, currency, transaction totals, tax information, and limited customer billing details required to activate and manage your subscription. We do not directly store complete payment card or bank account details. Local Indonesian payments are processed by Midtrans. International payments may be processed by Paddle once global checkout becomes available.
             </li>
           </ul>
         </section>
@@ -216,10 +216,9 @@ import Footer from '../components/Footer.astro';
               <strong class="text-text">Vercel Inc.:</strong> Frontend deployment and serverless edge hosting infrastructure.
             </li>
             <li>
-              <strong class="text-text">DigitalOcean LLC:</strong> Cloud VPS hosting provider for the EAI application backend.
-            </li>
-            <li>
-              <strong class="text-text">PT Cloud Hosting Indonesia (Biznet Gio):</strong> Local VPS hosting provider for the blog back-end infrastructure.
+              <strong class="text-text">Railway Corp.:</strong>
+              Cloud infrastructure provider used to host the Envoyou EAI & Blog production
+              backend and supporting application services.
             </li>
             <li>
               <strong class="text-text">Supabase, Inc. & Neon Database:</strong> Cloud database platforms hosting the blog and EAI databases respectively.
@@ -230,7 +229,21 @@ import Footer from '../components/Footer.astro';
             <li>
               <strong class="text-text">PT Midtrans:</strong> Licensed Indonesian payment gateway, securely managing local subscription checkouts and billing renewals.
             </li>
+            <li>
+              <strong class="text-text">Paddle.com Market Ltd:</strong>
+              Planned payment provider and Merchant of Record for international
+              transactions. When global checkout becomes available, Paddle may process
+              customer identity, billing, payment, tax, fraud-prevention, refund, and
+              subscription information in accordance with its own privacy policy.
+            </li>
           </ul>
+          <p>
+            Payment providers may collect and process billing information directly
+            through their hosted checkout interfaces. Their processing of payment
+            credentials, fraud-prevention data, tax information, and legally required
+            transaction records is governed by their respective privacy policies and
+            applicable legal obligations.
+          </p>
         </section>
 
         <section id="international-data-transfers-cross-border" class="space-y-3 group scroll-mt-28">
@@ -247,7 +260,13 @@ import Footer from '../components/Footer.astro';
             </button>
           </h2>
           <p>
-            Because our technical architecture is distributed, personal data and article drafts may be transferred to, stored, and processed in cloud databases located outside of the Republic of Indonesia (including Singapore and the United States) by our processors (such as DigitalOcean, Neon, Supabase, and Google Cloud).
+            Because our technical and payment infrastructure is distributed, personal
+            data, workspace content, account information, and transaction metadata may
+            be transferred to, stored, or processed outside the Republic of Indonesia,
+            including in Singapore, the United States, the United Kingdom, and other
+            locations where our service providers operate. These providers may include
+            Railway, Neon, Supabase, Google, Clerk, Cloudflare, Midtrans, and, once
+            international checkout becomes available, Paddle.
           </p>
           <p>
             Under Indonesian Law No. 27/2022 on Personal Data Protection (UU PDP) and GDPR, we ensure all cross-border transfers are governed by standard data protection clauses and strict encryption protocols to guarantee your data privacy is maintained at all times.
