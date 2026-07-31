@@ -32,42 +32,133 @@ const { items } = Astro.props;
   </div>
 </aside>
 
-<!-- Mobile Collapsible TOC -->
-<details class="lg:hidden mb-8 rounded-xl border border-border bg-surface-soft/40 p-3.5 transition-all text-xs">
-  <summary class="flex items-center justify-between font-semibold text-text cursor-pointer select-none">
-    <span class="flex items-center gap-2">
-      <svg class="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="8" y1="6" x2="21" y2="6"></line>
-        <line x1="8" y1="12" x2="21" y2="12"></line>
-        <line x1="8" y1="18" x2="21" y2="18"></line>
-        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-      </svg>
-      Table of Contents ({items.length} sections)
-    </span>
-    <svg class="w-3.5 h-3.5 text-muted transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
+<!-- Mobile Floating TOC Trigger & Bottom Sheet (Option B) -->
+<div class="lg:hidden">
+  <!-- Trigger Button Floating Bottom Center (Avoid collision with Back to Top at bottom-right) -->
+  <button
+    id="mobile-toc-trigger"
+    type="button"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface/95 hover:bg-surface border border-border/80 shadow-2xl backdrop-blur-md text-xs font-bold text-text transition-all duration-200 active:scale-95 whitespace-nowrap"
+    aria-label="Open Table of Contents"
+    aria-expanded="false"
+  >
+    <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="8" y1="6" x2="21" y2="6"></line>
+      <line x1="8" y1="12" x2="21" y2="12"></line>
+      <line x1="8" y1="18" x2="21" y2="18"></line>
+      <line x1="3" y1="6" x2="3.01" y2="6"></line>
+      <line x1="3" y1="12" x2="3.01" y2="12"></line>
+      <line x1="3" y1="18" x2="3.01" y2="18"></line>
     </svg>
-  </summary>
-  <nav aria-label="Table of contents (mobile)" class="mt-3 pt-2.5 border-t border-border/70 space-y-1">
-    {items.map((item) => (
-      <a
-        href={`#${item.id}`}
-        class="block text-muted hover:text-primary py-1 px-2 rounded hover:bg-surface transition-colors"
-      >
-        {item.title}
-      </a>
-    ))}
-  </nav>
-</details>
+    <span>On this page</span>
+    <span class="px-1.5 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-extrabold">
+      {items.length}
+    </span>
+  </button>
+
+  <!-- Bottom Sheet Drawer Overlay & Container -->
+  <div
+    id="mobile-toc-overlay"
+    class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300"
+  >
+    <!-- Backdrop -->
+    <div
+      id="mobile-toc-backdrop"
+      class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+    ></div>
+
+    <!-- Drawer Panel -->
+    <div
+      id="mobile-toc-drawer"
+      class="absolute bottom-0 inset-x-0 bg-surface border-t border-border rounded-t-3xl p-6 max-h-[75vh] flex flex-col translate-y-full transition-transform duration-300 shadow-2xl pointer-events-auto"
+    >
+      <div class="flex items-center justify-between pb-4 border-b border-border/60 mb-3 shrink-0">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <h3 class="text-sm font-bold text-text">On this page</h3>
+        </div>
+        <button
+          id="mobile-toc-close"
+          type="button"
+          class="p-1.5 rounded-lg text-muted hover:text-text hover:bg-surface-soft transition-colors"
+          aria-label="Close Table of Contents"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav aria-label="Table of contents (mobile)" class="overflow-y-auto space-y-1 text-xs py-1">
+        {items.map((item) => (
+          <a
+            href={`#${item.id}`}
+            class="mobile-toc-item block py-2.5 px-3 rounded-lg text-muted hover:text-text hover:bg-surface-soft font-medium transition-colors border-l-2 border-transparent"
+            data-mobile-toc-id={item.id}
+          >
+            {item.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</div>
 
 <script>
-  function setupTOCIntersectionObserver() {
+  function setupTOC() {
+    // Desktop active indicator
     const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc-id]');
-    if (!tocLinks.length) return;
+    const mobileTocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-id]');
 
-    const sections = Array.from(tocLinks)
+    const trigger = document.getElementById('mobile-toc-trigger');
+    const overlay = document.getElementById('mobile-toc-overlay');
+    const backdrop = document.getElementById('mobile-toc-backdrop');
+    const drawer = document.getElementById('mobile-toc-drawer');
+    const closeBtn = document.getElementById('mobile-toc-close');
+
+    function openDrawer() {
+      overlay?.classList.remove('pointer-events-none', 'opacity-0');
+      overlay?.classList.add('pointer-events-auto', 'opacity-100');
+      drawer?.classList.remove('translate-y-full');
+      drawer?.classList.add('translate-y-0');
+      trigger?.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDrawer() {
+      overlay?.classList.add('pointer-events-none', 'opacity-0');
+      overlay?.classList.remove('pointer-events-auto', 'opacity-100');
+      drawer?.classList.add('translate-y-full');
+      drawer?.classList.remove('translate-y-0');
+      trigger?.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger?.addEventListener('click', openDrawer);
+    backdrop?.addEventListener('click', closeDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    mobileTocLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    // IntersectionObserver for active heading sync
+    const allLinks = Array.from(tocLinks);
+    if (!allLinks.length) return;
+
+    const sections = allLinks
       .map((link) => {
         const id = link.getAttribute('data-toc-id');
         return id ? document.getElementById(id) : null;
@@ -77,12 +168,6 @@ const { items } = Astro.props;
     if (!sections.length) return;
 
     let activeId = '';
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '-15% 0px -65% 0px',
-      threshold: 0,
-    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -101,11 +186,26 @@ const { items } = Astro.props;
           link.classList.add('text-muted', 'border-transparent');
         }
       });
-    }, observerOptions);
+
+      mobileTocLinks.forEach((link) => {
+        const id = link.getAttribute('data-mobile-toc-id');
+        if (id === activeId) {
+          link.classList.add('text-primary', 'font-semibold', 'bg-surface-soft', 'border-primary');
+          link.classList.remove('text-muted', 'border-transparent');
+        } else {
+          link.classList.remove('text-primary', 'font-semibold', 'bg-surface-soft', 'border-primary');
+          link.classList.add('text-muted', 'border-transparent');
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '-15% 0px -65% 0px',
+      threshold: 0,
+    });
 
     sections.forEach((section) => observer.observe(section));
   }
 
-  setupTOCIntersectionObserver();
-  document.addEventListener('astro:page-load', setupTOCIntersectionObserver);
+  setupTOC();
+  document.addEventListener('astro:page-load', setupTOC);
 </script>

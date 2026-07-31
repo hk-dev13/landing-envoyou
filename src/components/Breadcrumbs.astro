@@ -25,11 +25,11 @@ const schemaList = {
 ---
 
 <nav aria-label="Breadcrumb" class="mb-6">
-  <ol class="flex items-center flex-wrap gap-1.5 text-xs text-muted">
+  <ol class="flex items-center gap-1.5 text-xs text-muted overflow-x-auto whitespace-nowrap scrollbar-none py-0.5">
     {items.map((item, index) => {
       const isLast = index === items.length - 1;
       return (
-        <li class="inline-flex items-center gap-1.5">
+        <li class="inline-flex items-center gap-1.5 shrink-0">
           {index > 0 && (
             <svg
               class="w-3.5 h-3.5 text-muted/40 shrink-0"
@@ -46,7 +46,7 @@ const schemaList = {
 
           {isLast || !item.href ? (
             <span
-              class="font-medium text-text truncate max-w-[200px] sm:max-w-none"
+              class="font-medium text-text truncate max-w-[140px] sm:max-w-none"
               aria-current={isLast ? "page" : undefined}
             >
               {item.label}
@@ -54,15 +54,15 @@ const schemaList = {
           ) : (
             <a
               href={item.href}
-              class="hover:text-primary transition-colors flex items-center gap-1 text-muted font-medium"
+              class="hover:text-primary transition-colors flex items-center gap-1 text-muted font-medium max-w-[120px] sm:max-w-none truncate"
             >
               {index === 0 && (
-                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
               )}
-              {item.label}
+              <span class="truncate">{item.label}</span>
             </a>
           )}
         </li>

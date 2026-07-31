@@ -56,7 +56,7 @@ const tocItems = [
             <span class="text-primary">1.</span> Analytics currently used
           </h2>
           <p>
-            Envoyou uses Google Analytics 4 to understand how visitors navigate the website and whether key calls to action lead to relevant destinations.
+            Envoyou uses Google Analytics 4 (see official <a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-medium">Google Analytics Data Privacy & Security Documentation <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>) to understand how visitors navigate the website and whether key calls to action lead to relevant destinations.
           </p>
           <p>
             Specifically, the exact events and metrics collected are strictly limited to:
@@ -67,7 +67,7 @@ const tocItems = [
             <li><strong class="text-text">CTA destination:</strong> the destination host of the link selected (e.g. login or signup routes).</li>
             <li><strong class="text-text">Conversion outcome:</strong> key engagement events such as <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">eai_login_clicked</code>, <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">eai_outbound_clicked</code>, and <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">pricing_plan_selected</code>.</li>
             <li><strong class="text-text">Device/browser information:</strong> standard browser type, operating system, language, and display dimensions provided natively by Google Analytics 4.</li>
-            <li><strong class="text-text">Approximate location:</strong> country and city level location derived from IP addresses by GA4 servers (IP addresses are processed to determine general location and are not stored or made accessible to Envoyou).</li>
+            <li><strong class="text-text">Approximate location:</strong> country and city level location derived from IP addresses by GA4 servers (see official <a href="https://support.google.com/analytics/answer/16871531" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-medium">GA4 IP Anonymization & Location Processing <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>; IP addresses are processed solely to determine general location and are not stored or made accessible to Envoyou).</li>
           </ul>
         </section>
 
@@ -76,12 +76,12 @@ const tocItems = [
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">2.</span> Privacy boundaries
           </h2>
-          <div class="rounded-2xl border border-primary/30 bg-primary/5 p-5 sm:p-6 space-y-3">
+          <div class="pl-4 border-l-4 border-primary space-y-2 py-1">
             <p class="font-semibold text-text text-base sm:text-lg">
               Envoyou does not send article drafts, editor content, account content, workspace names, email addresses, payment details, or other customer-generated content to Google Analytics.
             </p>
             <p class="text-sm text-muted">
-              Analytics events are used for aggregated website and conversion measurement, not to evaluate or profile the content created inside EAI workspaces.
+              Analytics events are used for aggregated website and conversion measurement, strictly complying with <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-medium">Google's Policy for Sites Using Google Services <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> to prohibit sending personally identifiable information (PII) or user content.
             </p>
           </div>
         </section>
@@ -91,17 +91,11 @@ const tocItems = [
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">3.</span> Consent behavior
           </h2>
-          <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 sm:p-6 space-y-3">
-            <p>
-              Google Analytics is not loaded unless you select &ldquo;Allow analytics.&rdquo;
-            </p>
-            <p>
-              If you continue without analytics, optional analytics storage remains disabled.
-            </p>
-            <p>
-              Your preference is stored locally so the website can respect your choice on future visits.
-            </p>
-          </div>
+          <ul class="list-disc list-inside space-y-2 text-sm text-text/90 pl-2">
+            <li>Google Analytics is not loaded unless you select &ldquo;Allow analytics.&rdquo;</li>
+            <li>If you continue without analytics, optional analytics storage remains disabled.</li>
+            <li>Your preference is stored locally so the website can respect your choice on future visits (governed by <a href="https://support.google.com/analytics/answer/9019185" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline inline-flex items-center gap-1 font-medium">Google Analytics Consent Mode <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>).</li>
+          </ul>
         </section>
 
         <!-- 4. Preference control -->
