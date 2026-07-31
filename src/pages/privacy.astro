@@ -103,7 +103,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </section>
 
-        <section id="legal-basis-for-processing" class="space-y-3 group scroll-mt-28">
+        <section id="legal-basis-for-processing" class="space-y-4 group scroll-mt-28">
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">2.</span> Legal Basis for Processing
             <button 
@@ -119,20 +119,47 @@ import Footer from '../components/Footer.astro';
           <p>
             We process your personal data under the following legal bases established by <strong class="text-text">UU PDP (Chapter V)</strong> and <strong class="text-text">GDPR Article 6(1)</strong>:
           </p>
-          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
-            <li>
-              <strong class="text-text">Contractual Necessity (GDPR Art. 6(1)(b) / UU PDP Art. 20):</strong> To perform the services you register for, including authentication, setting up Clerk organizations, processing subscription transactions, and running editorial polishing cycles.
-            </li>
-            <li>
-              <strong class="text-text">Legitimate Interests (GDPR Art. 6(1)(f) / UU PDP Art. 20):</strong> To maintain site security, analyze and optimize page performance, detect credit card fraud, and prevent spam/abuse of our trial balances.
-            </li>
-            <li>
-              <strong class="text-text">Consent (GDPR Art. 6(1)(a) / UU PDP Art. 20):</strong> For optional marketing communications, newsletters, or third-party tracking cookies (which can be withdrawn at any time).
-            </li>
-          </ul>
+
+          <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 sm:p-6 space-y-4">
+            <div class="p-4 rounded-xl border border-border/80 bg-surface/80 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Contractual Necessity</span>
+                <span class="text-[11px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  GDPR Art. 6(1)(b) / UU PDP Art. 20
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                To perform the services you register for, including authentication, setting up Clerk organizations, processing subscription transactions, and running editorial polishing cycles.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-border/80 bg-surface/80 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Legitimate Interests</span>
+                <span class="text-[11px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  GDPR Art. 6(1)(f) / UU PDP Art. 20
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                To maintain site security, analyze and optimize page performance, detect credit card fraud, and prevent spam/abuse of our trial balances.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl border border-border/80 bg-surface/80 space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Consent</span>
+                <span class="text-[11px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  GDPR Art. 6(1)(a) / UU PDP Art. 20
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                For optional marketing communications, newsletters, or third-party tracking cookies (which can be withdrawn at any time).
+              </p>
+            </div>
+          </div>
         </section>
 
-        <section id="ai-data-processing-safeguards" class="space-y-3 group scroll-mt-28">
+        <section id="ai-data-processing-safeguards" class="space-y-4 group scroll-mt-28">
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">3.</span> AI Data Processing Safeguards
             <button 
@@ -148,17 +175,41 @@ import Footer from '../components/Footer.astro';
           <p>
             As an AI-driven Editorial Intelligence system, Envoyou enforces strict data confidentiality parameters to protect your proprietary intellectual assets:
           </p>
-          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
-            <li>
-              <strong class="text-text">No LLM Training:</strong> All drafts, source notes, scraped reference URLs, and outlined articles processed through the Envoyou EAI workspace are submitted to Google LLC's Gemini API via secure commercial developer API endpoints. Under our enterprise terms, <strong class="text-text">your data is never used to train Google's public large language models (LLMs)</strong>.
-            </li>
-            <li>
-              <strong class="text-text">Encrypted API Credentials:</strong> Your external CMS access tokens, API keys, and database secrets are encrypted at rest using industry-standard AES-256-GCM. Decryption keys are managed securely and are never sent or exposed to the browser client.
-            </li>
-          </ul>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-3 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 font-bold text-text text-sm sm:text-base">
+                  <svg class="w-4.5 h-4.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>No LLM Training</span>
+                </div>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 rounded-md px-2 py-0.5">
+                  Zero Model Training
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                All drafts, source notes, scraped reference URLs, and outlined articles processed through the Envoyou EAI workspace are submitted to Google LLC's Gemini API via secure commercial developer API endpoints. Under our enterprise terms, <strong class="text-text">your data is never used to train Google's public large language models (LLMs)</strong>.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-3 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 font-bold text-text text-sm sm:text-base">
+                  <svg class="w-4.5 h-4.5 text-primary shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <span>Encrypted Credentials</span>
+                </div>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 rounded-md px-2 py-0.5">
+                  AES-256-GCM
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Your external CMS access tokens, API keys, and database secrets are encrypted at rest using industry-standard AES-256-GCM. Decryption keys are managed securely and are never sent or exposed to the browser client.
+              </p>
+            </div>
+          </div>
         </section>
 
-        <section id="information-we-collect" class="space-y-3 group scroll-mt-28">
+        <section id="information-we-collect" class="space-y-4 group scroll-mt-28">
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">4.</span> Information We Collect
             <button 
@@ -171,20 +222,59 @@ import Footer from '../components/Footer.astro';
               <svg class="w-4 h-4 icon-check hidden text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </button>
           </h2>
-          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
-            <li>
-              <strong class="text-text">Visitor Data:</strong> When you allow optional analytics, Google Analytics may process IP-derived location, browser information, page paths, and the non-personal conversion events described by this site. The Google Analytics script is not loaded before consent.
-            </li>
-            <li>
-              <strong class="text-text">Account Information:</strong> Workspace name, user email, profile photo, and associated organization roles sync'd via our identity partner, Clerk.
-            </li>
-            <li>
-              <strong class="text-text">Workspace Inputs:</strong> Article drafts, outlines, URL references, briefs, and categories uploaded to the EAI Editor.
-            </li>
-            <li>
-              <strong class="text-text">Payment Metadata:</strong> We process transaction identifiers, payment status, subscription plan, billing period, currency, transaction totals, tax information, and limited customer billing details required to activate and manage your subscription. We do not directly store complete payment card or bank account details. Local Indonesian payments are processed by Midtrans. International payments may be processed by Paddle once global checkout becomes available.
-            </li>
-          </ul>
+          <p>
+            We collect and process specific categories of data necessary to deliver our services, maintain security, and manage subscriptions:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Visitor Data</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Consent-Based Analytics
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                When you allow optional analytics, Google Analytics may process IP-derived location, browser information, page paths, and non-personal conversion events. The Google Analytics script is not loaded before consent.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Account Information</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Clerk Auth Sync
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Workspace name, user email, profile photo, and associated organization roles synchronized via our identity partner, Clerk.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Workspace Inputs</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Editorial Content
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Article drafts, outlines, URL references, briefs, and categories uploaded to the EAI Editor.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Payment Metadata</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Midtrans & Paddle
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                We process transaction identifiers, payment status, subscription plan, billing period, currency, transaction totals, tax information, and limited customer billing details required to activate and manage your subscription. Complete payment card details are never stored. Local Indonesian payments are processed by Midtrans; international payments may be processed by Paddle once global checkout becomes available.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section id="data-retention-schedule" class="space-y-3 group scroll-mt-28">
@@ -238,7 +328,7 @@ import Footer from '../components/Footer.astro';
           </div>
         </section>
 
-        <section id="third-party-data-processors" class="space-y-3 group scroll-mt-28">
+        <section id="third-party-data-processors" class="space-y-4 group scroll-mt-28">
           <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
             <span class="text-primary">6.</span> Third-Party Data Processors
             <button 
@@ -254,45 +344,110 @@ import Footer from '../components/Footer.astro';
           <p>
             We share specific data subsets with third-party service providers (data processors) who assist us in operating our Site and Service under strict data protection agreements:
           </p>
-          <ul class="list-disc list-inside pl-4 space-y-2 text-sm">
-            <li>
-              <strong class="text-text">Clerk Inc.:</strong> Identity provider, managing account logins and security profiles.
-            </li>
-            <li>
-              <strong class="text-text">Google LLC (Gemini API):</strong> Primary Large Language Model API, utilized to process and rewrite draft content.
-            </li>
-            <li>
-              <strong class="text-text">Vercel Inc.:</strong> Frontend deployment and serverless edge hosting infrastructure.
-            </li>
-            <li>
-              <strong class="text-text">Railway Corp.:</strong>
-              Cloud infrastructure provider used to host the Envoyou EAI & Blog production
-              backend and supporting application services.
-            </li>
-            <li>
-              <strong class="text-text">Supabase, Inc. & Neon Database:</strong> Cloud database platforms hosting the blog and EAI databases respectively.
-            </li>
-            <li>
-              <strong class="text-text">Cloudflare, Inc.:</strong> DNS routing, content delivery network (CDN) caching, and DDoS security logs.
-            </li>
-            <li>
-              <strong class="text-text">PT Midtrans:</strong> Licensed Indonesian payment gateway, securely managing local subscription checkouts and billing renewals.
-            </li>
-            <li>
-              <strong class="text-text">Paddle.com Market Ltd:</strong>
-              Planned payment provider and Merchant of Record for international
-              transactions. When global checkout becomes available, Paddle may process
-              customer identity, billing, payment, tax, fraud-prevention, refund, and
-              subscription information in accordance with its own privacy policy.
-            </li>
-          </ul>
-          <p>
-            Payment providers may collect and process billing information directly
-            through their hosted checkout interfaces. Their processing of payment
-            credentials, fraud-prevention data, tax information, and legally required
-            transaction records is governed by their respective privacy policies and
-            applicable legal obligations.
-          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Clerk Inc.</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Identity & Auth
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Identity provider managing account logins, security profiles, and multi-tenant organization access.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Google LLC (Gemini API)</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  AI Model API
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Primary Large Language Model API, utilized via commercial endpoints to process and rewrite draft content.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Vercel Inc.</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Frontend Edge Hosting
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Frontend deployment, global content distribution, and serverless edge hosting infrastructure.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Railway Corp.</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Backend Infrastructure
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Cloud infrastructure provider hosting the Envoyou EAI & Blog production backend and supporting services.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Supabase & Neon Database</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Database Platforms
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Cloud database platforms hosting the blog and EAI production databases respectively.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Cloudflare, Inc.</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  CDN & Security
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                DNS routing, content delivery network (CDN) caching, SSL encryption, and DDoS security logs.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">PT Midtrans</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Local Payment Gateway
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Licensed Indonesian payment gateway, securely managing local subscription checkouts and billing renewals.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 space-y-2.5 transition-colors hover:border-primary/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-text text-sm sm:text-base">Paddle.com Market Ltd</span>
+                <span class="text-[10px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-full px-2.5 py-0.5">
+                  Global Merchant of Record
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                Planned payment provider and Merchant of Record for international transactions once global checkout is available.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-border bg-surface-soft/40 p-4 sm:p-5 text-xs sm:text-sm text-muted leading-relaxed">
+            <p>
+              <strong class="text-text">Payment Gateway Direct Processing Note:</strong> Payment providers may collect and process billing information directly through their hosted checkout interfaces. Their processing of payment credentials, fraud-prevention data, tax information, and legally required transaction records is governed by their respective privacy policies and applicable legal obligations.
+            </p>
+          </div>
         </section>
 
         <section id="international-data-transfers-cross-border" class="space-y-3 group scroll-mt-28">
