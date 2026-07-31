@@ -1,11 +1,20 @@
 ---
 // Navbar component with theme toggle and sticky behavior
+interface Props {
+  hasInvertedHero?: boolean;
+}
+
+const { hasInvertedHero } = Astro.props;
+const pathname = Astro.url.pathname;
+const isHomePage = pathname === '/' || pathname === '';
+const defaultInverted = hasInvertedHero ?? isHomePage;
 ---
 
 <header
   id="navbar"
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
   data-scrolled="false"
+  data-hero-inverted={defaultInverted ? "true" : "false"}
 >
   <nav class="max-w-screen mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
@@ -115,7 +124,15 @@
     const scrolled = window.scrollY > 20;
     navbar?.setAttribute("data-scrolled", scrolled ? "true" : "false");
   }
-  
+
+  function checkHeroInverted() {
+    const hasHeroInverted = !!document.querySelector(".hero-inverted");
+    if (navbar) {
+      navbar.setAttribute("data-hero-inverted", hasHeroInverted ? "true" : "false");
+    }
+  }
+
+  checkHeroInverted();
   window.addEventListener("scroll", updateScrollState);
   // Run on initial load
   updateScrollState();
@@ -204,48 +221,48 @@
   }
 
   /* Top Navbar (scrolled=false over inverted Hero) */
-  #navbar[data-scrolled="false"] .logo-text,
-  #navbar[data-scrolled="false"] .logo-icon {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] .logo-text,
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] .logo-icon {
     color: #f7f8f8;
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] .logo-text,
-  :global(.dark) #navbar[data-scrolled="false"] .logo-icon {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] .logo-text,
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] .logo-icon {
     color: #0f1115;
   }
 
-  #navbar[data-scrolled="false"] .nav-link {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] .nav-link {
     color: #9da3ae;
   }
 
-  #navbar[data-scrolled="false"] .nav-link:hover {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] .nav-link:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] .nav-link {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] .nav-link {
     color: #626770;
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] .nav-link:hover {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] .nav-link:hover {
     color: #0f1115;
     background-color: rgba(0, 0, 0, 0.06);
   }
 
-  #navbar[data-scrolled="false"] #theme-toggle {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] #theme-toggle {
     color: #9da3ae;
   }
 
-  #navbar[data-scrolled="false"] #theme-toggle:hover {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] #theme-toggle:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] #theme-toggle {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] #theme-toggle {
     color: #626770;
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] #theme-toggle:hover {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] #theme-toggle:hover {
     color: #0f1115;
     background-color: rgba(0, 0, 0, 0.06);
   }
@@ -257,13 +274,13 @@
     color: var(--color-text);
   }
 
-  #navbar[data-scrolled="false"] #mobile-menu-btn {
+  #navbar[data-hero-inverted="true"][data-scrolled="false"] #mobile-menu-btn {
     background-color: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.18);
     color: #ffffff;
   }
 
-  :global(.dark) #navbar[data-scrolled="false"] #mobile-menu-btn {
+  :global(.dark) #navbar[data-hero-inverted="true"][data-scrolled="false"] #mobile-menu-btn {
     background-color: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.12);
     color: #0f1115;
