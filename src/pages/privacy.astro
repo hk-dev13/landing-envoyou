@@ -45,12 +45,61 @@ import Footer from '../components/Footer.astro';
           <p>
             For the purposes of applicable data protection laws, including the Indonesian Law on Personal Data Protection (UU PDP No. 27/2022) and the European Union General Data Protection Regulation (GDPR), the Data Controller is:
           </p>
-          <div class="bg-surface-soft border border-border p-5 rounded-2xl space-y-1 text-sm font-medium text-text">
-            <p><span class="text-muted">Operator:</span> Envoyou is operated by M Husni Kusuma Thohari, an individual business operator based in Indonesia. Envoyou is the trading and product name of the service.</p>
-            <p><span class="text-muted">Business Identification Number (NIB):</span> Registered under the NIB Framework of the Republic of Indonesia</p>
-            <p><span class="text-muted">Electronic System Operator (PSE):</span> Registered with the Ministry of Communication and Informatics (Kominfo), Republic of Indonesia</p>
-            <p><span class="text-muted">Registered Address:</span> Banyuwangi, Jawa Timur, Indonesia</p>
-            <p><span class="text-muted">Contact Email:</span> <a href="mailto:support@envoyou.com" class="text-primary hover:underline">support@envoyou.com</a></p>
+          <div class="rounded-2xl border border-border bg-surface-soft p-5 sm:p-6">
+            <dl class="divide-y divide-border/70">
+              <div class="grid gap-1 py-3 first:pt-0 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-5">
+                <dt class="text-sm font-semibold text-muted">
+                  Operator
+                </dt>
+                <dd class="text-sm leading-6 text-text">
+                  Envoyou is operated by M Husni Kusuma Thohari, an individual business
+                  operator based in Indonesia. Envoyou is the trading and product name
+                  of the service.
+                </dd>
+              </div>
+
+              <div class="grid gap-1 py-3 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-5">
+                <dt class="text-sm font-semibold text-muted">
+                  Business Identification Number (NIB)
+                </dt>
+                <dd class="text-sm leading-6 text-text">
+                  Registered under the NIB Framework of the Republic of Indonesia
+                </dd>
+              </div>
+
+              <div class="grid gap-1 py-3 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-5">
+                <dt class="text-sm font-semibold text-muted">
+                  Electronic System Operator (PSE)
+                </dt>
+                <dd class="text-sm leading-6 text-text">
+                  Registered with the Ministry of Communication and Informatics
+                  (Kominfo), Republic of Indonesia
+                </dd>
+              </div>
+
+              <div class="grid gap-1 py-3 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-5">
+                <dt class="text-sm font-semibold text-muted">
+                  Registered Address
+                </dt>
+                <dd class="text-sm leading-6 text-text">
+                  Cluring, Banyuwangi, Jawa Timur 68482, Indonesia
+                </dd>
+              </div>
+
+              <div class="grid gap-1 py-3 last:pb-0 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-5">
+                <dt class="text-sm font-semibold text-muted">
+                  Contact Email
+                </dt>
+                <dd class="text-sm leading-6 text-text">
+                  <a
+                    href="mailto:support@envoyou.com"
+                    class="font-medium text-primary underline-offset-4 hover:underline"
+                  >
+                    support@envoyou.com
+                  </a>
+                </dd>
+              </div>
+            </dl>
           </div>
         </section>
 
