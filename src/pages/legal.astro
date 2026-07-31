@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const legalCenterStructuredData = {
+  "@type": "WebPage",
+  "@id": "https://www.envoyou.com/legal/#webpage",
+  name: "Envoyou Legal & Compliance Center",
+  url: "https://www.envoyou.com/legal",
+  description: "Access Envoyou Terms of Service, Privacy Policy, Refund Policy, Analytics Preferences, and Editorial Compliance standards.",
+  publisher: {
+    "@id": "https://www.envoyou.com/#organization",
+  },
+};
+
+const legalDocuments = [
+  {
+    title: "Terms of Service",
+    href: "/terms",
+    badge: "Master Agreement",
+    description: "Our core subscription agreement covering account responsibilities, service levels, acceptable use policy, and workspace usage rights.",
+    icon: `M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z`,
+    cta: "Read Terms of Service"
+  },
+  {
+    title: "Privacy Policy",
+    href: "/privacy",
+    badge: "Data Protection",
+    description: "Detailed breakdown of data collection, storage, encryption standards, third-party sub-processors, and GDPR / UU PDP alignment.",
+    icon: `M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z`,
+    cta: "Read Privacy Policy"
+  },
+  {
+    title: "Refund Policy",
+    href: "/refund",
+    badge: "Billing & Plans",
+    description: "Information regarding subscription billing cycles, cancellation terms, refund eligibility windows, and invoice adjustments.",
+    icon: `M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2z`,
+    cta: "Read Refund Policy"
+  },
+  {
+    title: "Analytics & Preferences",
+    href: "/analytics",
+    badge: "Consent & Telemetry",
+    description: "Learn what Envoyou measures, our zero-raw-content logging pledge, and manage your analytics consent preferences.",
+    icon: `M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z`,
+    cta: "Manage Preferences"
+  }
+];
+
+const standardsDocuments = [
+  {
+    title: "Editorial Methodology",
+    href: "/methodology",
+    description: "Explore our source-sensitive quality review framework and AI editorial safeguards for publisher content.",
+    cta: "View Methodology"
+  },
+  {
+    title: "Security Infrastructure",
+    href: "/#security",
+    description: "Review tenant isolation, data residency, API rate limits, and encryption standards across EAI services.",
+    cta: "View Security Details"
+  }
+];
+---
+
+<BaseLayout
+  title="Legal Center — Envoyou"
+  description="Envoyou Legal & Compliance Center. Access our Terms of Service, Privacy Policy, Refund Policy, and Editorial Compliance standards."
+  structuredData={legalCenterStructuredData}
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-x-clip transition-colors duration-300">
+    <!-- Ambient Background Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.05),transparent_45%),radial-gradient(circle_at_70%_25%,rgba(147,51,234,0.04),transparent_45%)]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <!-- Breadcrumbs -->
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Legal Center' }
+        ]}
+      />
+
+      <!-- Hero Header -->
+      <div class="mb-16 border-b border-border pb-10 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Legal & Compliance Center
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">
+          Envoyou Legal Center
+        </h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed max-w-2xl">
+          We believe in clear agreements, rigorous data privacy, and complete transparency. Explore our policies and compliance frameworks below.
+        </p>
+      </div>
+
+      <!-- Legal Policies Grid -->
+      <div class="mb-16">
+        <h2 class="text-xl font-bold text-text mb-6 flex items-center gap-2">
+          <span>Core Legal Documents</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {legalDocuments.map((doc) => (
+            <div class="group relative rounded-2xl border border-border bg-surface/80 hover:bg-surface p-7 transition-all duration-300 hover:border-primary/40 hover:shadow-lg flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-4 mb-4">
+                  <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d={doc.icon} />
+                    </svg>
+                  </div>
+                  <span class="text-[11px] font-semibold text-muted bg-surface-soft border border-border px-2.5 py-0.5 rounded-full">
+                    {doc.badge}
+                  </span>
+                </div>
+
+                <h3 class="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
+                  {doc.title}
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                  {doc.description}
+                </p>
+              </div>
+
+              <a
+                href={doc.href}
+                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary group-hover:text-primary-deep transition-colors"
+              >
+                <span>{doc.cta}</span>
+                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Standards & Frameworks -->
+      <div class="mb-16">
+        <h2 class="text-xl font-bold text-text mb-6">
+          Editorial & Technical Standards
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {standardsDocuments.map((doc) => (
+            <a
+              href={doc.href}
+              class="group block rounded-2xl border border-border bg-surface-soft/60 hover:bg-surface p-6 transition-all duration-300 hover:border-border/80"
+            >
+              <h3 class="text-lg font-bold text-text group-hover:text-primary transition-colors mb-2">
+                {doc.title}
+              </h3>
+              <p class="text-muted text-sm leading-relaxed mb-4">
+                {doc.description}
+              </p>
+              <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
+                {doc.cta}
+                <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Contact & Inquiries Box -->
+      <div class="rounded-2xl border border-border bg-gradient-to-br from-surface to-surface-soft p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="text-lg font-bold text-text mb-1">
+            Need a Data Processing Agreement (DPA) or Legal Inquiries?
+          </h3>
+          <p class="text-muted text-sm max-w-xl">
+            For custom enterprise compliance, data protection officer (DPO) inquiries, or security questionnaires, contact our legal team.
+          </p>
+        </div>
+        <a
+          href="mailto:support@envoyou.com"
+          class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-on-primary bg-primary hover:bg-primary-deep transition-all duration-200 shadow-sm"
+        >
+          <span>Contact Legal Team</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
