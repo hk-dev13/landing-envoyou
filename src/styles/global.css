@@ -18,8 +18,12 @@
   --color-success: #17b26c;
   
   /* [BARU] Warna teks di atas background primary */
-  --color-on-primary: #ffffff; 
-  
+  --color-on-primary: #ffffff;
+
+  /* [BARU] Token untuk Link */
+  --color-link: #2563eb;
+  --color-link-hover: #1d4ed8; 
+
   --color-hero-glow: rgba(0, 0, 0, 0.03);
   --color-hero-glow-2: rgba(0, 0, 0, 0.01);
 
@@ -41,9 +45,13 @@
   --color-primary-deep: #ffffff;
   --color-accent: #828792;
   --color-success: #17b26c;
-  
+
   /* [BARU] Teks hitam di atas background primary terang */
-  --color-on-primary: #0f1115; 
+  --color-on-primary: #0f1115;
+
+  /* [BARU] Token untuk Link */
+  --color-link: #60a5fa;
+  --color-link-hover: #93c5fd;
 
   --color-hero-glow: rgba(255, 255, 255, 0.06);
   --color-hero-glow-2: rgba(255, 255, 255, 0.03);
@@ -61,6 +69,8 @@
   --color-accent: var(--color-accent);
   --color-success: var(--color-success);
   --color-on-primary: var(--color-on-primary);
+  --color-link: var(--color-link);
+  --color-link-hover: var(--color-link-hover);
 }
 
 /* ── Base ── */
