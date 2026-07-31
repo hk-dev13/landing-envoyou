@@ -2,6 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import LegalNav from '../components/LegalNav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocItems = [
+  { id: 'acceptance-of-terms', title: '1. Acceptance of Terms' },
+  { id: 'ai-content-search-engine-disclaimer', title: '2. AI Content Disclaimer' },
+  { id: 'service-availability-no-uptime-guarantee', title: '3. Service Availability' },
+  { id: 'intellectual-property-content-ownership', title: '4. Intellectual Property' },
+  { id: 'acceptable-use-policy-aup', title: '5. Acceptable Use Policy' },
+  { id: 'data-isolation-account-termination', title: '6. Data Isolation' },
+  { id: 'limitation-of-liability', title: '7. Limitation of Liability' },
+  { id: 'modifications-to-terms', title: '8. Modifications to Terms' },
+  { id: 'governing-law', title: '9. Governing Law' },
+];
 ---
 
 <BaseLayout
@@ -10,11 +25,19 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
 
-  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-x-clip transition-colors duration-300">
     <!-- Ambient Radial Glows -->
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
 
-    <article class="max-w-4xl mx-auto px-6 py-12">
+    <article class="max-w-6xl mx-auto px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Legal Center', href: '/terms' },
+          { label: 'Terms of Service' }
+        ]}
+      />
+
       <!-- Title Header -->
       <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
         <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
@@ -25,6 +48,9 @@ import Footer from '../components/Footer.astro';
           Last Updated: June 21, 2026. Please read these Terms of Service carefully before using our website or platform.
         </p>
       </div>
+
+      <!-- Main Layout: Content + Sticky TOC -->
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
 
       <!-- Legal Content Sections -->
       <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
@@ -250,6 +276,11 @@ import Footer from '../components/Footer.astro';
         </section>
 
       </div>
+
+      <TableOfContents items={tocItems} />
+    </div>
+
+    <LegalNav currentPage="terms" />
     </article>
   </main>
 

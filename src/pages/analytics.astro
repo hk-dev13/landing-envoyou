@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import LegalNav from '../components/LegalNav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocItems = [
+  { id: 'analytics-currently-used', title: '1. Analytics currently used' },
+  { id: 'privacy-boundaries', title: '2. Privacy boundaries' },
+  { id: 'consent-behavior', title: '3. Consent behavior' },
+  { id: 'preference-control', title: '4. Preference control' },
+];
+---
+
+<BaseLayout
+  title="Analytics & Preferences — Envoyou Company"
+  description="Learn what Envoyou measures, what it does not collect, and manage your analytics consent preferences."
+>
+  <Navbar />
+
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-x-clip transition-colors duration-300">
+    <!-- Ambient Radial Glows -->
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
+
+    <article class="max-w-6xl mx-auto px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Legal Center', href: '/terms' },
+          { label: 'Analytics & Preferences' }
+        ]}
+      />
+
+      <!-- Title Header -->
+      <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
+        <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
+          Privacy & Choice
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-text mb-4">Analytics & Preferences</h1>
+        <p class="text-muted text-sm sm:text-base leading-relaxed">
+          Learn what Envoyou measures, what it does not collect, and manage your analytics consent preferences.
+        </p>
+      </div>
+
+      <!-- Main Layout: Content + Sticky TOC -->
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
+
+      <!-- Content Sections -->
+      <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
+
+        <!-- 1. Analytics currently used -->
+        <section id="analytics-currently-used" class="space-y-4 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">1.</span> Analytics currently used
+          </h2>
+          <p>
+            Envoyou uses Google Analytics 4 to understand how visitors navigate the website and whether key calls to action lead to relevant destinations.
+          </p>
+          <p>
+            Specifically, the exact events and metrics collected are strictly limited to:
+          </p>
+          <ul class="list-disc list-inside pl-2 space-y-2 text-sm text-text/90">
+            <li><strong class="text-text">Page views:</strong> standard GA4 pageview metrics to measure traffic patterns across pages.</li>
+            <li><strong class="text-text">CTA location:</strong> the specific element or section on the page where a call-to-action button was clicked (e.g. hero, pricing table, header).</li>
+            <li><strong class="text-text">CTA destination:</strong> the destination host of the link selected (e.g. login or signup routes).</li>
+            <li><strong class="text-text">Conversion outcome:</strong> key engagement events such as <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">eai_login_clicked</code>, <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">eai_outbound_clicked</code>, and <code class="text-xs bg-surface-soft px-1.5 py-0.5 rounded border border-border">pricing_plan_selected</code>.</li>
+            <li><strong class="text-text">Device/browser information:</strong> standard browser type, operating system, language, and display dimensions provided natively by Google Analytics 4.</li>
+            <li><strong class="text-text">Approximate location:</strong> country and city level location derived from IP addresses by GA4 servers (IP addresses are processed to determine general location and are not stored or made accessible to Envoyou).</li>
+          </ul>
+        </section>
+
+        <!-- 2. Privacy boundaries -->
+        <section id="privacy-boundaries" class="space-y-4 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">2.</span> Privacy boundaries
+          </h2>
+          <div class="rounded-2xl border border-primary/30 bg-primary/5 p-5 sm:p-6 space-y-3">
+            <p class="font-semibold text-text text-base sm:text-lg">
+              Envoyou does not send article drafts, editor content, account content, workspace names, email addresses, payment details, or other customer-generated content to Google Analytics.
+            </p>
+            <p class="text-sm text-muted">
+              Analytics events are used for aggregated website and conversion measurement, not to evaluate or profile the content created inside EAI workspaces.
+            </p>
+          </div>
+        </section>
+
+        <!-- 3. Consent behavior -->
+        <section id="consent-behavior" class="space-y-4 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">3.</span> Consent behavior
+          </h2>
+          <div class="rounded-2xl border border-border bg-surface-soft/60 p-5 sm:p-6 space-y-3">
+            <p>
+              Google Analytics is not loaded unless you select &ldquo;Allow analytics.&rdquo;
+            </p>
+            <p>
+              If you continue without analytics, optional analytics storage remains disabled.
+            </p>
+            <p>
+              Your preference is stored locally so the website can respect your choice on future visits.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4. Preference control -->
+        <section id="preference-control" class="space-y-4 group scroll-mt-28">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-text tracking-tight flex items-center gap-2">
+            <span class="text-primary">4.</span> Preference control
+          </h2>
+          <p>
+            You can view your current analytics preference and change or revoke your decision at any time. Changes take effect immediately.
+          </p>
+
+          <div class="rounded-2xl border border-border bg-surface p-6 shadow-sm space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/70 pb-4">
+              <div>
+                <span class="text-xs uppercase tracking-wider font-extrabold text-muted block mb-1">Status</span>
+                <span id="preference-status" class="text-base font-bold text-text flex items-center gap-2">
+                  Current preference: <span id="preference-status-label" class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-surface-soft border border-border text-muted">Checking preference...</span>
+                </span>
+              </div>
+              <div id="preference-feedback" class="hidden transition-all duration-200 text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Preference saved
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <button
+                id="btn-allow-analytics"
+                type="button"
+                class="btn-primary text-xs sm:text-sm py-2.5 px-6 font-semibold cursor-pointer"
+              >
+                Allow analytics
+              </button>
+              <button
+                id="btn-disable-analytics"
+                type="button"
+                class="btn-secondary text-xs sm:text-sm py-2.5 px-6 font-semibold cursor-pointer"
+              >
+                Disable analytics
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <TableOfContents items={tocItems} />
+    </div>
+
+    <!-- Legal Navigation -->
+    <LegalNav currentPage="analytics" />
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const consentStorageKey = "envoyou_analytics_consent";
+  const statusLabel = document.getElementById("preference-status-label");
+  const feedbackEl = document.getElementById("preference-feedback");
+  const allowBtn = document.getElementById("btn-allow-analytics");
+  const disableBtn = document.getElementById("btn-disable-analytics");
+
+  function readStoredPreference(): "granted" | "denied" | null {
+    try {
+      const val = localStorage.getItem(consentStorageKey);
+      if (val === "granted" || val === "denied") return val;
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  function updateUIStatus(pref: "granted" | "denied" | null) {
+    if (!statusLabel) return;
+
+    if (pref === "granted") {
+      statusLabel.textContent = "Analytics allowed";
+      statusLabel.className = "inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20";
+    } else if (pref === "denied") {
+      statusLabel.textContent = "Analytics disabled";
+      statusLabel.className = "inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20";
+    } else {
+      statusLabel.textContent = "Analytics disabled (default)";
+      statusLabel.className = "inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-surface-soft text-muted border border-border";
+    }
+  }
+
+  function showSavedFeedback() {
+    if (!feedbackEl) return;
+    feedbackEl.classList.remove("hidden");
+    setTimeout(() => {
+      feedbackEl.classList.add("hidden");
+    }, 3000);
+  }
+
+  function setConsent(choice: "granted" | "denied") {
+    try {
+      localStorage.setItem(consentStorageKey, choice);
+    } catch {
+      // Continue even if local storage access is restricted
+    }
+    window.dispatchEvent(new CustomEvent("envoyou:analytics-consent", { detail: choice }));
+    updateUIStatus(choice);
+    showSavedFeedback();
+  }
+
+  // Initialize UI state
+  updateUIStatus(readStoredPreference());
+
+  allowBtn?.addEventListener("click", () => setConsent("granted"));
+  disableBtn?.addEventListener("click", () => setConsent("denied"));
+</script>

@@ -2,6 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import LegalNav from '../components/LegalNav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocItems = [
+  { id: 'prepaid-purchases', title: '1. Prepaid Purchases' },
+  { id: 'refund-eligibility', title: '2. Refund Eligibility' },
+  { id: 'purchases-generally-not-refundable', title: '3. Non-Refundable Items' },
+  { id: 'failed-pending-or-duplicate-transactions', title: '4. Transaction Issues' },
+  { id: 'how-to-request-a-refund', title: '5. Requesting a Refund' },
+  { id: 'review-and-payment-return', title: '6. Review & Payment Return' },
+  { id: 'chargebacks-and-fraud', title: '7. Chargebacks & Fraud' },
+  { id: 'plan-changes-and-remaining-credits', title: '8. Plan Changes & Credits' },
+];
 ---
 
 <BaseLayout
@@ -10,11 +24,19 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
 
-  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-x-clip transition-colors duration-300">
     <!-- Ambient Radial Glows -->
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
 
-    <article class="max-w-4xl mx-auto px-6 py-12">
+    <article class="max-w-6xl mx-auto px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Legal Center', href: '/terms' },
+          { label: 'Refund Policy' }
+        ]}
+      />
+
       <!-- Title Header -->
       <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
         <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
@@ -25,6 +47,9 @@ import Footer from '../components/Footer.astro';
           Last Updated: June 23, 2026. This policy applies to prepaid EAI plans and additional credit purchases processed through our supported payment gateways.
         </p>
       </div>
+
+      <!-- Main Layout: Content + Sticky TOC -->
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
 
       <!-- Legal Content Sections -->
       <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
@@ -134,6 +159,11 @@ import Footer from '../components/Footer.astro';
         </section>
 
       </div>
+
+      <TableOfContents items={tocItems} />
+    </div>
+
+    <LegalNav currentPage="refund" />
     </article>
   </main>
 

@@ -135,9 +135,32 @@ const structuredDataGraph = {
           }
         };
 
+        window.clearAnalyticsCookies = function() {
+          try {
+            var cookies = document.cookie.split(';');
+            var hostname = window.location.hostname;
+            var domainParts = hostname.split('.');
+            var rootDomain = domainParts.length > 1 ? '.' + domainParts.slice(-2).join('.') : '';
+            
+            for (var i = 0; i < cookies.length; i++) {
+              var cookieName = cookies[i].split('=')[0].trim();
+              if (cookieName.indexOf('_ga') === 0 || cookieName.indexOf('_gid') === 0) {
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + hostname + ';';
+                if (rootDomain) {
+                  document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + rootDomain + ';';
+                }
+              }
+            }
+          } catch (e) {
+            // Ignore cookie cleanup errors if storage access is restricted
+          }
+        };
+
         window.disableEnvoyouAnalytics = function() {
           window.envoyouAnalyticsGranted = false;
           window.gtag('consent', 'update', { analytics_storage: 'denied' });
+          if (window.clearAnalyticsCookies) window.clearAnalyticsCookies();
         };
 
         window.addEventListener('envoyou:analytics-consent', function(event) {

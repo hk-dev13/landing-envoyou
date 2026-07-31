@@ -2,6 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import LegalNav from '../components/LegalNav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocItems = [
+  { id: 'identity-of-the-data-controller', title: '1. Identity of Controller' },
+  { id: 'legal-basis-for-processing', title: '2. Legal Basis for Processing' },
+  { id: 'ai-data-processing-safeguards', title: '3. AI Data Safeguards' },
+  { id: 'information-we-collect', title: '4. Information We Collect' },
+  { id: 'data-retention-schedule', title: '5. Data Retention Schedule' },
+  { id: 'third-party-data-processors', title: '6. Third-Party Processors' },
+  { id: 'international-data-transfers-cross-border', title: '7. International Transfers' },
+  { id: 'data-security-standards', title: '8. Data Security Standards' },
+  { id: 'your-rights-contact-details', title: '9. Your Rights & Contact' },
+];
 ---
 
 <BaseLayout
@@ -10,11 +25,19 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
 
-  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-hidden transition-colors duration-300">
+  <main class="min-h-screen bg-bg pt-28 pb-20 relative overflow-x-clip transition-colors duration-300">
     <!-- Ambient Radial Glows -->
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_10%,rgba(11,121,194,0.04),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(147,51,234,0.03),transparent_40%)]"></div>
 
-    <article class="max-w-4xl mx-auto px-6 py-12">
+    <article class="max-w-6xl mx-auto px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Legal Center', href: '/terms' },
+          { label: 'Privacy Policy' }
+        ]}
+      />
+
       <!-- Title Header -->
       <div class="mb-12 border-b border-border pb-8 text-center sm:text-left">
         <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4">
@@ -25,6 +48,9 @@ import Footer from '../components/Footer.astro';
           Last Updated: July 31, 2026. Envoyou is committed to safeguarding your personal and workspace data.
         </p>
       </div>
+
+      <!-- Main Layout: Content + Sticky TOC -->
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-10 items-start">
 
       <!-- Legal Content Sections -->
       <div class="space-y-10 text-sm sm:text-base text-text/80 leading-relaxed max-w-none">
@@ -529,6 +555,11 @@ import Footer from '../components/Footer.astro';
         </section>
 
       </div>
+
+      <TableOfContents items={tocItems} />
+    </div>
+
+    <LegalNav currentPage="privacy" />
     </article>
   </main>
 
